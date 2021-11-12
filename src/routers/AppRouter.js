@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Header from "../components/Header";
-import Footer from "../components/Footer";
 import HomePage from "../components/HomePage";
 import ProjectPage from "../components/ProjectPage";
 import ProjectOnePage from "../components/ProjectOnePage";
@@ -21,7 +20,6 @@ const AppRouter = () => (
         <Route path="/resume" component={ResumePage} />
         <Route component={NotFoundPage} />
       </Switch>
-      <Footer />
     </div>
   </BrowserRouter>
 );

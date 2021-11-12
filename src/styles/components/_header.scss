@@ -1,6 +1,5 @@
 .title {
   margin: $base-margin-l;
-  color: #3d550c;
 }
 
 .header {
@@ -11,23 +10,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #bacc81;
   z-index: 2;
 }
-
-// .footer {
-//   padding: 0 0 0 5%;
-//   background-color: #bacc81;
-//   position: fixed;
-//   bottom: 0;
-//   left: 0;
-//   width: 100%;
-// }
 
 a {
   text-decoration: none;
   border: none;
-  color: #2e765e;
 }
 
 .header-links {
