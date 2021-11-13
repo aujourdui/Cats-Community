@@ -1,25 +1,38 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
-// import pawLogo from "..../public/images/cat paw pad.png";
+import Logo from "./Logo";
 
 const Header = () => (
   <header className="header">
-    <h1 className="title">Cat's community</h1>
-    <div>{/* <img src={pawLogo} alt="Logo" /> */}</div>
+    <Link to="/">
+      <a>
+        <Logo />
+      </a>
+    </Link>
+    <p>
+      Search
+      <input type="text" />
+    </p>
     <div className="header-links">
       <span className="home-link">
         <NavLink to="/" activeClassName="is-active" exact={true}>
           Home
         </NavLink>
       </span>
-      <span className="project-link">
-        <NavLink to="/project" activeClassName="is-active" exact={true}>
+      <span className="message-link">
+        <NavLink to="/message" activeClassName="is-active" exact={true}>
           messages
         </NavLink>
       </span>
-      <span className="resume-link">
-        <NavLink to="/resume" activeClassName="is-active" exact={true}>
-          notification
+      <span className="favorite-link">
+        <NavLink to="/favorite" activeClassName="is-active" exact={true}>
+          favorite
+        </NavLink>
+      </span>
+      <span className="profile-link">
+        <NavLink to="/profile" activeClassName="is-active" exact={true}>
+          profile
         </NavLink>
       </span>
     </div>

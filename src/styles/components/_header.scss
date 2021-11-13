@@ -1,16 +1,16 @@
-.title {
-  margin: $base-margin-l;
-}
-
 .header {
   position: fixed;
   top: 0;
-  width: 100%;
+  width: 70%;
   height: 6rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   z-index: 2;
+  // margin: 0 0 0 10%;
+  padding: 0 20% 1rem 14%;
+  background-color: white;
+  border-bottom: 1px solid #d3e0ea;
 }
 
 a {
@@ -18,18 +18,26 @@ a {
   border: none;
 }
 
-.header-links {
-  padding: 0 10%;
-}
+// .header-links {
+//   : 0 20%;
+// }
 
 .home-link {
-  margin: 0 5%;
+  // margin: 0 5%;
+  padding: 0 5%;
 }
 
-.project-link {
-  margin: 0 5%;
+.message-link {
+  // margin: 0 5%;
+  padding: 0 5%;
 }
 
-.resume-link {
-  margin: $base-margin-l;
+.favorite-link {
+  // margin: 0 5%;
+  padding: 0 5%;
+}
+
+.profile-link {
+  // margin: 0 5%;
+  padding: 0 5%;
 }

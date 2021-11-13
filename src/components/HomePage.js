@@ -1,9 +1,14 @@
 import React from "react";
+import Contents from "./Contents";
+import Recommend from "./Recommend";
 
 const HomePage = () => (
   <div className="home">
-    <div>
-      <h1>This app is for cats lover</h1>
+    <div className="home-contents">
+      <Contents />
+    </div>
+    <div className="home-recommend">
+      <Recommend />
     </div>
   </div>
 );
