@@ -2,7 +2,14 @@ import React from "react";
 
 const FavoritePage = () => (
   <div className="favorite">
-    <h1>This is favorite item</h1>
+    <ul>
+      <li>
+        <div>
+          <p>User1</p>
+          <img src="images/cat1.jpg" alt="cat1" width="700" height="450" />
+        </div>
+      </li>
+    </ul>
   </div>
 );
 
