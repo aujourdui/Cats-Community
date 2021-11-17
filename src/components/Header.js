@@ -6,9 +6,7 @@ import Logo from "./Logo";
 const Header = () => (
   <header className="header">
     <Link to="/">
-      <a>
-        <Logo />
-      </a>
+      <Logo />
     </Link>
     <p>
       Search
