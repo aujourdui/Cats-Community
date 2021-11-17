@@ -14,7 +14,13 @@ const Header = () => (
       Search
       <input type="text" />
     </p>
+    {/* <button>Create new post</button> */}
     <div className="header-links">
+      <span className="upload-link">
+        <NavLink to="/upload" activeClassName="is-active" exact={true}>
+          +new post
+        </NavLink>
+      </span>
       <span className="home-link">
         <NavLink to="/" activeClassName="is-active" exact={true}>
           Home

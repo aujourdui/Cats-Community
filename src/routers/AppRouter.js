@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Header from "../components/Header";
 import HomePage from "../components/HomePage";
+import UploadPage from "../components/UploadPage";
 import MessagePage from "../components/MessagePage";
 import MessageOnePage from "../components/messages/MessageOnePage";
 import MessageTwoPage from "../components/messages/MessageTwoPage";
@@ -16,6 +17,7 @@ const AppRouter = () => (
       <Header />
       <Switch>
         <Route path="/" component={HomePage} exact={true} />
+        <Route path="/upload" component={UploadPage} exact={true} />
         <Route path="/message" component={MessagePage} exact={true} />
         <Route path="/message/1" component={MessageOnePage} />
         <Route path="/message/2" component={MessageTwoPage} />
