@@ -1,86 +1,41 @@
 import React, { useState } from "react";
-import ImageUploader from "react-images-upload";
-
-const UploadComponent = (props) => (
-  <form>
-    <label>
-      File Upload URL:
-      <input
-        id="urlInput"
-        type="text"
-        onChange={props.onUrlChange}
-        value={props.url}
-      />
-    </label>
-    <ImageUploader
-      key="image-uploader"
-      withIcon={true}
-      singleImage={true}
-      withPreview={true}
-      label="Maximum size file: 5MB"
-      buttonText="Choose an image"
-      onChange={props.onImage}
-      imgExtension={[(".jpg", "png", ".jpeg")]}
-      maxFileSize={5242880}
-    />
-  </form>
-);
 
 const UploadPage = () => {
-  const [progress, setProgress] = useState("getUpload");
-  const [url, setImageURL] = useState(undefined);
-  const [errorMessage, setErrorMessage] = useState("");
+  const [image, setImage] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const onUrlChange = (e) => {
-    setImageURL(e.target.value);
-  };
-
-  const onImage = (failedImages, successImages) => {
-    if (!url) {
-      console.log("missing Url");
-      setErrorMessage("missing a url to upload to");
-      setProgress("uploadError");
-      return;
-    }
-
-    setProgress("uploading");
-
-    try {
-      console.log("successImages", successImages);
-    } catch (error) {
-      setErrorMessage(error.message);
-      setProgress("uploadError");
-    }
-  };
-
-  const content = () => {
-    switch (progress) {
-      case "getUpload":
-        return (
-          <UploadComponent
-            onUrlChange={onUrlChange}
-            onImage={onImage}
-            url={url}
-          />
-        );
-      case "uploading":
-        return <h2>Uploading....</h2>;
-      case "uploaded":
-        return <img src={url} alt="uploaded" />;
-      case "uploadError":
-        return (
-          <>
-            <div>Error message = {errorMessage}</div>
-            <div>please upload an image</div>
-          </>
-        );
-    }
+  const uploadImage = async (e) => {
+    const files = e.target.files;
+    const data = new FormData();
+    data.append("file", files[0]);
+    data.append("upload_preset", "darwin");
+    setLoading(true);
+    const res = await fetch(
+      "https://api.cloudinary.com/v1_1/dvgu7fsrn/image/upload",
+      {
+        method: "POST",
+        body: data,
+      }
+    );
+    const file = await res.json();
+    setImage(file.secure_url);
+    setLoading(false);
   };
 
   return (
     <div className="favorite">
-      <h1>This is file upload page</h1>
-      {content()}
+      <h1>Upload Image</h1>
+      <input
+        type="file"
+        name="file"
+        placeholder="Upload an image"
+        onChange={uploadImage}
+      />
+      {loading ? (
+        <h3>Loading...</h3>
+      ) : (
+        <img src={image} style={{ width: "300px" }} />
+      )}
     </div>
   );
 };
