@@ -11,7 +11,11 @@
     "start": "webpack-serve"
   },
   "dependencies": {
+    "@emotion/react": "^11.7.0",
+    "@emotion/styled": "^11.6.0",
     "@mui/material": "^5.2.2",
+    "@mui/styled-engine": "^5.2.0",
+    "@mui/styles": "^5.2.2",
     "bootstrap": "^5.1.3",
     "css-loader": "^6.4.0",
     "firebase": "^7.19.0",
