@@ -3,6 +3,7 @@ import Post from "./Post";
 import { db, auth } from "./firebase";
 import { Modal, Typography, Button, Input, Box } from "@mui/material";
 import Recommend from "./Recommend";
+import Header from "./Header";
 
 const HomePage = () => {
   const [posts, setPosts] = useState([]);
@@ -136,27 +137,13 @@ const HomePage = () => {
           </Typography> */}
         </Box>
       </Modal>
-      <div className="header">
-        {user ? (
-          <Button onClick={() => auth.signOut()}>Logout</Button>
-        ) : (
-          <div className="home__login-container">
-            <Button
-              onClick={() => {
-                setOpenSignIn(true);
-              }}
-            >
-              SignIn
-            </Button>
-            <Button
-              onClick={() => {
-                setOpen(true);
-              }}
-            >
-              SignUp
-            </Button>
-          </div>
-        )}
+      <div className="home__header">
+        <Header
+          setOpenSignIn={setOpenSignIn}
+          setOpen={setOpen}
+          auth={auth}
+          user={user}
+        />
       </div>
       <div className="home__contents">
         <div className="home__contents-left">
