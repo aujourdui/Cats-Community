@@ -1,29 +1,5 @@
-* {
-  margin: 0;
-}
-
 .home {
   margin: 1rem 0 0 0;
   display: flex;
   justify-content: center;
-}
-
-.home__contents-right {
-  margin-left: 20px;
-}
-
-.home__posts {
-  padding: 20px;
-  display: flex;
-  justify-content: center;
-}
-
-.home__signup {
-  display: flex;
-  flex-direction: column;
-}
-
-.home__signin {
-  display: flex;
-  flex-direction: column;
 }
