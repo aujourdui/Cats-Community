@@ -1,11 +1,11 @@
 import React from "react";
-import Contents from "./Contents";
+import Post from "./Post";
 import Recommend from "./Recommend";
 
 const HomePage = () => (
   <div className="home">
     <div className="home-contents">
-      <Contents />
+      <Post />
     </div>
     <div className="home-recommend">
       <Recommend />

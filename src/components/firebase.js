@@ -1,10 +1,8 @@
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-import { getFirestore } from "firebase/firestore/lite";
-import { getStorage } from "firebase/storage";
-import { getAuth } from "firebase/auth";
+import * as firebase from "firebase";
+import "firebase/auth";
+import "firebase/firestore";
 
-const firebaseConfig = {
+const firebaseApp = firebase.initializeApp({
   apiKey: "AIzaSyB0Tugv36n5EaEVBxhhowmeN1-zr6CW6os",
   authDomain: "cats-community.firebaseapp.com",
   projectId: "cats-community",
@@ -12,15 +10,12 @@ const firebaseConfig = {
   messagingSenderId: "1071648525756",
   appId: "1:1071648525756:web:0a1295a0246a45ec9cafb9",
   measurementId: "G-2NQ0LM586G",
-};
+});
+const db = firebaseApp.firestore();
+const auth = firebase.auth();
+const storage = firebase.storage();
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-const analytics = getAnalytics(app);
-const storage = getStorage(app);
-const auth = getAuth(app);
-
-export { db, analytics, storage, auth };
+export { db, auth, storage };
 
 // const db = firebaseApp.firestore();
 // const auth = firebase.auth();
