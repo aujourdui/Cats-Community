@@ -1,8 +1,8 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import Header from "../components/Header";
+// import Header from "../components/Header";
 import HomePage from "../components/HomePage";
-import UploadPage from "../components/UploadPage";
+// import UploadPage from "../components/UploadPage";
 import MessagePage from "../components/MessagePage";
 import MessageOnePage from "../components/messages/MessageOnePage";
 import MessageTwoPage from "../components/messages/MessageTwoPage";

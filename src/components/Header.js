@@ -1,6 +1,5 @@
 import React from "react";
 
-import { auth } from "./firebase";
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
