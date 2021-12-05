@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import Post from "./Post";
 import { db, auth } from "./firebase";
 import { Modal, Typography, Button, Input, Box } from "@mui/material";
+
+import { Link, NavLink } from "react-router-dom";
+import Logo from "./Logo";
 import Recommend from "./Recommend";
 
 const HomePage = () => {
@@ -137,6 +140,41 @@ const HomePage = () => {
         </Box>
       </Modal>
       <div className="header">
+        <Link to="/">
+          <Logo />
+        </Link>
+        <p>
+          Search
+          <input type="text" />
+        </p>
+        {/* <button>Create new post</button> */}
+        <div className="header-links">
+          <span className="upload-link">
+            <NavLink to="/upload" activeClassName="is-active" exact={true}>
+              +new post
+            </NavLink>
+          </span>
+          <span className="home-link">
+            <NavLink to="/" activeClassName="is-active" exact={true}>
+              Home
+            </NavLink>
+          </span>
+          <span className="message-link">
+            <NavLink to="/message" activeClassName="is-active" exact={true}>
+              messages
+            </NavLink>
+          </span>
+          <span className="favorite-link">
+            <NavLink to="/favorite" activeClassName="is-active" exact={true}>
+              favorite
+            </NavLink>
+          </span>
+          <span className="profile-link">
+            <NavLink to="/profile" activeClassName="is-active" exact={true}>
+              profile
+            </NavLink>
+          </span>
+        </div>
         {user ? (
           <Button onClick={() => auth.signOut()}>Logout</Button>
         ) : (
@@ -174,13 +212,12 @@ const HomePage = () => {
         <div className="home__contents-right">
           <Recommend />
         </div>
+        {user?.displayName ? (
+          <ImageUpload username={user.displayName} />
+        ) : (
+          <h3>Sorry you need to login in order to upload</h3>
+        )}
       </div>
-
-      {user?.displayName ? (
-        <ImageUpload username={user.displayName} />
-      ) : (
-        <h3>Sorry you need to login in order to upload</h3>
-      )}
     </div>
   );
 };

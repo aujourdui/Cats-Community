@@ -14,7 +14,6 @@ import NotFoundPage from "../components/NotFoundPage";
 const AppRouter = () => (
   <BrowserRouter>
     <div>
-      <Header />
       <Switch>
         <Route path="/" component={HomePage} exact={true} />
         {/* <Route path="/upload" component={UploadPage} exact={true} /> */}
