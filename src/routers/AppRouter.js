@@ -17,7 +17,7 @@ const AppRouter = () => (
       <Header />
       <Switch>
         <Route path="/" component={HomePage} exact={true} />
-        <Route path="/upload" component={UploadPage} exact={true} />
+        {/* <Route path="/upload" component={UploadPage} exact={true} /> */}
         <Route path="/message" component={MessagePage} exact={true} />
         <Route path="/message/1" component={MessageOnePage} />
         <Route path="/message/2" component={MessageTwoPage} />
