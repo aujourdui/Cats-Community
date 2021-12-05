@@ -48,7 +48,7 @@ const HomePage = () => {
       .createUserWithEmailAndPassword(email, password)
       .then((authUser) => {
         authUser.user.updateProfile({
-          displayName: usename,
+          displayName: username,
         });
       })
       .catch((error) => alert(error.message));
