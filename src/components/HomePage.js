@@ -66,7 +66,7 @@ const HomePage = () => {
     setOpenSignIn(false);
   };
 
-  const style = {
+  const modal__style = {
     position: "absolute",
     top: "50%",
     left: "50%",
@@ -95,7 +95,7 @@ const HomePage = () => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
+        <Box sx={modal__style}>
           <Typography
             sx={input__title}
             id="modal-modal-title"
@@ -148,7 +148,7 @@ const HomePage = () => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
+        <Box sx={modal__style}>
           <Typography
             sx={input__title}
             id="modal-modal-title"
@@ -188,7 +188,7 @@ const HomePage = () => {
           setOpen={setOpen}
           auth={auth}
           user={user}
-          input__style={input__style}
+          modal__style={modal__style}
         />
       </div>
       <div className="home__contents">
