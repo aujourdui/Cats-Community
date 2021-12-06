@@ -2,10 +2,47 @@ import React, { useState, useEffect } from "react";
 import Post from "./Post";
 import { db, auth } from "./firebase";
 import { Modal, Typography, Button, Input, Box } from "@mui/material";
+// import { makeStyles } from "@mui/styles";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
 import Recommend from "./Recommend";
 import Header from "./Header";
 
+// const theme = {};
+
+// const theme = createTheme({
+//   palette: {
+//     background: {
+//       paper: #fff,
+//     },
+//   },
+//   shadow: {
+
+//   }
+// })
+
+// const getModalStyle = () => {
+//   const top = 50;
+
+//   return {
+//     top: `${top}%`,
+//     margin: "auto",
+//   };
+// };
+
+// const useStyles = makeStyles((theme) => ({
+//   paper: {
+//     position: "relative",
+//     width: 400,
+//     backgroundColor: theme.palette.background.paper,
+//     border: "2px solid #000",
+//     boxShadow: theme.shadow[5],
+//     padding: theme.spacing(2, 4, 3),
+//   },
+// }));
+
 const HomePage = () => {
+  // const classes = useStyles();
+  // const [modalStyle] = useState(getModalStyle);
   const [posts, setPosts] = useState([]);
   const [open, setOpen] = useState(false);
   const [openSignIn, setOpenSignIn] = useState(false);
@@ -65,19 +102,32 @@ const HomePage = () => {
     setOpenSignIn(false);
   };
 
+  const style = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 400,
+    bgcolor: "background.paper",
+    border: "2px solid #000",
+    boxShadow: 24,
+    p: 4,
+  };
+
   return (
     <div className="home">
+      {/* <ThemeProvider theme={theme}> */}
       <Modal
         open={open}
         onClose={() => setOpen(false)}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
+        <Box sx={style}>
+          <Typography id="modal-modal-title" variant="h3" component="h1">
             Cat's community
           </Typography>
-          <form className="app__signup">
+          <form className="home__signup">
             <Input
               type="text"
               placeholder="username"
@@ -105,14 +155,16 @@ const HomePage = () => {
           </Typography> */}
         </Box>
       </Modal>
+      {/* </ThemeProvider> */}
+      {/* <ThemeProvider theme={theme}> */}
       <Modal
         open={openSignIn}
         onClose={() => setOpenSignIn(false)}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
+        <Box sx={style}>
+          <Typography id="modal-modal-title" variant="h3" component="h1">
             Cat's community
           </Typography>
           <form className="home__signin">
@@ -137,6 +189,7 @@ const HomePage = () => {
           </Typography> */}
         </Box>
       </Modal>
+      {/* </ThemeProvider> */}
       <div className="home__header">
         <Header
           open={open}

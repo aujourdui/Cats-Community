@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { Button, Modal, Box, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
@@ -8,6 +8,7 @@ import ImageUpload from "./ImageUpload";
 
 const Header = (props) => {
   const { open, setOpenSignIn, setOpen, auth, user } = props;
+  const [uploadOpen, setUploadOpen] = useState(false);
   return (
     <header className="header">
       <Link to="/">
@@ -21,8 +22,8 @@ const Header = (props) => {
       <div className="header-links">
         <span className="upload-link">
           <Modal
-            open={open}
-            onClose={() => setOpen(false)}
+            open={uploadOpen}
+            onClose={() => setUploadOpen(false)}
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
           >
@@ -40,15 +41,19 @@ const Header = (props) => {
           </Typography> */}
             </Box>
           </Modal>
-          <span className="home__login-container">
-            <Button
-              onClick={() => {
-                setOpen(true);
-              }}
-            >
-              +post
-            </Button>
-          </span>
+          {user?.displayName ? (
+            <span className="home__login-container">
+              <Button
+                onClick={() => {
+                  setUploadOpen(true);
+                }}
+              >
+                +post
+              </Button>
+            </span>
+          ) : (
+            <Button onClick={() => alert("Please login first")}>+post</Button>
+          )}
           {/* <NavLink to="/upload" activeClassName="is-active" exact={true}>
             +new post
           </NavLink> */}

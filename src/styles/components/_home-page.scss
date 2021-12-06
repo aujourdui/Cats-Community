@@ -13,3 +13,17 @@
 .home__contents-right {
   margin-left: 20px;
 }
+
+.home__signup {
+  display: flex;
+  flex-direction: column;
+}
+
+.home__signin {
+  display: flex;
+  flex-direction: column;
+}
+
+.input__signin {
+  height: 3rem;
+}
