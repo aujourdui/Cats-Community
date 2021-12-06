@@ -6,8 +6,12 @@ import { NavLink } from "react-router-dom";
 import Logo from "./Logo";
 import ImageUpload from "./ImageUpload";
 
+const button__style = {
+  fontSize: "1.2rem",
+};
+
 const Header = (props) => {
-  const { open, setOpenSignIn, setOpen, auth, user } = props;
+  const { setOpenSignIn, setOpen, auth, user, input__style } = props;
   const [uploadOpen, setUploadOpen] = useState(false);
   return (
     <header className="header">
@@ -42,8 +46,9 @@ const Header = (props) => {
             </Box>
           </Modal>
           {user?.displayName ? (
-            <span className="home__login-container">
+            <span className="home__post-container">
               <Button
+                sx={button__style}
                 onClick={() => {
                   setUploadOpen(true);
                 }}
@@ -52,7 +57,12 @@ const Header = (props) => {
               </Button>
             </span>
           ) : (
-            <Button onClick={() => alert("Please login first")}>+post</Button>
+            <Button
+              sx={button__style}
+              onClick={() => alert("Please login first")}
+            >
+              +post
+            </Button>
           )}
           {/* <NavLink to="/upload" activeClassName="is-active" exact={true}>
             +new post
@@ -79,10 +89,13 @@ const Header = (props) => {
           </NavLink>
         </span>
         {user ? (
-          <Button onClick={() => auth.signOut()}>Logout</Button>
+          <Button sx={button__style} onClick={() => auth.signOut()}>
+            Logout
+          </Button>
         ) : (
           <div className="home__login-container">
             <Button
+              sx={button__style}
               onClick={() => {
                 setOpenSignIn(true);
               }}
@@ -90,6 +103,7 @@ const Header = (props) => {
               SignIn
             </Button>
             <Button
+              sx={button__style}
               onClick={() => {
                 setOpen(true);
               }}

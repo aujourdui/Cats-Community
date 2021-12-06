@@ -24,6 +24,7 @@
   flex-direction: column;
 }
 
-.input__signin {
-  height: 3rem;
+.home__login-container {
+  display: flex;
+  border: solid 1px lightgray;
 }

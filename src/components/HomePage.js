@@ -2,47 +2,11 @@ import React, { useState, useEffect } from "react";
 import Post from "./Post";
 import { db, auth } from "./firebase";
 import { Modal, Typography, Button, Input, Box } from "@mui/material";
-// import { makeStyles } from "@mui/styles";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import Recommend from "./Recommend";
 import Header from "./Header";
 
-// const theme = {};
-
-// const theme = createTheme({
-//   palette: {
-//     background: {
-//       paper: #fff,
-//     },
-//   },
-//   shadow: {
-
-//   }
-// })
-
-// const getModalStyle = () => {
-//   const top = 50;
-
-//   return {
-//     top: `${top}%`,
-//     margin: "auto",
-//   };
-// };
-
-// const useStyles = makeStyles((theme) => ({
-//   paper: {
-//     position: "relative",
-//     width: 400,
-//     backgroundColor: theme.palette.background.paper,
-//     border: "2px solid #000",
-//     boxShadow: theme.shadow[5],
-//     padding: theme.spacing(2, 4, 3),
-//   },
-// }));
-
 const HomePage = () => {
-  // const classes = useStyles();
-  // const [modalStyle] = useState(getModalStyle);
   const [posts, setPosts] = useState([]);
   const [open, setOpen] = useState(false);
   const [openSignIn, setOpenSignIn] = useState(false);
@@ -114,6 +78,14 @@ const HomePage = () => {
     p: 4,
   };
 
+  const input__style = {
+    fontSize: "1.5rem",
+  };
+
+  const input__title = {
+    margin: "0 0 1rem 0",
+  };
+
   return (
     <div className="home">
       {/* <ThemeProvider theme={theme}> */}
@@ -124,29 +96,42 @@ const HomePage = () => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h3" component="h1">
+          <Typography
+            sx={input__title}
+            id="modal-modal-title"
+            variant="h3"
+            component="h2"
+          >
             Cat's community
           </Typography>
           <form className="home__signup">
             <Input
+              sx={input__style}
               type="text"
               placeholder="username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
             />
             <Input
+              sx={input__style}
               type="text"
               placeholder="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
             <Input
+              sx={input__style}
               type="password"
               placeholder="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            <Button type="submit" onClick={signUp}>
+            <Button
+              sx={input__style}
+              type="submit"
+              onClick={signUp}
+              className="signup__button"
+            >
               Sign Up
             </Button>
           </form>
@@ -164,23 +149,30 @@ const HomePage = () => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h3" component="h1">
+          <Typography
+            sx={input__title}
+            id="modal-modal-title"
+            variant="h3"
+            component="h2"
+          >
             Cat's community
           </Typography>
           <form className="home__signin">
             <Input
+              sx={input__style}
               type="text"
               placeholder="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
             <Input
+              sx={input__style}
               type="password"
               placeholder="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            <Button type="submit" onClick={signIn}>
+            <Button sx={input__style} type="submit" onClick={signIn}>
               Sign In
             </Button>
           </form>
@@ -192,11 +184,11 @@ const HomePage = () => {
       {/* </ThemeProvider> */}
       <div className="home__header">
         <Header
-          open={open}
           setOpenSignIn={setOpenSignIn}
           setOpen={setOpen}
           auth={auth}
           user={user}
+          input__style={input__style}
         />
       </div>
       <div className="home__contents">
