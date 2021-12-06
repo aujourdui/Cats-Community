@@ -140,6 +140,7 @@ const HomePage = () => {
       </Modal>
       <div className="home__header">
         <Header
+          open={open}
           setOpenSignIn={setOpenSignIn}
           setOpen={setOpen}
           auth={auth}
@@ -164,11 +165,11 @@ const HomePage = () => {
         </div>
       </div>
 
-      {user?.displayName ? (
+      {/* {user?.displayName ? (
         <ImageUpload username={user.displayName} />
       ) : (
         <h3>Sorry you need to login in order to upload</h3>
-      )}
+      )} */}
     </div>
   );
 };
