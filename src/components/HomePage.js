@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import Post from "./Post";
 import { db, auth } from "./firebase";
 import { Modal, Typography, Button, Input, Box } from "@mui/material";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
 import Recommend from "./Recommend";
 import Header from "./Header";
-import ImageUpload from "./ImageUpload";
 
 const HomePage = () => {
   const [posts, setPosts] = useState([]);
@@ -66,38 +66,72 @@ const HomePage = () => {
     setOpenSignIn(false);
   };
 
+  const modal__style = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 400,
+    bgcolor: "background.paper",
+    border: "2px solid #000",
+    boxShadow: 24,
+    p: 4,
+  };
+
+  const input__style = {
+    fontSize: "1.5rem",
+  };
+
+  const input__title = {
+    margin: "0 0 1rem 0",
+  };
+
   return (
     <div className="home">
+      {/* <ThemeProvider theme={theme}> */}
       <Modal
         open={open}
         onClose={() => setOpen(false)}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
+        <Box sx={modal__style}>
+          <Typography
+            sx={input__title}
+            id="modal-modal-title"
+            variant="h3"
+            component="h2"
+          >
             Cat's community
           </Typography>
-          <form className="app__signup">
+          <form className="home__signup">
             <Input
+              sx={input__style}
               type="text"
               placeholder="username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
             />
             <Input
+              sx={input__style}
               type="text"
               placeholder="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
             <Input
+              sx={input__style}
               type="password"
               placeholder="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            <Button type="submit" onClick={signUp}>
+            <Button
+              sx={input__style}
+              type="submit"
+              onClick={signUp}
+              className="signup__button"
+            >
               Sign Up
             </Button>
           </form>
@@ -106,30 +140,39 @@ const HomePage = () => {
           </Typography> */}
         </Box>
       </Modal>
+      {/* </ThemeProvider> */}
+      {/* <ThemeProvider theme={theme}> */}
       <Modal
         open={openSignIn}
         onClose={() => setOpenSignIn(false)}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
+        <Box sx={modal__style}>
+          <Typography
+            sx={input__title}
+            id="modal-modal-title"
+            variant="h3"
+            component="h2"
+          >
             Cat's community
           </Typography>
           <form className="home__signin">
             <Input
+              sx={input__style}
               type="text"
               placeholder="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
             <Input
+              sx={input__style}
               type="password"
               placeholder="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            <Button type="submit" onClick={signIn}>
+            <Button sx={input__style} type="submit" onClick={signIn}>
               Sign In
             </Button>
           </form>
@@ -138,12 +181,14 @@ const HomePage = () => {
           </Typography> */}
         </Box>
       </Modal>
+      {/* </ThemeProvider> */}
       <div className="home__header">
         <Header
           setOpenSignIn={setOpenSignIn}
           setOpen={setOpen}
           auth={auth}
           user={user}
+          modal__style={modal__style}
         />
       </div>
       <div className="home__contents">
@@ -164,11 +209,11 @@ const HomePage = () => {
         </div>
       </div>
 
-      {user?.displayName ? (
+      {/* {user?.displayName ? (
         <ImageUpload username={user.displayName} />
       ) : (
         <h3>Sorry you need to login in order to upload</h3>
-      )}
+      )} */}
     </div>
   );
 };

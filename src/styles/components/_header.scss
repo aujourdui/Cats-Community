@@ -1,13 +1,12 @@
 .header {
   position: sticky;
   top: 0;
-  width: 70%;
+  width: 80%;
   height: 6rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   z-index: 2;
-  // margin: 0 0 0 10%;
   padding: 0 20% 1rem 14%;
   background-color: white;
   border-bottom: 1px solid #d3e0ea;
@@ -16,28 +15,31 @@
 a {
   text-decoration: none;
   border: none;
+  color: #ae4ccf;
 }
 
-// .header-links {
-//   : 0 20%;
-// }
+.header-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 .home-link {
   // margin: 0 5%;
-  padding: 0 5%;
+  padding: 0 3%;
 }
 
 .message-link {
   // margin: 0 5%;
-  padding: 0 5%;
+  padding: 0 3%;
 }
 
 .favorite-link {
   // margin: 0 5%;
-  padding: 0 5%;
+  padding: 0 3%;
 }
 
 .profile-link {
   // margin: 0 5%;
-  padding: 0 5%;
+  padding: 0 3%;
 }
