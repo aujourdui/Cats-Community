@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import Header from "../components/Header";
 import HomePage from "../components/HomePage";
 import LoginPage from "../components/LoginPage";
 import MessagePage from "../components/MessagePage";
@@ -16,6 +17,7 @@ const AppRouter = () => (
       <Switch>
         <Route path="/" component={LoginPage} exact={true} />
         <Route path="/home" component={HomePage} />
+        <Header />
         <Route path="/message" component={MessagePage} exact={true} />
         <Route path="/message/1" component={MessageOnePage} />
         <Route path="/message/2" component={MessageTwoPage} />
