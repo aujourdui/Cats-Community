@@ -3,8 +3,8 @@ import Avatar from "@mui/material/Avatar";
 import firebase from "firebase";
 import { db } from "./firebase";
 
-const Post = () => {
-  const [postId, user, username, caption, imageUrl] = props;
+const Post = (props) => {
+  const { postId, user, username, caption, imageUrl } = props;
   const [comments, setComments] = useState([]);
   const [comment, setComment] = useState("");
 
@@ -67,14 +67,14 @@ const Post = () => {
             className="post__input"
             type="text"
             placeholder="Add a comment..."
-            value="comment"
-            onchange={(e) => setComment(e.target.value)}
+            value={comment}
+            onChange={(e) => setComment(e.target.value)}
           />
           <button
             className="post__button"
             disabled={!comment}
             type="text"
-            onclick={postComment}
+            onClick={postComment}
           >
             Post
           </button>

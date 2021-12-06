@@ -36,7 +36,7 @@ const ImageUpload = (props) => {
           .child(image.name)
           .getDownloadURL()
           .then((url) => {
-            db.collection("Posts").add({
+            db.collection("posts").add({
               timestamp: firebase.firestore.FieldValue.serverTimestamp(),
               caption: caption,
               imageUrl: url,

@@ -66,6 +66,8 @@ const HomePage = () => {
     setOpenSignIn(false);
   };
 
+  console.log(posts);
+
   return (
     <div className="home">
       <Modal
@@ -148,7 +150,7 @@ const HomePage = () => {
       </div>
       <div className="home__contents">
         <div className="home__contents-left">
-          {posts.map(({ id, post }) => {
+          {posts.map(({ id, post }) => (
             <Post
               key={id}
               postId={id}
@@ -156,8 +158,13 @@ const HomePage = () => {
               username={post.username}
               caption={post.caption}
               imageUrl={post.imageUrl}
-            />;
-          })}
+            />
+          ))}
+          {/* <Post
+            username={}
+            caption="hello"
+            imageUrl="https://meetsmore.imgix.net/wp/2020/08/PC20171027neko_TP_V.jpg?auto=compress%2Cformat&ixlib=php-1.2.1"
+          /> */}
         </div>
         <div className="home__contents-right">
           <Recommend />
