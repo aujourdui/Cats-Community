@@ -1,12 +1,13 @@
 import React from "react";
 
-import { Button } from "@mui/material";
+import { Button, Modal, Box, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import Logo from "./Logo";
+import ImageUpload from "./ImageUpload";
 
 const Header = (props) => {
-  const { setOpenSignIn, setOpen, auth, user } = props;
+  const { open, setOpenSignIn, setOpen, auth, user } = props;
   return (
     <header className="header">
       <Link to="/">
@@ -19,9 +20,38 @@ const Header = (props) => {
       {/* <button>Create new post</button> */}
       <div className="header-links">
         <span className="upload-link">
-          <NavLink to="/upload" activeClassName="is-active" exact={true}>
+          <Modal
+            open={open}
+            onClose={() => setOpen(false)}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+          >
+            <Box>
+              <Typography id="modal-modal-title" variant="h6" component="h2">
+                Cat's community
+              </Typography>
+              {user?.displayName ? (
+                <ImageUpload username={user.displayName} />
+              ) : (
+                <h3>Sorry you need to login in order to upload</h3>
+              )}
+              {/* <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+          </Typography> */}
+            </Box>
+          </Modal>
+          <div className="home__login-container">
+            <Button
+              onClick={() => {
+                setOpen(true);
+              }}
+            >
+              +new post
+            </Button>
+          </div>
+          {/* <NavLink to="/upload" activeClassName="is-active" exact={true}>
             +new post
-          </NavLink>
+          </NavLink> */}
         </span>
         <span className="home-link">
           <NavLink to="/" activeClassName="is-active" exact={true}>
