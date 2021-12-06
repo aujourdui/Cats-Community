@@ -40,15 +40,15 @@ const Header = (props) => {
           </Typography> */}
             </Box>
           </Modal>
-          <div className="home__login-container">
+          <span className="home__login-container">
             <Button
               onClick={() => {
                 setOpen(true);
               }}
             >
-              +new post
+              +post
             </Button>
-          </div>
+          </span>
           {/* <NavLink to="/upload" activeClassName="is-active" exact={true}>
             +new post
           </NavLink> */}

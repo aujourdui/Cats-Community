@@ -4,7 +4,6 @@ import { db, auth } from "./firebase";
 import { Modal, Typography, Button, Input, Box } from "@mui/material";
 import Recommend from "./Recommend";
 import Header from "./Header";
-import ImageUpload from "./ImageUpload";
 
 const HomePage = () => {
   const [posts, setPosts] = useState([]);
