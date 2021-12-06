@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 
 import { Button, Modal, Box, Typography } from "@mui/material";
-import { Link } from "react-router-dom";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink, useHistory } from "react-router-dom";
 import Logo from "./Logo";
 import ImageUpload from "./ImageUpload";
 
@@ -17,6 +16,14 @@ const upload__title = {
 const Header = (props) => {
   const { setOpenSignIn, setOpen, auth, user, modal__style } = props;
   const [uploadOpen, setUploadOpen] = useState(false);
+
+  const history = useHistory();
+
+  const logOut = () => {
+    auth.signOut();
+    history.push("/");
+  };
+
   return (
     <header className="header">
       <Link to="/">
@@ -100,7 +107,7 @@ const Header = (props) => {
           </NavLink>
         </span>
         {user ? (
-          <Button sx={button__style} onClick={() => auth.signOut()}>
+          <Button sx={button__style} onClick={logOut}>
             Logout
           </Button>
         ) : (

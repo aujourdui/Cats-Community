@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { db, auth } from "./firebase";
 import { Modal, Typography, Button, Input, Box } from "@mui/material";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
-import { Link } from "react-router-dom";
-import Recommend from "./Recommend";
+import { Link, useHistory } from "react-router-dom";
 import Header from "./Header";
 
 const LoginPage = () => {
@@ -29,6 +27,8 @@ const LoginPage = () => {
     };
   }, [user, username]);
 
+  const history = useHistory();
+
   const signUp = (event) => {
     event.preventDefault();
     auth
@@ -41,6 +41,9 @@ const LoginPage = () => {
       .catch((error) => alert(error.message));
 
     setOpen(false);
+    {
+      user ? history.push("/home") : null;
+    }
   };
 
   const signIn = (event) => {
@@ -50,6 +53,9 @@ const LoginPage = () => {
       .catch((error) => alert(error.message));
 
     setOpenSignIn(false);
+    {
+      user ? history.push("/home") : null;
+    }
   };
 
   const modal__style = {
@@ -79,7 +85,6 @@ const LoginPage = () => {
   return (
     <div className="login">
       <div className="home">
-        {/* <ThemeProvider theme={theme}> */}
         <Modal
           open={open}
           onClose={() => setOpen(false)}
@@ -126,13 +131,8 @@ const LoginPage = () => {
                 Sign Up
               </Button>
             </form>
-            {/* <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-          </Typography> */}
           </Box>
         </Modal>
-        {/* </ThemeProvider> */}
-        {/* <ThemeProvider theme={theme}> */}
         <Modal
           open={openSignIn}
           onClose={() => setOpenSignIn(false)}
