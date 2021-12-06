@@ -1,9 +1,3 @@
-// .home__header {
-//   position: sticky;
-//   top: 0;
-//   display: block;
-// }
-
 .home__contents {
   display: flex;
   justify-content: center;
@@ -27,4 +21,9 @@
 .home__login-container {
   display: flex;
   border: solid 1px lightgray;
+}
+
+.post-title__container {
+  display: flex;
+  justify-content: center;
 }
