@@ -66,8 +66,6 @@ const HomePage = () => {
     setOpenSignIn(false);
   };
 
-  console.log(posts);
-
   return (
     <div className="home">
       <Modal
@@ -160,11 +158,6 @@ const HomePage = () => {
               imageUrl={post.imageUrl}
             />
           ))}
-          {/* <Post
-            username={}
-            caption="hello"
-            imageUrl="https://meetsmore.imgix.net/wp/2020/08/PC20171027neko_TP_V.jpg?auto=compress%2Cformat&ixlib=php-1.2.1"
-          /> */}
         </div>
         <div className="home__contents-right">
           <Recommend />
