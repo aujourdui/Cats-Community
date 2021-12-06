@@ -3,8 +3,8 @@ import Avatar from "@mui/material/Avatar";
 import firebase from "firebase";
 import { db } from "./firebase";
 
-const Post = () => {
-  const [postId, user, username, caption, imageUrl] = props;
+const Post = (props) => {
+  const { postId, user, username, caption, imageUrl } = props;
   const [comments, setComments] = useState([]);
   const [comment, setComment] = useState("");
 
@@ -15,6 +15,7 @@ const Post = () => {
         .collection("posts")
         .doc(postId)
         .collection("comments")
+        .orderBy("timestamp", "desc")
         .onSnapshot((snapshot) => {
           setComments(snapshot.docs.map((doc) => doc.data()));
         });
@@ -29,11 +30,11 @@ const Post = () => {
     event.preventDefault();
 
     db.collection("posts").doc(postId).collection("comments").add({
-      text: comments,
+      text: comment,
       username: user.displayName,
-      timestamp: firebase.firestore.FieldValue.serverTimeStamp(),
+      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
     });
-    setComments("");
+    setComment("");
   };
 
   return (
@@ -49,14 +50,14 @@ const Post = () => {
       <img className="post__image" src={imageUrl} alt="" />
 
       <h4 className="post__text">
-        <strong>{username}</strong>
+        <strong>{username}: </strong>
         {caption}
       </h4>
 
-      <div className="post_comments">
+      <div className="post__comments">
         {comments.map((comment, index) => (
           <p key={index}>
-            <strong>{comment.username}</strong> {comment.text}
+            <strong>{comment.username}</strong>: {comment.text}
           </p>
         ))}
       </div>
@@ -67,14 +68,14 @@ const Post = () => {
             className="post__input"
             type="text"
             placeholder="Add a comment..."
-            value="comment"
-            onchange={(e) => setComment(e.target.value)}
+            value={comment}
+            onChange={(e) => setComment(e.target.value)}
           />
           <button
             className="post__button"
             disabled={!comment}
             type="text"
-            onclick={postComment}
+            onClick={postComment}
           >
             Post
           </button>
