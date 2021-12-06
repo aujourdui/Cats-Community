@@ -10,8 +10,12 @@ const button__style = {
   fontSize: "1.2rem",
 };
 
+const upload__title = {
+  marginBottom: "1rem",
+};
+
 const Header = (props) => {
-  const { setOpenSignIn, setOpen, auth, user, input__style } = props;
+  const { setOpenSignIn, setOpen, auth, user, modal__style } = props;
   const [uploadOpen, setUploadOpen] = useState(false);
   return (
     <header className="header">
@@ -31,18 +35,25 @@ const Header = (props) => {
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
           >
-            <Box>
-              <Typography id="modal-modal-title" variant="h6" component="h2">
-                Cat's community
-              </Typography>
+            <Box sx={modal__style}>
+              <div className="post-title__container">
+                <Typography
+                  sx={upload__title}
+                  id="modal-modal-title"
+                  variant="h3"
+                  component="h2"
+                >
+                  Create a new post
+                </Typography>
+              </div>
               {user?.displayName ? (
-                <ImageUpload username={user.displayName} />
+                <ImageUpload
+                  username={user.displayName}
+                  button__style={button__style}
+                />
               ) : (
                 <h3>Sorry you need to login in order to upload</h3>
               )}
-              {/* <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-          </Typography> */}
             </Box>
           </Modal>
           {user?.displayName ? (
