@@ -1,7 +1,9 @@
 import React from "react";
+import Header from "../Header";
 
 const MessageItemPage = (props) => {
   const { title, from, content } = props;
+  <Header />;
   return (
     <div className="message-item">
       <h1>{title}</h1>

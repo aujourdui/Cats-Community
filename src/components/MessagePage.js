@@ -1,8 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Header from "./Header";
 
 const MessagePage = () => (
   <div className="message-container">
+    <Header />
     <h1></h1>
     <div className="messages">
       <div className="message1">

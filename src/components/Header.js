@@ -80,7 +80,7 @@ const Header = (props) => {
           </NavLink> */}
         </span>
         <span className="home-link">
-          <NavLink to="/" activeClassName="is-active" exact={true}>
+          <NavLink to="/home" activeClassName="is-active" exact={true}>
             Home
           </NavLink>
         </span>
