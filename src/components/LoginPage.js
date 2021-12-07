@@ -44,9 +44,7 @@ const LoginPage = () => {
 
     setOpen(false);
     {
-      user?.displayName
-        ? history.push("/home")
-        : alert("please enter valid info");
+      user ? history.push("/home") : null;
     }
   };
 
@@ -55,14 +53,9 @@ const LoginPage = () => {
     auth
       .signInWithEmailAndPassword(email, password)
       .catch((error) => alert(error.message));
-    // user && alert("you can't login because you are logged in");
-    // !user && user && history.push("/home");
-    setOpenSignIn(false);
-    // <Redirect to="/home" />;
-  };
 
-  const handleSubmit = () => {
-    history.push("/home");
+    setOpenSignIn(false);
+    user ? history.push("/home") : null;
   };
 
   const modal__style = {
@@ -170,12 +163,7 @@ const LoginPage = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
-              <Button
-                sx={input__style}
-                type="submit"
-                onSubmit={handleSubmit}
-                onClick={signIn}
-              >
+              <Button sx={input__style} type="submit" onClick={signIn}>
                 Sign In
               </Button>
             </form>
