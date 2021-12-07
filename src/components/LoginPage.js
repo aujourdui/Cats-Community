@@ -221,7 +221,7 @@ const LoginPage = () => {
         </Modal>
       </div>
       <div className="login__box">
-        <Logo />
+        <h1 className="login__title">Cats' community</h1>
         <p>Let's play around with cat's photos</p>
         <div className="login-container">
           <Button
@@ -249,7 +249,6 @@ const LoginPage = () => {
         >
           Play ground
         </Button>
-        {/* <Link to="/home">Play ground</Link> */}
       </div>
     </div>
   );

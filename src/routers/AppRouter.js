@@ -12,12 +12,11 @@ import ProfilePage from "../components/ProfilePage";
 import NotFoundPage from "../components/NotFoundPage";
 
 const AppRouter = () => (
-  <BrowserRouter>
-    <div>
+  <div>
+    <BrowserRouter>
       <Switch>
         <Route path="/" component={LoginPage} exact={true} />
         <Route path="/home" component={HomePage} />
-        <Header />
         <Route path="/message" component={MessagePage} exact={true} />
         <Route path="/message/1" component={MessageOnePage} />
         <Route path="/message/2" component={MessageTwoPage} />
@@ -26,8 +25,8 @@ const AppRouter = () => (
         <Route path="/profile" component={ProfilePage} />
         <Route component={NotFoundPage} />
       </Switch>
-    </div>
-  </BrowserRouter>
+    </BrowserRouter>
+  </div>
 );
 
 export default AppRouter;
