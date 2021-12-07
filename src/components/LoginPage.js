@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { db, auth } from "./firebase";
 import { Modal, Typography, Button, Input, Box } from "@mui/material";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, Redirect } from "react-router-dom";
 import Header from "./Header";
 
 const LoginPage = () => {
@@ -27,6 +27,8 @@ const LoginPage = () => {
     };
   }, [user, username]);
 
+  // console.log(user);
+
   const history = useHistory();
 
   const signUp = (event) => {
@@ -42,7 +44,9 @@ const LoginPage = () => {
 
     setOpen(false);
     {
-      user ? history.push("/home") : null;
+      user?.displayName
+        ? history.push("/home")
+        : alert("please enter valid info");
     }
   };
 
@@ -51,11 +55,14 @@ const LoginPage = () => {
     auth
       .signInWithEmailAndPassword(email, password)
       .catch((error) => alert(error.message));
-
+    // user && alert("you can't login because you are logged in");
+    // !user && user && history.push("/home");
     setOpenSignIn(false);
-    {
-      user ? history.push("/home") : null;
-    }
+    // <Redirect to="/home" />;
+  };
+
+  const handleSubmit = () => {
+    history.push("/home");
   };
 
   const modal__style = {
@@ -163,7 +170,12 @@ const LoginPage = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
-              <Button sx={input__style} type="submit" onClick={signIn}>
+              <Button
+                sx={input__style}
+                type="submit"
+                onSubmit={handleSubmit}
+                onClick={signIn}
+              >
                 Sign In
               </Button>
             </form>
