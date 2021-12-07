@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { db, auth } from "./firebase";
+import { auth } from "./firebase";
 import { Modal, Typography, Button, Input, Box } from "@mui/material";
-import { Link, useHistory, Redirect } from "react-router-dom";
-import Header from "./Header";
+import { useHistory } from "react-router-dom";
+import Logo from "./Logo";
 
 const LoginPage = () => {
   const [open, setOpen] = useState(false);
   const [openSignIn, setOpenSignIn] = useState(false);
+  const [openPlayground, setOpenPlayground] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
@@ -57,6 +58,15 @@ const LoginPage = () => {
     setOpenSignIn(false);
   };
 
+  const signInPlay = (event) => {
+    event.preventDefault();
+    auth
+      .signInWithEmailAndPassword(email, password)
+      .catch((error) => alert(error.message));
+
+    setOpenPlayground(false);
+  };
+
   const modal__style = {
     position: "absolute",
     top: "50%",
@@ -79,6 +89,11 @@ const LoginPage = () => {
 
   const button__style = {
     fontSize: "1.2rem",
+  };
+
+  const button__style__play = {
+    fontSize: "1.2rem",
+    color: "#D47AE8",
   };
 
   return (
@@ -168,9 +183,45 @@ const LoginPage = () => {
             </form>
           </Box>
         </Modal>
+        <Modal
+          open={openPlayground}
+          onClose={() => setOpenPlayground(false)}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={modal__style}>
+            <Typography
+              sx={input__title}
+              id="modal-modal-title"
+              variant="h5"
+              component="h5"
+            >
+              Press any key inside each blank(insert example automatically)
+            </Typography>
+            <form className="home__signin">
+              <Input
+                sx={input__style}
+                type="text"
+                placeholder="email"
+                value={email}
+                onChange={() => setEmail("test3@gmail.com")}
+              />
+              <Input
+                sx={input__style}
+                type="password"
+                placeholder="password"
+                value={password}
+                onChange={() => setPassword("vancouver")}
+              />
+              <Button sx={input__style} type="submit" onClick={signInPlay}>
+                Sign In
+              </Button>
+            </form>
+          </Box>
+        </Modal>
       </div>
       <div className="login__box">
-        <h1 className="login__title">Cat's community</h1>
+        <Logo />
         <p>Let's play around with cat's photos</p>
         <div className="login-container">
           <Button
@@ -190,7 +241,15 @@ const LoginPage = () => {
             SignUp
           </Button>
         </div>
-        <Link to="/home">Play ground</Link>
+        <Button
+          sx={button__style__play}
+          onClick={() => {
+            setOpenPlayground(true);
+          }}
+        >
+          Play ground
+        </Button>
+        {/* <Link to="/home">Play ground</Link> */}
       </div>
     </div>
   );

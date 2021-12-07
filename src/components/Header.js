@@ -26,7 +26,7 @@ const Header = (props) => {
 
   return (
     <header className="header">
-      <Link to="/">
+      <Link to="/home">
         <Logo />
       </Link>
       <p>
