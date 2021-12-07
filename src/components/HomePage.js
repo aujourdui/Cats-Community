@@ -43,12 +43,7 @@ const HomePage = () => {
     <div className="home">
       {/* </ThemeProvider> */}
       <div className="home__header">
-        <Header
-          setOpenSignIn={setOpenSignIn}
-          setOpen={setOpen}
-          auth={auth}
-          user={user}
-        />
+        <Header auth={auth} user={user} />
       </div>
       <div className="home__contents">
         <div className="home__contents-left">
@@ -67,12 +62,6 @@ const HomePage = () => {
           <Recommend />
         </div>
       </div>
-
-      {/* {user?.displayName ? (
-        <ImageUpload username={user.displayName} />
-      ) : (
-        <h3>Sorry you need to login in order to upload</h3>
-      )} */}
     </div>
   );
 };

@@ -13,8 +13,20 @@ const upload__title = {
   marginBottom: "1rem",
 };
 
+const modal__style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
+
 const Header = (props) => {
-  const { setOpenSignIn, setOpen, auth, user, modal__style } = props;
+  const { auth, user } = props;
   const [uploadOpen, setUploadOpen] = useState(false);
 
   const history = useHistory();
@@ -26,14 +38,13 @@ const Header = (props) => {
 
   return (
     <header className="header">
-      <Link to="/home">
+      <Link to="/">
         <Logo />
       </Link>
       <p>
         Search
         <input type="text" />
       </p>
-      {/* <button>Create new post</button> */}
       <div className="header-links">
         <span className="upload-link">
           <Modal
@@ -63,28 +74,16 @@ const Header = (props) => {
               )}
             </Box>
           </Modal>
-          {user?.displayName ? (
-            <span className="home__post-container">
-              <Button
-                sx={button__style}
-                onClick={() => {
-                  setUploadOpen(true);
-                }}
-              >
-                +post
-              </Button>
-            </span>
-          ) : (
+          <span className="home__post-container">
             <Button
               sx={button__style}
-              onClick={() => alert("Please login first")}
+              onClick={() => {
+                setUploadOpen(true);
+              }}
             >
               +post
             </Button>
-          )}
-          {/* <NavLink to="/upload" activeClassName="is-active" exact={true}>
-            +new post
-          </NavLink> */}
+          </span>
         </span>
         <span className="home-link">
           <NavLink to="/home" activeClassName="is-active" exact={true}>
@@ -106,30 +105,9 @@ const Header = (props) => {
             profile
           </NavLink>
         </span>
-        {user ? (
-          <Button sx={button__style} onClick={logOut}>
-            Logout
-          </Button>
-        ) : (
-          <div className="home__login-container">
-            <Button
-              sx={button__style}
-              onClick={() => {
-                setOpenSignIn(true);
-              }}
-            >
-              SignIn
-            </Button>
-            <Button
-              sx={button__style}
-              onClick={() => {
-                setOpen(true);
-              }}
-            >
-              SignUp
-            </Button>
-          </div>
-        )}
+        <Button sx={button__style} onClick={logOut}>
+          Logout
+        </Button>
       </div>
     </header>
   );
