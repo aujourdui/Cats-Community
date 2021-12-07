@@ -12,13 +12,17 @@ const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [user, setUser] = useState(null);
 
+  const history = useHistory();
+
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
       if (authUser) {
         // console.log(authUser);
         setUser(authUser);
+        history.push("/home");
       } else {
         setUser(null);
+        history.push("/");
       }
     });
 
@@ -26,10 +30,6 @@ const LoginPage = () => {
       unsubscribe();
     };
   }, [user, username]);
-
-  // console.log(user);
-
-  const history = useHistory();
 
   const signUp = (event) => {
     event.preventDefault();
@@ -55,7 +55,6 @@ const LoginPage = () => {
       .catch((error) => alert(error.message));
 
     setOpenSignIn(false);
-    user ? history.push("/home") : null;
   };
 
   const modal__style = {
@@ -167,9 +166,6 @@ const LoginPage = () => {
                 Sign In
               </Button>
             </form>
-            {/* <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-          </Typography> */}
           </Box>
         </Modal>
       </div>
