@@ -3,7 +3,7 @@ import Post from "./Post";
 import { db, auth } from "./firebase";
 // import { Modal, Typography, Button, Input, Box } from "@mui/material";
 // import { ThemeProvider, createTheme } from "@mui/material/styles";
-import Recommend from "./Recommend";
+// import Recommend from "./Recommend";
 import Header from "./Header";
 
 const HomePage = () => {
@@ -42,9 +42,7 @@ const HomePage = () => {
   return (
     <div className="home">
       {/* </ThemeProvider> */}
-      <div className="home__header">
-        <Header auth={auth} user={user} />
-      </div>
+      <Header auth={auth} user={user} />
       <div className="home__contents">
         <div className="home__contents-left">
           {posts.map(({ id, post }) => (
@@ -58,9 +56,7 @@ const HomePage = () => {
             />
           ))}
         </div>
-        <div className="home__contents-right">
-          <Recommend />
-        </div>
+        <div className="home__contents-right">{/* <Recommend /> */}</div>
       </div>
     </div>
   );
