@@ -1,5 +1,7 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+// import { auth } from "./firebase";
+
 import Header from "../components/Header";
 import HomePage from "../components/HomePage";
 import LoginPage from "../components/LoginPage";

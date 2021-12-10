@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { auth } from "./firebase";
 import { Modal, Typography, Button, Input, Box } from "@mui/material";
 import { useHistory } from "react-router-dom";
-import Logo from "./Logo";
 
 const LoginPage = () => {
   const [open, setOpen] = useState(false);

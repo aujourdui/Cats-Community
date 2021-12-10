@@ -41,10 +41,10 @@ const Header = (props) => {
       <Link to="/">
         <Logo />
       </Link>
-      <p>
+      {/* <p>
         Search
         <input type="text" />
-      </p>
+      </p> */}
       <div className="header-links">
         <span className="upload-link">
           <Modal
@@ -92,10 +92,10 @@ const Header = (props) => {
         </span>
         <span className="message-link">
           <NavLink to="/message" activeClassName="is-active" exact={true}>
-            messages
+            Messages
           </NavLink>
         </span>
-        <span className="favorite-link">
+        {/* <span className="favorite-link">
           <NavLink to="/favorite" activeClassName="is-active" exact={true}>
             favorite
           </NavLink>
@@ -104,7 +104,7 @@ const Header = (props) => {
           <NavLink to="/profile" activeClassName="is-active" exact={true}>
             profile
           </NavLink>
-        </span>
+        </span> */}
         <Button sx={button__style} onClick={logOut}>
           Logout
         </Button>
