@@ -4,8 +4,7 @@ import Header from "./Header";
 
 const MessagePage = () => (
   <div className="message-container">
-    {/* <Header /> */}
-    <h1></h1>
+    <Header />
     <div className="messages">
       <div className="message1">
         <Link to="/message/1">Message1</Link>

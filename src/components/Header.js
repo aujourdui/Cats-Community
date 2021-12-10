@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { Button, Modal, Box, Typography } from "@mui/material";
 import { Link, NavLink, useHistory } from "react-router-dom";
+import { auth } from "./firebase";
 import Logo from "./Logo";
 import ImageUpload from "./ImageUpload";
 
@@ -25,9 +26,26 @@ const modal__style = {
   p: 4,
 };
 
-const Header = (props) => {
-  const { auth, user } = props;
+const Header = () => {
+  // const { user } = props;
   const [uploadOpen, setUploadOpen] = useState(false);
+  const [username, setUsername] = useState("");
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((authUser) => {
+      if (authUser) {
+        // console.log(authUser);
+        setUser(authUser);
+      } else {
+        setUser(null);
+      }
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, [user, username]);
 
   const history = useHistory();
 
