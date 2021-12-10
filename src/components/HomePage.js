@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Post from "./Post";
 import { db, auth } from "./firebase";
-import { Modal, Typography, Button, Input, Box } from "@mui/material";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
+// import { Modal, Typography, Button, Input, Box } from "@mui/material";
+// import { ThemeProvider, createTheme } from "@mui/material/styles";
 import Recommend from "./Recommend";
 import Header from "./Header";
 
