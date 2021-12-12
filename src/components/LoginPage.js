@@ -87,11 +87,11 @@ const LoginPage = () => {
   };
 
   const button__style = {
-    fontSize: "1.2rem",
+    fontSize: "1.5rem",
   };
 
   const button__style__play = {
-    fontSize: "1.2rem",
+    fontSize: "1.5rem",
     color: "#D47AE8",
   };
 
@@ -229,7 +229,7 @@ const LoginPage = () => {
               setOpenSignIn(true);
             }}
           >
-            SignIn
+            Sign In
           </Button>
           <Button
             sx={button__style}
@@ -237,7 +237,7 @@ const LoginPage = () => {
               setOpen(true);
             }}
           >
-            SignUp
+            Sign Up
           </Button>
         </div>
         <Button
