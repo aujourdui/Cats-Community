@@ -5,6 +5,7 @@ import { Link, NavLink, useHistory } from "react-router-dom";
 import { auth } from "./firebase";
 import Logo from "./Logo";
 import ImageUpload from "./ImageUpload";
+import { useStateValue } from "./StateProvider";
 
 const button__style = {
   fontSize: "1.2rem",
@@ -29,23 +30,24 @@ const modal__style = {
 const Header = () => {
   // const { user } = props;
   const [uploadOpen, setUploadOpen] = useState(false);
-  const [username, setUsername] = useState("");
-  const [user, setUser] = useState(null);
+  // const [username, setUsername] = useState("");
+  // const [user, setUser] = useState(null);
+  const [{ user }, dispatch] = useStateValue();
 
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((authUser) => {
-      if (authUser) {
-        // console.log(authUser);
-        setUser(authUser);
-      } else {
-        setUser(null);
-      }
-    });
+  // useEffect(() => {
+  //   const unsubscribe = auth.onAuthStateChanged((authUser) => {
+  //     if (authUser) {
+  //       // console.log(authUser);
+  //       setUser(authUser);
+  //     } else {
+  //       setUser(null);
+  //     }
+  //   });
 
-    return () => {
-      unsubscribe();
-    };
-  }, [user, username]);
+  //   return () => {
+  //     unsubscribe();
+  //   };
+  // }, [user, username]);
 
   const history = useHistory();
 
@@ -56,7 +58,7 @@ const Header = () => {
 
   return (
     <header className="header">
-      <Link to="/">
+      <Link to="/home">
         <Logo />
       </Link>
       {/* <p>

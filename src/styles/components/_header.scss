@@ -12,12 +12,6 @@
   width: calc(80vw - 15px);
 }
 
-a {
-  text-decoration: none;
-  border: none;
-  color: #ae4ccf;
-}
-
 .header-links {
   display: flex;
   justify-content: center;
@@ -27,11 +21,13 @@ a {
 .home-link {
   // margin: 0 5%;
   padding: 0 5%;
+  color: #ae4ccf;
 }
 
 .message-link {
   // margin: 0 5%;
   padding: 0 5%;
+  color: #ae4ccf;
 }
 
 .favorite-link {

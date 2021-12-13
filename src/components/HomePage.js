@@ -5,26 +5,28 @@ import { db, auth } from "./firebase";
 // import { ThemeProvider, createTheme } from "@mui/material/styles";
 // import Recommend from "./Recommend";
 import Header from "./Header";
+import { useStateValue } from "./StateProvider";
 
 const HomePage = () => {
   const [posts, setPosts] = useState([]);
   const [username, setUsername] = useState("");
-  const [user, setUser] = useState(null);
+  const [{}, dispatch] = useStateValue();
+  // const [user, setUser] = useState(null);
 
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((authUser) => {
-      if (authUser) {
-        // console.log(authUser);
-        setUser(authUser);
-      } else {
-        setUser(null);
-      }
-    });
+  // useEffect(() => {
+  //   const unsubscribe = auth.onAuthStateChanged((authUser) => {
+  //     if (authUser) {
+  //       // console.log(authUser);
+  //       setUser(authUser);
+  //     } else {
+  //       setUser(null);
+  //     }
+  //   });
 
-    return () => {
-      unsubscribe();
-    };
-  }, [user, username]);
+  //   return () => {
+  //     unsubscribe();
+  //   };
+  // }, [user, username]);
 
   useEffect(() => {
     db.collection("posts")
@@ -49,7 +51,7 @@ const HomePage = () => {
             <Post
               key={id}
               postId={id}
-              user={user}
+              // user={user}
               username={post.username}
               caption={post.caption}
               imageUrl={post.imageUrl}
