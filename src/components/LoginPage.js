@@ -25,10 +25,10 @@ const LoginPage = () => {
           type: actionTypes.SET_USER,
           user: authUser,
         });
-        history.push("/home");
+        // history.push("/home");
       } else {
         // alert("something wrong");
-        history.push("/");
+        // history.push("/");
       }
     });
 

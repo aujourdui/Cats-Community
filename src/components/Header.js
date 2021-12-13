@@ -6,6 +6,7 @@ import { auth } from "./firebase";
 import Logo from "./Logo";
 import ImageUpload from "./ImageUpload";
 import { useStateValue } from "./StateProvider";
+import { actionTypes } from "./reducer";
 
 const button__style = {
   fontSize: "1.2rem",
@@ -53,7 +54,11 @@ const Header = () => {
 
   const logOut = () => {
     auth.signOut();
-    history.push("/");
+    dispatch({
+      type: actionTypes.UNSET_USER,
+      user: null,
+    });
+    // history.push("/");
   };
 
   return (
