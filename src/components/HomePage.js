@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from "react";
 import Post from "./Post";
 import { db, auth } from "./firebase";
-// import { Modal, Typography, Button, Input, Box } from "@mui/material";
-// import { ThemeProvider, createTheme } from "@mui/material/styles";
-// import Recommend from "./Recommend";
 import Header from "./Header";
 import { useStateValue } from "./StateProvider";
 
 const HomePage = () => {
   const [posts, setPosts] = useState([]);
-  const [username, setUsername] = useState("");
+  // const [username, setUsername] = useState("");
   const [{}, dispatch] = useStateValue();
   // const [user, setUser] = useState(null);
 
@@ -43,7 +40,6 @@ const HomePage = () => {
 
   return (
     <div className="home">
-      {/* </ThemeProvider> */}
       <Header />
       <div className="home__contents">
         <div className="home__contents-left">
@@ -51,7 +47,6 @@ const HomePage = () => {
             <Post
               key={id}
               postId={id}
-              // user={user}
               username={post.username}
               caption={post.caption}
               imageUrl={post.imageUrl}

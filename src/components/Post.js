@@ -4,8 +4,7 @@ import firebase from "firebase";
 import { db } from "./firebase";
 import { useStateValue } from "./StateProvider";
 
-const Post = (props) => {
-  const { postId, username, caption, imageUrl } = props;
+const Post = ({ postId, username, caption, imageUrl }) => {
   const [comments, setComments] = useState([]);
   const [comment, setComment] = useState("");
   const [{ user }, dispatch] = useStateValue();
