@@ -41,14 +41,19 @@ const Message = () => {
 
   const sendMessage = (e) => {
     e.preventDefault();
-    console.log("You typed >>> ", input);
+    if (roomName) {
+      console.log("You typed >>> ", input);
 
-    db.collection("rooms").doc(roomId).collection("messages").add({
-      message: input,
-      name: user.displayName,
-      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-    });
-    setInput("");
+      db.collection("rooms").doc(roomId).collection("messages").add({
+        message: input,
+        name: user.displayName,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+      });
+      setInput("");
+    } else {
+      alert("please add new chat first");
+      setInput("");
+    }
   };
 
   return (
@@ -57,7 +62,11 @@ const Message = () => {
         <Avatar src={`https://avatars.dicebear.com/api/human/${seed}.svg`} />
 
         <div className="message__headerInfo">
-          {roomName ? <h3>{roomName}</h3> : <h3>Empty</h3>}
+          {roomName ? (
+            <h3>{roomName}</h3>
+          ) : (
+            <h3>Empty: Please add a new Chat</h3>
+          )}
           <p>
             last seen{" "}
             {new Date(
@@ -106,6 +115,10 @@ const Message = () => {
           <button onClick={sendMessage} type="submit">
             Send a message
           </button>
+          <button
+            onClick={() => alert("Please add a new chat")}
+            type="submit"
+          ></button>
         </form>
         <MicIcon />
       </div>
