@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Avatar, IconButton } from "@material-ui/core";
-import DonutLargeIcon from "@material-ui/icons/DonutLarge";
-import ChatIcon from "@material-ui/icons/Chat";
-import MoreVertIcon from "@material-ui/icons/MoreVert";
-import { SearchOutlined } from "@material-ui/icons";
-import db from "./firebase";
+import { Avatar, IconButton } from "@mui/material";
+import DonutLargeIcon from "@mui/icons-material/DonutLarge";
+import ChatIcon from "@mui/icons-material/Chat";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
+import { SearchOutlined } from "@mui/icons-material";
+import { db } from "./firebase";
 
 import SidebarMessage from "./SidebarMessage";
 import { useStateValue } from "./StateProvider";
@@ -51,9 +51,9 @@ const Sidebar = () => {
         </div>
       </div>
       <div className="sidebar__messages">
-        <SidebarChat addNewChat />
+        <SidebarMessage addNewChat />
         {rooms.map((room) => (
-          <SidebarChat key={room.id} id={room.id} name={room.data.name} />
+          <SidebarMessage key={room.id} id={room.id} name={room.data.name} />
         ))}
       </div>
     </div>
