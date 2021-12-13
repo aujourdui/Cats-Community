@@ -25,8 +25,10 @@ const LoginPage = () => {
           type: actionTypes.SET_USER,
           user: authUser,
         });
+        history.push("/home");
       } else {
-        alert("something wrong");
+        // alert("something wrong");
+        history.push("/");
       }
     });
 
@@ -64,9 +66,6 @@ const LoginPage = () => {
       .catch((error) => alert(error.message));
 
     setOpen(false);
-    {
-      user ? history.push("/home") : null;
-    }
   };
 
   const signIn = (event) => {

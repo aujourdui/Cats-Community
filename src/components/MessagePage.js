@@ -8,7 +8,7 @@ import { useParams } from "react-router-dom";
 import { db } from "./firebase";
 import firebase from "firebase";
 import { useStateValue } from "./StateProvider";
-import Header from "./Header";
+// import Header from "./Header";
 
 const MessagePage = () => {
   const [input, setInput] = useState("");
@@ -52,7 +52,6 @@ const MessagePage = () => {
 
   return (
     <div className="message">
-      <Header />
       <div className="message__header">
         <Avatar src={`https://avatars.dicebear.com/api/human/${seed}.svg`} />
 

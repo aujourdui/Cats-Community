@@ -11,30 +11,32 @@ import NotFoundPage from "../components/NotFoundPage";
 import { useStateValue } from "../components/StateProvider";
 
 const AppRouter = () => {
-  const [{ user }, dispatch] = useStateValue();
+  // const [{ user }, dispatch] = useStateValue();
 
   return (
     <div>
-      {!user ? (
-        <LoginPage />
-      ) : (
-        <div>
-          <BrowserRouter>
+      {/* {!user ? ( */}
+      {/* <LoginPage /> */}
+      {/* ) : ( */}
+      <div>
+        <BrowserRouter>
+          <Switch>
+            <Route path="/" component={LoginPage} exact={true} />
+            <Route path="/home" component={HomePage} />
             <Header />
-            <Switch>
-              {/* <Route path="/" component={LoginPage} exact={true} /> */}
-              <Route path="/" component={HomePage} />
-              <Route path="/message" component={MessagePage} exact={true} />
-              {/* <Route path="/favorite" component={FavoritePage} /> */}
-              {/* <Route path="/profile" component={ProfilePage} /> */}
-              <Route component={NotFoundPage} />
-            </Switch>
-          </BrowserRouter>
-        </div>
-      )}
-      ;
+            <Route path="/message" component={MessagePage} exact={true} />
+            <Header />
+            {/* <Route path="/favorite" component={FavoritePage} /> */}
+            {/* <Route path="/profile" component={ProfilePage} /> */}
+            <Route component={NotFoundPage} />
+            <Header />
+          </Switch>
+        </BrowserRouter>
+      </div>
+      {/* } */}
     </div>
   );
+  // );
 };
 
 export default AppRouter;

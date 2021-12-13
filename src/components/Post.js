@@ -2,11 +2,13 @@ import React, { useState, useEffect } from "react";
 import Avatar from "@mui/material/Avatar";
 import firebase from "firebase";
 import { db } from "./firebase";
+import { useStateValue } from "./StateProvider";
 
 const Post = (props) => {
-  const { postId, user, username, caption, imageUrl } = props;
+  const { postId, username, caption, imageUrl } = props;
   const [comments, setComments] = useState([]);
   const [comment, setComment] = useState("");
+  const [{ user }, dispatch] = useStateValue();
 
   useEffect(() => {
     let unsubscribe;
@@ -40,11 +42,7 @@ const Post = (props) => {
   return (
     <div className="post">
       <div className="post__header">
-        <Avatar
-          className="post__avatar"
-          alt="User2"
-          src="/static/images/avatar/1.jpg"
-        />
+        <Avatar className="post__avatar">U</Avatar>
         <h3>{username}</h3>
       </div>
       <img className="post__image" src={imageUrl} alt="" />
