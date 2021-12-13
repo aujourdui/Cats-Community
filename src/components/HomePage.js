@@ -7,7 +7,7 @@ import { useStateValue } from "./StateProvider";
 const HomePage = () => {
   const [posts, setPosts] = useState([]);
   // const [username, setUsername] = useState("");
-  const [{}, dispatch] = useStateValue();
+  const [{ user }, dispatch] = useStateValue();
   // const [user, setUser] = useState(null);
 
   // useEffect(() => {
@@ -40,7 +40,7 @@ const HomePage = () => {
 
   return (
     <div className="home">
-      {/* <Header /> */}
+      <Header user={user} />
       <div className="home__contents">
         <div className="home__contents-left">
           {posts.map(({ id, post }) => (

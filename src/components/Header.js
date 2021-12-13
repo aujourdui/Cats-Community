@@ -58,7 +58,7 @@ const Header = () => {
       type: actionTypes.UNSET_USER,
       user: null,
     });
-    // history.push("/");
+    history.push("/");
   };
 
   return (
@@ -111,7 +111,7 @@ const Header = () => {
           </span>
         </span>
         <span className="home-link">
-          <NavLink to="/home" activeClassName="is-active" exact={true}>
+          <NavLink to="/" activeClassName="is-active" exact={true}>
             Home
           </NavLink>
         </span>
