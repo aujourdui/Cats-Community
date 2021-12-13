@@ -16,7 +16,7 @@
   display: flex;
   align-items: center;
   background-color: white;
-  width: 100%;
+  width: 90%;
   height: 35px;
   border-radius: 20px;
 }
@@ -29,12 +29,13 @@
 .sidebar__searchContainer > input {
   border: none;
   margin-left: 10px;
+  size: 20;
 }
 
 .sidebar__header {
   display: flex;
   justify-content: space-between;
-  padding: 20px;
+  padding: 29px;
   border-right: 1px solid lightgray;
 }
 

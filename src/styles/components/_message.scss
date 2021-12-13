@@ -5,10 +5,9 @@
 }
 
 .message__header {
-  padding: 20px;
+  padding: 11px 20px;
   display: flex;
   align-items: center;
-  border-bottom: 1px solid lightgray;
 }
 
 .message__headerInfo {
@@ -23,6 +22,7 @@
 
 .message__headerInfo > p {
   color: gray;
+  margin-top: 0;
 }
 
 .eachMessage {
@@ -60,11 +60,11 @@
 
 .message__body {
   flex: 1;
-  background-image: url("https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png");
-  background-repeat: repeat;
-  background-position: center;
+  background-color: #f6f6f6;
+  // background-position: center;
   padding: 30px;
   overflow: scroll;
+  // border-left: 1px solid lightgray;
 }
 
 .message__footer {

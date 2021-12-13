@@ -1,15 +1,15 @@
 .messagePage {
   display: grid;
   place-items: center;
-  background-color: #dadbd3;
-  height: 100vh;
+  background-color: #f6f5f5;
+  height: 90vh;
 }
 
 .messagePage__body {
   display: flex;
   background-color: #ededed;
+  border: 1px solid lightgray;
   margin-top: -50px;
-  height: 90vh;
-  width: 90vw;
-  box-shadow: -1px 4px 20px -6px rgba(0, 0, 0, 0.7);
+  height: 80vh;
+  width: 70vw;
 }
