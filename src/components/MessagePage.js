@@ -17,7 +17,7 @@ const MessagePage = () => {
           <Router>
             <Sidebar />
             <Switch>
-              <Route path="/message/rooms/:roomId">
+              <Route path="/rooms/:roomId">
                 <Message />
               </Route>
               <Route path="/message">

@@ -57,7 +57,7 @@ const Message = () => {
         <Avatar src={`https://avatars.dicebear.com/api/human/${seed}.svg`} />
 
         <div className="message__headerInfo">
-          <h3>{roomName}</h3>
+          {roomName ? <h3>{roomName}</h3> : <h3>Empty</h3>}
           <p>
             last seen{" "}
             {new Date(
