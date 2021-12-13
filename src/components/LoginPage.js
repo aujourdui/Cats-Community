@@ -13,7 +13,7 @@ const LoginPage = () => {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   // const [user, setUser] = useState(null);
-  const [{}, dispatch] = useStateValue();
+  const [{ user }, dispatch] = useStateValue();
 
   const history = useHistory();
 
@@ -35,7 +35,7 @@ const LoginPage = () => {
     return () => {
       unsubscribe();
     };
-  }, []);
+  }, [user]);
 
   // useEffect(() => {
   //   const unsubscribe = auth.onAuthStateChanged((authUser) => {

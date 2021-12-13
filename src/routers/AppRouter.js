@@ -11,7 +11,7 @@ import NotFoundPage from "../components/NotFoundPage";
 import { useStateValue } from "../components/StateProvider";
 
 const AppRouter = () => {
-  // const [{ user }, dispatch] = useStateValue();
+  const [{ user }, dispatch] = useStateValue();
 
   return (
     <div>
@@ -20,23 +20,21 @@ const AppRouter = () => {
       {/* ) : ( */}
       <div>
         <BrowserRouter>
+          {/* <Header /> */}
           <Switch>
             <Route path="/" component={LoginPage} exact={true} />
             <Route path="/home" component={HomePage} />
-            <Header />
             <Route path="/message" component={MessagePage} exact={true} />
-            <Header />
             {/* <Route path="/favorite" component={FavoritePage} /> */}
             {/* <Route path="/profile" component={ProfilePage} /> */}
             <Route component={NotFoundPage} />
-            <Header />
           </Switch>
         </BrowserRouter>
       </div>
+      {/* ) */}
       {/* } */}
     </div>
   );
-  // );
 };
 
 export default AppRouter;
