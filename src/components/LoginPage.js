@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { auth } from "./firebase";
 import { Modal, Typography, Button, Input, Box } from "@mui/material";
 import { useHistory } from "react-router-dom";
+import { actionTypes } from "./reducer";
+import { useStateValue } from "./StateProvider";
 
 const LoginPage = () => {
   const [open, setOpen] = useState(false);
@@ -10,7 +12,8 @@ const LoginPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
-  const [user, setUser] = useState(null);
+  // const [user, setUser] = useState(null);
+  const [{}, dispatch] = useStateValue();
 
   const history = useHistory();
 
@@ -18,18 +21,36 @@ const LoginPage = () => {
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
       if (authUser) {
         // console.log(authUser);
-        setUser(authUser);
-        history.push("/home");
+        dispatch({
+          type: actionTypes.SET_USER,
+          user: authUser,
+        });
       } else {
-        setUser(null);
-        history.push("/");
+        alert("something wrong");
       }
     });
 
     return () => {
       unsubscribe();
     };
-  }, [user, username]);
+  }, []);
+
+  // useEffect(() => {
+  //   const unsubscribe = auth.onAuthStateChanged((authUser) => {
+  //     if (authUser) {
+  //       // console.log(authUser);
+  //       setUser(authUser);
+  //       history.push("/home");
+  //     } else {
+  //       setUser(null);
+  //       history.push("/");
+  //     }
+  //   });
+
+  //   return () => {
+  //     unsubscribe();
+  //   };
+  // }, [user, username]);
 
   const signUp = (event) => {
     event.preventDefault();
