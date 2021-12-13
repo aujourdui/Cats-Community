@@ -10,6 +10,7 @@ import MessagePage from "../components/MessagePage";
 import NotFoundPage from "../components/NotFoundPage";
 import { useStateValue } from "../components/StateProvider";
 import Sidebar from "../components/Sidebar";
+import MessageRouter from "./MessageRouter";
 
 const AppRouter = () => {
   const [{ user }, dispatch] = useStateValue();
@@ -25,11 +26,12 @@ const AppRouter = () => {
           <Switch>
             <Route path="/" component={LoginPage} exact={true} />
             <Route path="/home" component={HomePage} />
-            <Route path="/message" component={MessagePage} exact={true} />
-            <Sidebar />
-            <Route path="/rooms/:roomId" component={MessagePage} exact={true}>
-              <Sidebar />
-            </Route>
+            <MessageRouter />
+            {/* <Route path="/message" component={MessagePage} exact={true} />
+            <Sidebar /> */}
+            {/* <Route path="/rooms/:roomId" component={MessagePage} exact={true}> */}
+            {/* <Sidebar /> */}
+            {/* </Route> */}
             {/* <Route path="/favorite" component={FavoritePage} /> */}
             {/* <Route path="/profile" component={ProfilePage} /> */}
             <Route component={NotFoundPage} />
