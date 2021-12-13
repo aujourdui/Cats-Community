@@ -1,7 +1,6 @@
 .header {
   position: sticky;
   top: 0;
-  width: 80%;
   height: 6rem;
   display: flex;
   justify-content: space-between;
@@ -10,6 +9,7 @@
   padding: 0 20% 1rem 14%;
   background-color: white;
   border-bottom: 1px solid #d3e0ea;
+  width: calc(80vw - 15px);
 }
 
 a {
@@ -26,20 +26,20 @@ a {
 
 .home-link {
   // margin: 0 5%;
-  padding: 0 3%;
+  padding: 0 5%;
 }
 
 .message-link {
   // margin: 0 5%;
-  padding: 0 3%;
+  padding: 0 5%;
 }
 
 .favorite-link {
   // margin: 0 5%;
-  padding: 0 3%;
+  padding: 0 5%;
 }
 
 .profile-link {
   // margin: 0 5%;
-  padding: 0 3%;
+  padding: 0 5%;
 }

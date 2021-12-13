@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { Button, Modal, Box, Typography } from "@mui/material";
-import { Link } from "react-router-dom";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink, useHistory } from "react-router-dom";
+import { auth } from "./firebase";
 import Logo from "./Logo";
 import ImageUpload from "./ImageUpload";
 
@@ -14,19 +14,55 @@ const upload__title = {
   marginBottom: "1rem",
 };
 
-const Header = (props) => {
-  const { setOpenSignIn, setOpen, auth, user, modal__style } = props;
+const modal__style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
+
+const Header = () => {
+  // const { user } = props;
   const [uploadOpen, setUploadOpen] = useState(false);
+  const [username, setUsername] = useState("");
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((authUser) => {
+      if (authUser) {
+        // console.log(authUser);
+        setUser(authUser);
+      } else {
+        setUser(null);
+      }
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, [user, username]);
+
+  const history = useHistory();
+
+  const logOut = () => {
+    auth.signOut();
+    history.push("/");
+  };
+
   return (
     <header className="header">
       <Link to="/">
         <Logo />
       </Link>
-      <p>
+      {/* <p>
         Search
         <input type="text" />
-      </p>
-      {/* <button>Create new post</button> */}
+      </p> */}
       <div className="header-links">
         <span className="upload-link">
           <Modal
@@ -56,40 +92,28 @@ const Header = (props) => {
               )}
             </Box>
           </Modal>
-          {user?.displayName ? (
-            <span className="home__post-container">
-              <Button
-                sx={button__style}
-                onClick={() => {
-                  setUploadOpen(true);
-                }}
-              >
-                +post
-              </Button>
-            </span>
-          ) : (
+          <span className="home__post-container">
             <Button
               sx={button__style}
-              onClick={() => alert("Please login first")}
+              onClick={() => {
+                setUploadOpen(true);
+              }}
             >
               +post
             </Button>
-          )}
-          {/* <NavLink to="/upload" activeClassName="is-active" exact={true}>
-            +new post
-          </NavLink> */}
+          </span>
         </span>
         <span className="home-link">
-          <NavLink to="/" activeClassName="is-active" exact={true}>
+          <NavLink to="/home" activeClassName="is-active" exact={true}>
             Home
           </NavLink>
         </span>
         <span className="message-link">
           <NavLink to="/message" activeClassName="is-active" exact={true}>
-            messages
+            Messages
           </NavLink>
         </span>
-        <span className="favorite-link">
+        {/* <span className="favorite-link">
           <NavLink to="/favorite" activeClassName="is-active" exact={true}>
             favorite
           </NavLink>
@@ -98,31 +122,10 @@ const Header = (props) => {
           <NavLink to="/profile" activeClassName="is-active" exact={true}>
             profile
           </NavLink>
-        </span>
-        {user ? (
-          <Button sx={button__style} onClick={() => auth.signOut()}>
-            Logout
-          </Button>
-        ) : (
-          <div className="home__login-container">
-            <Button
-              sx={button__style}
-              onClick={() => {
-                setOpenSignIn(true);
-              }}
-            >
-              SignIn
-            </Button>
-            <Button
-              sx={button__style}
-              onClick={() => {
-                setOpen(true);
-              }}
-            >
-              SignUp
-            </Button>
-          </div>
-        )}
+        </span> */}
+        <Button sx={button__style} onClick={logOut}>
+          Logout
+        </Button>
       </div>
     </header>
   );
