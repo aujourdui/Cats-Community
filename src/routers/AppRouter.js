@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
-// import Header from "../components/Header";
+import Header from "../components/Header";
 import HomePage from "../components/HomePage";
 import LoginPage from "../components/LoginPage";
 import MessagePage from "../components/MessagePage";
@@ -17,29 +17,28 @@ const AppRouter = () => {
 
   return (
     <div>
-      {/* {!user ? ( */}
-      {/* <LoginPage /> */}
-      {/* ) : ( */}
-      <div>
-        <BrowserRouter>
-          {/* <Header /> */}
-          <Switch>
-            <Route path="/" component={LoginPage} exact={true} />
-            <Route path="/home" component={HomePage} />
-            <MessageRouter />
-            {/* <Route path="/message" component={MessagePage} exact={true} />
+      {!user ? (
+        <LoginPage />
+      ) : (
+        <div>
+          <BrowserRouter>
+            <Header user={user} />
+            <Switch>
+              {/* <Route path="/" component={LoginPage} exact={true} /> */}
+              <Route path="/" component={HomePage} />
+              <MessageRouter />
+              {/* <Route path="/message" component={MessagePage} exact={true} />
             <Sidebar /> */}
-            {/* <Route path="/rooms/:roomId" component={MessagePage} exact={true}> */}
-            {/* <Sidebar /> */}
-            {/* </Route> */}
-            {/* <Route path="/favorite" component={FavoritePage} /> */}
-            {/* <Route path="/profile" component={ProfilePage} /> */}
-            <Route component={NotFoundPage} />
-          </Switch>
-        </BrowserRouter>
-      </div>
-      {/* ) */}
-      {/* } */}
+              {/* <Route path="/rooms/:roomId" component={MessagePage} exact={true}> */}
+              {/* <Sidebar /> */}
+              {/* </Route> */}
+              {/* <Route path="/favorite" component={FavoritePage} /> */}
+              {/* <Route path="/profile" component={ProfilePage} /> */}
+              <Route component={NotFoundPage} />
+            </Switch>
+          </BrowserRouter>
+        </div>
+      )}
     </div>
   );
 };

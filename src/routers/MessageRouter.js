@@ -13,7 +13,6 @@ const MessageRouter = () => {
       ) : ( */}
       <div className="app__body">
         <Router>
-          <Header />
           <Sidebar />
           <Switch>
             <Route path="/message/rooms/:roomId">
