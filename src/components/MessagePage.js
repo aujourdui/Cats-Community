@@ -52,7 +52,7 @@ const MessagePage = () => {
 
   return (
     <div className="message">
-      <Header />
+      {/* <Header /> */}
       <div className="message__header">
         <Avatar src={`https://avatars.dicebear.com/api/human/${seed}.svg`} />
 
