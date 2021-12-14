@@ -22,7 +22,6 @@ const ChatPage = () => {
             </Switch>
           </Router>
         </div>
-        {/* } */}
       </div>
     </div>
   );

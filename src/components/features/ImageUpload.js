@@ -54,15 +54,15 @@ const ImageUpload = ({ username, button__style }) => {
     <div className="image-upload">
       <input
         className="image-upload__input"
-        type="file"
-        onChange={handleChange}
-      />
-      <input
-        className="image-upload__input"
         type="text"
         placeholder="Enter a caption..."
         onChange={(event) => setCaption(event.target.value)}
         value={caption}
+      />
+      <input
+        className="image-upload__input"
+        type="file"
+        onChange={handleChange}
       />
       <progress className="image-upload__progress" value={progress} max="100" />
       <Button sx={button__style} onClick={handleUpload}>

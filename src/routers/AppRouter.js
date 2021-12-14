@@ -4,8 +4,6 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import HomePage from "../components/pages/HomePage";
 import LoginPage from "../components/pages/LoginPage";
 import ChatPage from "../components/pages/ChatPage";
-// import FavoritePage from "../components/FavoritePage";
-// import ProfilePage from "../components/ProfilePage";
 import NotFoundPage from "../components/pages/NotFoundPage";
 
 const AppRouter = () => {
