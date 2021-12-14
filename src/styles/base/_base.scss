@@ -11,12 +11,17 @@ body {
   width: calc(100vw - 15px);
 }
 
-button {
-  cursor: pointer;
+a {
+  text-decoration: none !important;
+  color: $light-purple;
 }
 
-button:disabled {
-  cursor: default;
+button {
+  cursor: pointer;
+
+  &:disabled {
+    cursor: default;
+  }
 }
 
 .is-active {
