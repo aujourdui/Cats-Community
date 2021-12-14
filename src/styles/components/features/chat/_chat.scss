@@ -92,6 +92,10 @@
   }
 }
 
+.alertButton__send {
+  display: none;
+}
+
 @media (max-width: $desktop-breakpoint) {
   .chat__header {
     justify-content: center;
