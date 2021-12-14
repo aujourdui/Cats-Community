@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 
-import { Avatar } from "@mui/material";
+import { Avatar, IconButton } from "@mui/material";
+import SendIcon from "@mui/icons-material/Send";
 import { useParams } from "react-router-dom";
 import { db, auth } from "./firebase";
 import firebase from "firebase";
@@ -119,7 +120,9 @@ const Chat = () => {
             onChange={(e) => setInput(e.target.value)}
           />
           <button onClick={sendMessage} type="submit">
-            Send a message
+            <IconButton className="iconButton__send">
+              <SendIcon />
+            </IconButton>
           </button>
           <button
             onClick={() => alert("Please add a new chat")}
