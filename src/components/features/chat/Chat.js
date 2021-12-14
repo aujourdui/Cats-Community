@@ -3,11 +3,11 @@ import React, { useState, useEffect } from "react";
 import { Avatar, IconButton } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 import { useParams } from "react-router-dom";
-import { db, auth } from "../../firebase/firebase";
+import { db, auth } from "../../../firebase/firebase";
 import firebase from "firebase";
-import { useStateValue } from "../../context/StateProvider";
+import { useStateValue } from "../../../context/StateProvider";
 import { useHistory } from "react-router-dom";
-import { actionTypes } from "../../reducers/reducer";
+import { actionTypes } from "../../../reducers/reducer";
 
 const Chat = () => {
   const [input, setInput] = useState("");

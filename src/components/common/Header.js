@@ -2,11 +2,11 @@ import React, { useState } from "react";
 
 import { Button, Modal, Box, Typography } from "@mui/material";
 import { Link, NavLink, useHistory } from "react-router-dom";
-import { auth } from "../firebase/firebase";
+import { auth } from "../../firebase/firebase";
 import Logo from "./Logo";
-import ImageUpload from "./ImageUpload";
-import { useStateValue } from "../context/StateProvider";
-import { actionTypes } from "../reducers/reducer";
+import ImageUpload from "../features/ImageUpload";
+import { useStateValue } from "../../context/StateProvider";
+import { actionTypes } from "../../reducers/reducer";
 
 const button__style = {
   fontSize: "1.2rem",

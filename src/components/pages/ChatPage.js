@@ -1,8 +1,8 @@
 import React from "react";
-import Sidebar from "./Sidebar";
-import Chat from "./Chat";
+import Sidebar from "../features/chat/Sidebar";
+import Chat from "../features/chat/Chat";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Header from "../Header";
+import Header from "../common/Header";
 
 const ChatPage = () => {
   return (
