@@ -48,10 +48,6 @@ const Header = () => {
       <Link to="/home">
         <Logo />
       </Link>
-      {/* <p>
-        Search
-        <input type="text" />
-      </p> */}
       <div className="header-links">
         <span className="upload-link">
           <Modal
@@ -102,16 +98,6 @@ const Header = () => {
             Chat
           </NavLink>
         </span>
-        {/* <span className="favorite-link">
-          <NavLink to="/favorite" activeClassName="is-active" exact={true}>
-            favorite
-          </NavLink>
-        </span>
-        <span className="profile-link">
-          <NavLink to="/profile" activeClassName="is-active" exact={true}>
-            profile
-          </NavLink>
-        </span> */}
         <Button sx={button__style} onClick={logOut}>
           Logout
         </Button>
