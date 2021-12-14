@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Avatar } from "@mui/material";
-import { db } from "../../firebase/firebase";
+import { db } from "../../../firebase/firebase";
 import { Link } from "react-router-dom";
 
 const SidebarChat = ({ id, name, addNewChat }) => {

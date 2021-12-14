@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import Post from "./Post";
-import { db, auth } from "../firebase/firebase";
-import Header from "./Header";
+import Post from "../features/Post";
+import { db, auth } from "../../firebase/firebase";
+import Header from "../common/Header";
 import { useHistory } from "react-router-dom";
-import { actionTypes } from "../reducers/reducer";
-import { useStateValue } from "../context/StateProvider";
+import { actionTypes } from "../../reducers/reducer";
+import { useStateValue } from "../../context/StateProvider";
 
 const HomePage = () => {
   const [posts, setPosts] = useState([]);
