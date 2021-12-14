@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Post from "./Post";
-import { db, auth } from "./firebase";
+import { db, auth } from "../firebase/firebase";
 import Header from "./Header";
 import { useHistory } from "react-router-dom";
-import { actionTypes } from "./reducer";
+import { actionTypes } from "../reducers/reducer";
 import { useStateValue } from "./StateProvider";
 
 const HomePage = () => {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Avatar from "@mui/material/Avatar";
 import firebase from "firebase";
-import { db } from "./firebase";
+import { db } from "../firebase/firebase";
 import { useStateValue } from "./StateProvider";
 
 const Post = ({ postId, username, caption, imageUrl }) => {
