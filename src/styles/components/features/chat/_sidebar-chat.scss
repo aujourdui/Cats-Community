@@ -3,24 +3,19 @@
   padding: 20px;
   cursor: pointer;
   border-bottom: 1px solid $pale-white;
-}
 
-a {
-  text-decoration: none !important;
-  color: $light-purple;
-}
-
-.sidebarChat:hover {
-  background-color: $pale-gray;
-}
-
-.sidebarChat__info > h2 {
-  font-size: 16px;
-  margin-bottom: 8px;
+  &:hover {
+    background-color: $pale-gray;
+  }
 }
 
 .sidebarChat__info {
   margin-left: 15px;
+
+  h2 {
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
 }
 
 #sidebarChat__title {
