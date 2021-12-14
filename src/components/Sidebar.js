@@ -27,6 +27,7 @@ const Sidebar = () => {
   return (
     <div className="sidebar">
       <div className="sidebar__header">
+        <Avatar>U</Avatar>
         <h3 className="sidebar__username">{user?.displayName}</h3>
       </div>
       {/* <div className="sidebar__search">
