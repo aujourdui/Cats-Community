@@ -89,12 +89,20 @@ const LoginPage = () => {
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
-    width: 400,
+    width: 300,
     bgcolor: "background.paper",
     border: "2px solid #000",
     boxShadow: 24,
     p: 4,
   };
+
+  // const mobile__modal__style{
+  //   @media(maxWidth: 768px) {
+  //     modal__style{
+  //       width: 200,
+  //     }
+  //   }
+  // }
 
   const input__style = {
     fontSize: "1.5rem",
@@ -130,7 +138,7 @@ const LoginPage = () => {
               variant="h3"
               component="h2"
             >
-              Cat's community
+              Cats' Community
             </Typography>
             <form className="home__signup">
               <Input
@@ -178,7 +186,7 @@ const LoginPage = () => {
               variant="h3"
               component="h2"
             >
-              Cat's community
+              Cats' Community
             </Typography>
             <form className="home__signin">
               <Input
@@ -285,7 +293,7 @@ const LoginPage = () => {
         </Modal>
       </div>
       <div className="login__box">
-        <h1 className="login__title">Cats' community</h1>
+        <h1 className="login__title">Cats' Community</h1>
         <p>Let's play around with cats' photos</p>
         <div className="login-container">
           <Button
