@@ -1,0 +1,24 @@
+.chatPage {
+  display: grid;
+  place-items: center;
+  background-color: $faint-gray;
+  height: 90vh;
+}
+
+.chatPage__body {
+  display: flex;
+  background-color: $pale-gray;
+  border: 1px solid lightgray;
+  margin-top: -50px;
+  height: 80vh;
+  width: 70vw;
+}
+
+@media (max-width: $desktop-breakpoint) {
+  .chatPage__body {
+    display: block;
+    margin-top: 0px;
+    height: 100vh;
+    width: 100vw;
+  }
+}

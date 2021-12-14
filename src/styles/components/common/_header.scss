@@ -1,21 +1,15 @@
 .header {
   position: sticky;
   top: 0;
-  width: 80%;
   height: 6rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   z-index: 2;
-  padding: 0 20% 1rem 14%;
+  padding: 0 20% 1rem 10%;
   background-color: white;
-  border-bottom: 1px solid #d3e0ea;
-}
-
-a {
-  text-decoration: none;
-  border: none;
-  color: #ae4ccf;
+  border-bottom: 1px solid $pale-blueGray;
+  width: calc(80vw - 15px);
 }
 
 .header-links {
@@ -25,21 +19,17 @@ a {
 }
 
 .home-link {
-  // margin: 0 5%;
-  padding: 0 3%;
+  margin: 0 5%;
 }
 
-.message-link {
-  // margin: 0 5%;
-  padding: 0 3%;
+.chat-link {
+  margin: 0 5%;
 }
 
 .favorite-link {
-  // margin: 0 5%;
-  padding: 0 3%;
+  margin: 0 5%;
 }
 
 .profile-link {
-  // margin: 0 5%;
-  padding: 0 3%;
+  margin: 0 5%;
 }

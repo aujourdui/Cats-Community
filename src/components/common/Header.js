@@ -2,8 +2,11 @@ import React, { useState } from "react";
 
 import { Button, Modal, Box, Typography } from "@mui/material";
 import { Link, NavLink, useHistory } from "react-router-dom";
+import { auth } from "../../firebase/firebase";
 import Logo from "./Logo";
-import ImageUpload from "./ImageUpload";
+import ImageUpload from "../features/ImageUpload";
+import { useStateValue } from "../../context/StateProvider";
+import { actionTypes } from "../../reducers/reducer";
 
 const button__style = {
   fontSize: "1.2rem",
@@ -13,14 +16,30 @@ const upload__title = {
   marginBottom: "1rem",
 };
 
-const Header = (props) => {
-  const { setOpenSignIn, setOpen, auth, user, modal__style } = props;
+const modal__style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
+
+const Header = () => {
   const [uploadOpen, setUploadOpen] = useState(false);
+  const [{ user }, dispatch] = useStateValue();
 
   const history = useHistory();
 
   const logOut = () => {
     auth.signOut();
+    dispatch({
+      type: actionTypes.UNSET_USER,
+      user: null,
+    });
     history.push("/");
   };
 
@@ -29,11 +48,10 @@ const Header = (props) => {
       <Link to="/home">
         <Logo />
       </Link>
-      <p>
+      {/* <p>
         Search
         <input type="text" />
-      </p>
-      {/* <button>Create new post</button> */}
+      </p> */}
       <div className="header-links">
         <span className="upload-link">
           <Modal
@@ -63,40 +81,28 @@ const Header = (props) => {
               )}
             </Box>
           </Modal>
-          {user?.displayName ? (
-            <span className="home__post-container">
-              <Button
-                sx={button__style}
-                onClick={() => {
-                  setUploadOpen(true);
-                }}
-              >
-                +post
-              </Button>
-            </span>
-          ) : (
+          <span className="home__post-container">
             <Button
               sx={button__style}
-              onClick={() => alert("Please login first")}
+              onClick={() => {
+                setUploadOpen(true);
+              }}
             >
               +post
             </Button>
-          )}
-          {/* <NavLink to="/upload" activeClassName="is-active" exact={true}>
-            +new post
-          </NavLink> */}
+          </span>
         </span>
         <span className="home-link">
           <NavLink to="/home" activeClassName="is-active" exact={true}>
             Home
           </NavLink>
         </span>
-        <span className="message-link">
-          <NavLink to="/message" activeClassName="is-active" exact={true}>
-            messages
+        <span className="chat-link">
+          <NavLink to="/chat" activeClassName="is-active" exact={true}>
+            Chat
           </NavLink>
         </span>
-        <span className="favorite-link">
+        {/* <span className="favorite-link">
           <NavLink to="/favorite" activeClassName="is-active" exact={true}>
             favorite
           </NavLink>
@@ -105,31 +111,10 @@ const Header = (props) => {
           <NavLink to="/profile" activeClassName="is-active" exact={true}>
             profile
           </NavLink>
-        </span>
-        {user ? (
-          <Button sx={button__style} onClick={logOut}>
-            Logout
-          </Button>
-        ) : (
-          <div className="home__login-container">
-            <Button
-              sx={button__style}
-              onClick={() => {
-                setOpenSignIn(true);
-              }}
-            >
-              SignIn
-            </Button>
-            <Button
-              sx={button__style}
-              onClick={() => {
-                setOpen(true);
-              }}
-            >
-              SignUp
-            </Button>
-          </div>
-        )}
+        </span> */}
+        <Button sx={button__style} onClick={logOut}>
+          Logout
+        </Button>
       </div>
     </header>
   );
