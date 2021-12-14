@@ -80,14 +80,16 @@
 }
 
 .chat__footer > form > input {
-  flex: 1;
+  flex: 0.85;
   border-radius: 30px;
   padding: 10px;
+  margin-left: 10px;
   border: none;
 }
 
 .chat__footer > form > button {
-  display: none;
+  // display: none;
+  border: none;
 }
 
 .chat__footer > .MuiSvgIcon-root {
