@@ -206,7 +206,8 @@ const LoginPage = () => {
               variant="h5"
               component="h5"
             >
-              Press any key inside each blank(insert example automatically)
+              Press any key inside each blank <br />
+              (insert example automatically)
             </Typography>
             <form className="home__signin">
               <Input
@@ -246,7 +247,8 @@ const LoginPage = () => {
               variant="h5"
               component="h5"
             >
-              Press any key inside each blank(insert example automatically)
+              Press any key inside each blank <br />
+              (insert example automatically)
             </Typography>
             <form className="home__signin">
               <Input
@@ -302,7 +304,7 @@ const LoginPage = () => {
               setOpenPlaygroundVancouver(true);
             }}
           >
-            Play ground: vancouver
+            Play as vancouver
           </Button>
           <Button
             sx={button__style__play}
@@ -310,7 +312,7 @@ const LoginPage = () => {
               setOpenPlaygroundToronto(true);
             }}
           >
-            Play ground: toronto
+            Play as toronto
           </Button>
         </div>
       </div>

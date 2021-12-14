@@ -77,13 +77,15 @@ const Chat = () => {
   return (
     <div className="chat">
       <div className="chat__header">
-        <Avatar src={`https://avatars.dicebear.com/api/human/${seed}.svg`} />
+        <Avatar
+          src={`https://avatars.dicebear.com/api/identicon/${seed}.svg`}
+        />
 
         <div className="chat__headerInfo">
           {roomName ? (
             <h3>{roomName}</h3>
           ) : (
-            <h3>Empty: Please add a new Chat</h3>
+            <h3>Empty: Please go to any Chat or add a new Chat</h3>
           )}
           <p>
             last seen{" "}
@@ -119,11 +121,13 @@ const Chat = () => {
             value={input}
             onChange={(e) => setInput(e.target.value)}
           />
-          <button onClick={sendMessage} type="submit">
-            <IconButton className="iconButton__send">
-              <SendIcon />
-            </IconButton>
-          </button>
+          <IconButton
+            className="iconButton__send"
+            onClick={sendMessage}
+            type="submit"
+          >
+            <SendIcon />
+          </IconButton>
           <button
             onClick={() => alert("Please add a new chat")}
             type="submit"
