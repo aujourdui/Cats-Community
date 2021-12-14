@@ -1,13 +1,13 @@
 .chatPage {
   display: grid;
   place-items: center;
-  background-color: #f6f5f5;
+  background-color: $faint-gray;
   height: 90vh;
 }
 
 .chatPage__body {
   display: flex;
-  background-color: #ededed;
+  background-color: $pale-gray;
   border: 1px solid lightgray;
   margin-top: -50px;
   height: 80vh;

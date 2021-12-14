@@ -5,7 +5,7 @@ html {
 body {
   font-family: Arial, Helvetica, sans-serif;
   font-size: $m-size;
-  background-color: #f6f5f5;
+  background-color: $faint-gray;
   overflow-y: scroll;
   overflow-x: hidden;
   width: calc(100vw - 15px);

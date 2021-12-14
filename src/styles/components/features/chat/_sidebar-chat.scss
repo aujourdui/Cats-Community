@@ -2,16 +2,16 @@
   display: flex;
   padding: 20px;
   cursor: pointer;
-  border-bottom: 1px solid #f6f6f6;
+  border-bottom: 1px solid $pale-white;
 }
 
 a {
   text-decoration: none !important;
-  color: #ae4ccf;
+  color: $light-purple;
 }
 
 .sidebarChat:hover {
-  background-color: #ebebeb;
+  background-color: $pale-gray;
 }
 
 .sidebarChat__info > h2 {
