@@ -2,28 +2,33 @@ import React, { useState, useEffect } from "react";
 import Post from "./Post";
 import { db, auth } from "./firebase";
 import Header from "./Header";
+import { useHistory } from "react-router-dom";
+import { actionTypes } from "./reducer";
 import { useStateValue } from "./StateProvider";
 
 const HomePage = () => {
   const [posts, setPosts] = useState([]);
-  // const [username, setUsername] = useState("");
   const [{ user }, dispatch] = useStateValue();
-  // const [user, setUser] = useState(null);
 
-  // useEffect(() => {
-  //   const unsubscribe = auth.onAuthStateChanged((authUser) => {
-  //     if (authUser) {
-  //       // console.log(authUser);
-  //       setUser(authUser);
-  //     } else {
-  //       setUser(null);
-  //     }
-  //   });
+  const history = useHistory();
 
-  //   return () => {
-  //     unsubscribe();
-  //   };
-  // }, [user, username]);
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((authUser) => {
+      if (authUser) {
+        dispatch({
+          type: actionTypes.SET_USER,
+          user: authUser,
+        });
+      } else {
+        alert("something wrong");
+        history.push("/");
+      }
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, [user]);
 
   useEffect(() => {
     db.collection("posts")

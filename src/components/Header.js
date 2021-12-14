@@ -29,26 +29,8 @@ const modal__style = {
 };
 
 const Header = () => {
-  // const { user } = props;
   const [uploadOpen, setUploadOpen] = useState(false);
-  // const [username, setUsername] = useState("");
-  // const [user, setUser] = useState(null);
   const [{ user }, dispatch] = useStateValue();
-
-  // useEffect(() => {
-  //   const unsubscribe = auth.onAuthStateChanged((authUser) => {
-  //     if (authUser) {
-  //       // console.log(authUser);
-  //       setUser(authUser);
-  //     } else {
-  //       setUser(null);
-  //     }
-  //   });
-
-  //   return () => {
-  //     unsubscribe();
-  //   };
-  // }, [user, username]);
 
   const history = useHistory();
 
