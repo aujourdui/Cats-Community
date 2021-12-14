@@ -11,7 +11,7 @@ import { useStateValue } from "./StateProvider";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
 
-const Message = () => {
+const Chat = () => {
   const [input, setInput] = useState("");
   const [seed, setSeed] = useState("");
   const { roomId } = useParams();
@@ -57,11 +57,11 @@ const Message = () => {
   };
 
   return (
-    <div className="message">
-      <div className="message__header">
+    <div className="chat">
+      <div className="chat__header">
         <Avatar src={`https://avatars.dicebear.com/api/human/${seed}.svg`} />
 
-        <div className="message__headerInfo">
+        <div className="chat__headerInfo">
           {roomName ? (
             <h3>{roomName}</h3>
           ) : (
@@ -75,7 +75,7 @@ const Message = () => {
           </p>
         </div>
 
-        <div className="message__headerRight">
+        <div className="chat__headerRight">
           <IconButton>
             <SearchOutlined />
           </IconButton>
@@ -87,23 +87,23 @@ const Message = () => {
           </IconButton>
         </div>
       </div>
-      <div className="message__body">
+      <div className="chat__body">
         {messages.map((message, index) => (
           <p
             key={index}
-            className={`eachMessage ${
-              message.name === user.displayName && "message__receiver"
+            className={`chat__message ${
+              message.name === user.displayName && "chat__receiver"
             }`}
           >
-            <span className="message__name">{message.name}</span>
+            <span className="chat__name">{message.name}</span>
             {message.message}
-            <span className="message__timestamp">
+            <span className="chat__timestamp">
               {new Date(message.timestamp?.toDate()).toUTCString()}
             </span>
           </p>
         ))}
       </div>
-      <div className="message__footer">
+      <div className="chat__footer">
         <InsertEmoticonIcon />
         <form>
           <input
@@ -126,4 +126,4 @@ const Message = () => {
   );
 };
 
-export default Message;
+export default Chat;

@@ -1,6 +1,6 @@
 import React from "react";
 import Sidebar from "../components/Sidebar";
-import MessagePage from "../components/MessagePage";
+import ChatPage from "../components/ChatPage";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Header from "../components/Header";
 // import Login from "./Login";
@@ -18,11 +18,11 @@ const MessageRouter = () => {
           <Header user={user} />
           <Sidebar />
           <Switch>
-            <Route path="/message/rooms/:roomId">
-              <MessagePage />
+            <Route path="/rooms/:roomId">
+              <ChatPage />
             </Route>
-            <Route path="/message">
-              <MessagePage />
+            <Route path="/chat">
+              <ChatPage />
             </Route>
           </Switch>
         </Router>

@@ -1,11 +1,11 @@
-.messagePage {
+.chatPage {
   display: grid;
   place-items: center;
   background-color: #f6f5f5;
   height: 90vh;
 }
 
-.messagePage__body {
+.chatPage__body {
   display: flex;
   background-color: #ededed;
   border: 1px solid lightgray;
