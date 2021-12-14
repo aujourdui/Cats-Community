@@ -4,8 +4,6 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import HomePage from "../components/pages/HomePage";
 import LoginPage from "../components/pages/LoginPage";
 import ChatPage from "../components/pages/ChatPage";
-// import FavoritePage from "../components/FavoritePage";
-// import ProfilePage from "../components/ProfilePage";
 import NotFoundPage from "../components/pages/NotFoundPage";
 
 const AppRouter = () => {
@@ -16,8 +14,6 @@ const AppRouter = () => {
           <Route path="/" component={LoginPage} exact={true} />
           <Route path="/home" component={HomePage} />
           <Route path="/chat" component={ChatPage} />
-          {/* <Route path="/favorite" component={FavoritePage} /> */}
-          {/* <Route path="/profile" component={ProfilePage} /> */}
           <Route component={NotFoundPage} />
         </Switch>
       </BrowserRouter>

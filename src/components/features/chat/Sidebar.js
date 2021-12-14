@@ -30,12 +30,6 @@ const Sidebar = () => {
         <Avatar>U</Avatar>
         <h3 className="sidebar__username">{user?.displayName}</h3>
       </div>
-      {/* <div className="sidebar__search">
-        <div className="sidebar__searchContainer">
-          <SearchOutlined />
-          <input placeholder="Search new chat" type="text" />
-        </div>
-      </div> */}
       <div className="sidebar__messages">
         <SidebarChat addNewChat />
         {rooms.map((room) => (

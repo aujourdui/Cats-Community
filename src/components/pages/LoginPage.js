@@ -46,6 +46,8 @@ const LoginPage = () => {
       })
       .catch((error) => alert(error.message));
 
+    setEmail("");
+    setPassword("");
     setOpen(false);
   };
 
@@ -55,6 +57,8 @@ const LoginPage = () => {
       .signInWithEmailAndPassword(email, password)
       .catch((error) => alert(error.message));
 
+    setEmail("");
+    setPassword("");
     setOpenSignIn(false);
   };
 
@@ -64,6 +68,8 @@ const LoginPage = () => {
       .signInWithEmailAndPassword(email, password)
       .catch((error) => alert(error.message));
 
+    setEmail("");
+    setPassword("");
     setOpenPlaygroundVancouver(false);
   };
 
@@ -73,6 +79,8 @@ const LoginPage = () => {
       .signInWithEmailAndPassword(email, password)
       .catch((error) => alert(error.message));
 
+    setEmail("");
+    setPassword("");
     setOpenPlaygroundToronto(false);
   };
 
