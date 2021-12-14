@@ -1,1 +1,15 @@
+.logo {
+  font-size: 3.5rem;
+  padding-left: 0.5rem;
+}
 
+.logo__container {
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: $desktop-breakpoint) {
+  .logo {
+    font-size: 2rem;
+  }
+} ;
