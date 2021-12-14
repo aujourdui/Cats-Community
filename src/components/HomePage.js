@@ -4,7 +4,7 @@ import { db, auth } from "../firebase/firebase";
 import Header from "./Header";
 import { useHistory } from "react-router-dom";
 import { actionTypes } from "../reducers/reducer";
-import { useStateValue } from "./StateProvider";
+import { useStateValue } from "../context/StateProvider";
 
 const HomePage = () => {
   const [posts, setPosts] = useState([]);
