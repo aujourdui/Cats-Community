@@ -131,6 +131,7 @@ const Chat = () => {
           <button
             onClick={() => alert("Please add a new chat")}
             type="submit"
+            className="alertButton__send"
           ></button>
         </form>
       </div>
