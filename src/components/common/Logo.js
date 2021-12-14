@@ -9,7 +9,7 @@ const Logo = () => (
       width="40"
       height="40"
     />
-    <h1 className="logo">Cats' community</h1>
+    <h1 className="logo">Cats' Community</h1>
   </div>
 );
 

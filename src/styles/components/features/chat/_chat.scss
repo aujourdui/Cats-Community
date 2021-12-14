@@ -8,6 +8,7 @@
   padding: 11px 20px;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .chat__headerInfo {
@@ -52,12 +53,6 @@
   font-size: xx-small;
 }
 
-.chat__headerRight {
-  display: flex;
-  justify-content: center;
-  min-width: 100px;
-}
-
 .chat__body {
   flex: 1;
   background-color: $pale-white;
@@ -87,11 +82,19 @@
 
     button {
       border: none;
+      background-color: $pale-gray;
     }
   }
 
   .MuiSvgIcon-root {
     padding: 10px;
     color: gray;
+  }
+}
+
+@media (max-width: $desktop-breakpoint) {
+  .chat__header {
+    justify-content: center;
+    flex: 0.5;
   }
 }

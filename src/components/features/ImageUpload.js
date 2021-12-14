@@ -26,7 +26,6 @@ const ImageUpload = ({ username, button__style }) => {
         setProgress(progress);
       },
       (error) => {
-        console.log(error);
         alert(error.message);
       },
       () => {
