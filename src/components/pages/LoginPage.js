@@ -1,27 +1,31 @@
 import React, { useState, useEffect } from "react";
-import { auth } from "./firebase";
+import { auth } from "../../firebase/firebase";
 import { Modal, Typography, Button, Input, Box } from "@mui/material";
 import { useHistory } from "react-router-dom";
+import { actionTypes } from "../../reducers/reducer";
+import { useStateValue } from "../../context/StateProvider";
 
 const LoginPage = () => {
   const [open, setOpen] = useState(false);
   const [openSignIn, setOpenSignIn] = useState(false);
-  const [openPlayground, setOpenPlayground] = useState(false);
+  const [openPlaygroundVancouver, setOpenPlaygroundVancouver] = useState(false);
+  const [openPlaygroundToronto, setOpenPlaygroundToronto] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
-  const [user, setUser] = useState(null);
+  const [{ user }, dispatch] = useStateValue();
 
   const history = useHistory();
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
       if (authUser) {
-        // console.log(authUser);
-        setUser(authUser);
+        dispatch({
+          type: actionTypes.SET_USER,
+          user: authUser,
+        });
         history.push("/home");
       } else {
-        setUser(null);
         history.push("/");
       }
     });
@@ -29,7 +33,7 @@ const LoginPage = () => {
     return () => {
       unsubscribe();
     };
-  }, [user, username]);
+  }, [user]);
 
   const signUp = (event) => {
     event.preventDefault();
@@ -42,10 +46,9 @@ const LoginPage = () => {
       })
       .catch((error) => alert(error.message));
 
+    setEmail("");
+    setPassword("");
     setOpen(false);
-    {
-      user ? history.push("/home") : null;
-    }
   };
 
   const signIn = (event) => {
@@ -54,16 +57,31 @@ const LoginPage = () => {
       .signInWithEmailAndPassword(email, password)
       .catch((error) => alert(error.message));
 
+    setEmail("");
+    setPassword("");
     setOpenSignIn(false);
   };
 
-  const signInPlay = (event) => {
+  const signInPlayVancouver = (event) => {
     event.preventDefault();
     auth
       .signInWithEmailAndPassword(email, password)
       .catch((error) => alert(error.message));
 
-    setOpenPlayground(false);
+    setEmail("");
+    setPassword("");
+    setOpenPlaygroundVancouver(false);
+  };
+
+  const signInPlayToronto = (event) => {
+    event.preventDefault();
+    auth
+      .signInWithEmailAndPassword(email, password)
+      .catch((error) => alert(error.message));
+
+    setEmail("");
+    setPassword("");
+    setOpenPlaygroundToronto(false);
   };
 
   const modal__style = {
@@ -93,6 +111,7 @@ const LoginPage = () => {
   const button__style__play = {
     fontSize: "1.5rem",
     color: "#D47AE8",
+    padding: 0,
   };
 
   return (
@@ -183,8 +202,8 @@ const LoginPage = () => {
           </Box>
         </Modal>
         <Modal
-          open={openPlayground}
-          onClose={() => setOpenPlayground(false)}
+          open={openPlaygroundVancouver}
+          onClose={() => setOpenPlaygroundVancouver(false)}
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
         >
@@ -195,7 +214,8 @@ const LoginPage = () => {
               variant="h5"
               component="h5"
             >
-              Press any key inside each blank(insert example automatically)
+              Press any key inside each blank <br />
+              (insert example automatically)
             </Typography>
             <form className="home__signin">
               <Input
@@ -212,7 +232,52 @@ const LoginPage = () => {
                 value={password}
                 onChange={() => setPassword("vancouver")}
               />
-              <Button sx={input__style} type="submit" onClick={signInPlay}>
+              <Button
+                sx={input__style}
+                type="submit"
+                onClick={signInPlayVancouver}
+              >
+                Sign In
+              </Button>
+            </form>
+          </Box>
+        </Modal>
+        <Modal
+          open={openPlaygroundToronto}
+          onClose={() => setOpenPlaygroundToronto(false)}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={modal__style}>
+            <Typography
+              sx={input__title}
+              id="modal-modal-title"
+              variant="h5"
+              component="h5"
+            >
+              Press any key inside each blank <br />
+              (insert example automatically)
+            </Typography>
+            <form className="home__signin">
+              <Input
+                sx={input__style}
+                type="text"
+                placeholder="email"
+                value={email}
+                onChange={() => setEmail("test2@gmail.com")}
+              />
+              <Input
+                sx={input__style}
+                type="password"
+                placeholder="password"
+                value={password}
+                onChange={() => setPassword("toronto")}
+              />
+              <Button
+                sx={input__style}
+                type="submit"
+                onClick={signInPlayToronto}
+              >
                 Sign In
               </Button>
             </form>
@@ -221,7 +286,7 @@ const LoginPage = () => {
       </div>
       <div className="login__box">
         <h1 className="login__title">Cats' community</h1>
-        <p>Let's play around with cat's photos</p>
+        <p>Let's play around with cats' photos</p>
         <div className="login-container">
           <Button
             sx={button__style}
@@ -240,14 +305,24 @@ const LoginPage = () => {
             Sign Up
           </Button>
         </div>
-        <Button
-          sx={button__style__play}
-          onClick={() => {
-            setOpenPlayground(true);
-          }}
-        >
-          Play ground
-        </Button>
+        <div className="playground">
+          <Button
+            sx={button__style__play}
+            onClick={() => {
+              setOpenPlaygroundVancouver(true);
+            }}
+          >
+            Play as vancouver
+          </Button>
+          <Button
+            sx={button__style__play}
+            onClick={() => {
+              setOpenPlaygroundToronto(true);
+            }}
+          >
+            Play as toronto
+          </Button>
+        </div>
       </div>
     </div>
   );

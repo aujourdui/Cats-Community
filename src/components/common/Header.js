@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import { Button, Modal, Box, Typography } from "@mui/material";
 import { Link, NavLink, useHistory } from "react-router-dom";
-import { auth } from "./firebase";
+import { auth } from "../../firebase/firebase";
 import Logo from "./Logo";
-import ImageUpload from "./ImageUpload";
+import ImageUpload from "../features/ImageUpload";
+import { useStateValue } from "../../context/StateProvider";
+import { actionTypes } from "../../reducers/reducer";
 
 const button__style = {
   fontSize: "1.2rem",
@@ -27,36 +29,23 @@ const modal__style = {
 };
 
 const Header = () => {
-  // const { user } = props;
   const [uploadOpen, setUploadOpen] = useState(false);
-  const [username, setUsername] = useState("");
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((authUser) => {
-      if (authUser) {
-        // console.log(authUser);
-        setUser(authUser);
-      } else {
-        setUser(null);
-      }
-    });
-
-    return () => {
-      unsubscribe();
-    };
-  }, [user, username]);
+  const [{ user }, dispatch] = useStateValue();
 
   const history = useHistory();
 
   const logOut = () => {
     auth.signOut();
+    dispatch({
+      type: actionTypes.UNSET_USER,
+      user: null,
+    });
     history.push("/");
   };
 
   return (
     <header className="header">
-      <Link to="/">
+      <Link to="/home">
         <Logo />
       </Link>
       {/* <p>
@@ -108,9 +97,9 @@ const Header = () => {
             Home
           </NavLink>
         </span>
-        <span className="message-link">
-          <NavLink to="/message" activeClassName="is-active" exact={true}>
-            Messages
+        <span className="chat-link">
+          <NavLink to="/chat" activeClassName="is-active" exact={true}>
+            Chat
           </NavLink>
         </span>
         {/* <span className="favorite-link">

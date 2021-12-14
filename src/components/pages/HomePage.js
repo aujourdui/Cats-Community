@@ -1,30 +1,34 @@
 import React, { useState, useEffect } from "react";
-import Post from "./Post";
-import { db, auth } from "./firebase";
-// import { Modal, Typography, Button, Input, Box } from "@mui/material";
-// import { ThemeProvider, createTheme } from "@mui/material/styles";
-// import Recommend from "./Recommend";
-import Header from "./Header";
+import Post from "../features/Post";
+import { db, auth } from "../../firebase/firebase";
+import Header from "../common/Header";
+import { useHistory } from "react-router-dom";
+import { actionTypes } from "../../reducers/reducer";
+import { useStateValue } from "../../context/StateProvider";
 
 const HomePage = () => {
   const [posts, setPosts] = useState([]);
-  const [username, setUsername] = useState("");
-  const [user, setUser] = useState(null);
+  const [{ user }, dispatch] = useStateValue();
+
+  const history = useHistory();
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
       if (authUser) {
-        // console.log(authUser);
-        setUser(authUser);
+        dispatch({
+          type: actionTypes.SET_USER,
+          user: authUser,
+        });
       } else {
-        setUser(null);
+        alert("something wrong");
+        history.push("/");
       }
     });
 
     return () => {
       unsubscribe();
     };
-  }, [user, username]);
+  }, [user]);
 
   useEffect(() => {
     db.collection("posts")
@@ -41,15 +45,13 @@ const HomePage = () => {
 
   return (
     <div className="home">
-      {/* </ThemeProvider> */}
-      <Header />
+      <Header user={user} />
       <div className="home__contents">
         <div className="home__contents-left">
           {posts.map(({ id, post }) => (
             <Post
               key={id}
               postId={id}
-              user={user}
               username={post.username}
               caption={post.caption}
               imageUrl={post.imageUrl}
