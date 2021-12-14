@@ -31,13 +31,13 @@
   padding: 10px;
   border-radius: 10px;
   width: fit-content;
-  background-color: #ffffff;
+  background-color: white;
   margin-bottom: 30px;
 }
 
 .chat__receiver {
   margin-left: auto;
-  background-color: #dcf8c6;
+  background-color: $light-yellowGreen;
 }
 
 .chat__timestamp {
@@ -60,7 +60,7 @@
 
 .chat__body {
   flex: 1;
-  background-color: #f6f6f6;
+  background-color: $pale-white;
   padding: 30px;
   overflow: scroll;
   border-left: 1px solid lightgray;
