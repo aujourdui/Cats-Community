@@ -3,8 +3,7 @@ import { Button } from "@mui/material";
 import firebase from "firebase";
 import { storage, db } from "./firebase";
 
-const ImageUpload = (props) => {
-  const { username, button__style } = props;
+const ImageUpload = ({ username, button__style }) => {
   const [image, setImage] = useState(null);
   const [progress, setProgress] = useState(0);
   const [caption, setCaption] = useState("");

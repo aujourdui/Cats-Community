@@ -34,21 +34,14 @@
 
 .sidebar__header {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   padding: 30px;
   border-right: 1px solid lightgray;
 }
 
-.sidebar__headerRight {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  min-width: 10vw;
-}
-
-.sidebar__headerRight > .MuiSvgIcon-root {
-  margin-right: 2vw;
-  font-size: 24px !important;
+.sidebar__username {
+  margin: 8px 8px;
+  font-weight: normal;
 }
 
 .sidebar__messages {

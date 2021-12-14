@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from "react";
 
-import { Avatar, IconButton } from "@mui/material";
-import { SearchOutlined, AttachFile, MoreVert } from "@mui/icons-material";
-import InsertEmoticonIcon from "@mui/icons-material/InsertEmoticon";
-import MicIcon from "@mui/icons-material/Mic";
+import { Avatar } from "@mui/material";
 import { useParams } from "react-router-dom";
-import { db } from "./firebase";
+import { db, auth } from "./firebase";
 import firebase from "firebase";
 import { useStateValue } from "./StateProvider";
-import Header from "./Header";
-import Sidebar from "./Sidebar";
+import { useHistory } from "react-router-dom";
+import { actionTypes } from "./reducer";
 
 const Chat = () => {
   const [input, setInput] = useState("");
@@ -18,6 +15,26 @@ const Chat = () => {
   const [roomName, setRoomName] = useState("");
   const [messages, setMessages] = useState([]);
   const [{ user }, dispatch] = useStateValue();
+
+  const history = useHistory();
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((authUser) => {
+      if (authUser) {
+        dispatch({
+          type: actionTypes.SET_USER,
+          user: authUser,
+        });
+      } else {
+        alert("something wrong");
+        history.push("/");
+      }
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, [user]);
 
   useEffect(() => {
     if (roomId) {
@@ -75,17 +92,7 @@ const Chat = () => {
           </p>
         </div>
 
-        <div className="chat__headerRight">
-          <IconButton>
-            <SearchOutlined />
-          </IconButton>
-          <IconButton>
-            <AttachFile />
-          </IconButton>
-          <IconButton>
-            <MoreVert />
-          </IconButton>
-        </div>
+        <div className="chat__headerRight"></div>
       </div>
       <div className="chat__body">
         {messages.map((message, index) => (
@@ -104,7 +111,6 @@ const Chat = () => {
         ))}
       </div>
       <div className="chat__footer">
-        <InsertEmoticonIcon />
         <form>
           <input
             placeholder="Type a message"
@@ -120,7 +126,6 @@ const Chat = () => {
             type="submit"
           ></button>
         </form>
-        <MicIcon />
       </div>
     </div>
   );

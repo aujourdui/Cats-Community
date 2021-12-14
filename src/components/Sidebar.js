@@ -1,9 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Avatar, IconButton } from "@mui/material";
-import DonutLargeIcon from "@mui/icons-material/DonutLarge";
-import ChatIcon from "@mui/icons-material/Chat";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
-import { SearchOutlined } from "@mui/icons-material";
+import { Avatar } from "@mui/material";
 import { db } from "./firebase";
 
 import SidebarChat from "./SidebarChat";
@@ -31,25 +27,14 @@ const Sidebar = () => {
   return (
     <div className="sidebar">
       <div className="sidebar__header">
-        <Avatar src={user?.photoURL} />
-        <div className="sidebar__headerRight">
-          <IconButton>
-            <DonutLargeIcon />
-          </IconButton>
-          <IconButton>
-            <ChatIcon />
-          </IconButton>
-          <IconButton>
-            <MoreVertIcon />
-          </IconButton>
-        </div>
+        <h3 className="sidebar__username">{user?.displayName}</h3>
       </div>
-      <div className="sidebar__search">
+      {/* <div className="sidebar__search">
         <div className="sidebar__searchContainer">
           <SearchOutlined />
           <input placeholder="Search new chat" type="text" />
         </div>
-      </div>
+      </div> */}
       <div className="sidebar__messages">
         <SidebarChat addNewChat />
         {rooms.map((room) => (

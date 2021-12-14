@@ -12,7 +12,6 @@ const LoginPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
-  // const [user, setUser] = useState(null);
   const [{ user }, dispatch] = useStateValue();
 
   const history = useHistory();
@@ -20,14 +19,12 @@ const LoginPage = () => {
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
       if (authUser) {
-        // console.log(authUser);
         dispatch({
           type: actionTypes.SET_USER,
           user: authUser,
         });
         history.push("/home");
       } else {
-        // alert("something wrong");
         history.push("/");
       }
     });
@@ -36,23 +33,6 @@ const LoginPage = () => {
       unsubscribe();
     };
   }, [user]);
-
-  // useEffect(() => {
-  //   const unsubscribe = auth.onAuthStateChanged((authUser) => {
-  //     if (authUser) {
-  //       // console.log(authUser);
-  //       setUser(authUser);
-  //       history.push("/home");
-  //     } else {
-  //       setUser(null);
-  //       history.push("/");
-  //     }
-  //   });
-
-  //   return () => {
-  //     unsubscribe();
-  //   };
-  // }, [user, username]);
 
   const signUp = (event) => {
     event.preventDefault();
