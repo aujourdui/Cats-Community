@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import HomePage from "../components/HomePage";
 import LoginPage from "../components/LoginPage";
-import ChatPage from "../components/ChatPage";
+import ChatPage from "../components/chat/ChatPage";
 // import FavoritePage from "../components/FavoritePage";
 // import ProfilePage from "../components/ProfilePage";
 import NotFoundPage from "../components/NotFoundPage";

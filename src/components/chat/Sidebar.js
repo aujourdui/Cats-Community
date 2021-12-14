@@ -3,7 +3,7 @@ import { Avatar } from "@mui/material";
 import { db } from "../firebase/firebase";
 
 import SidebarChat from "./SidebarChat";
-import { useStateValue } from "./StateProvider";
+import { useStateValue } from "../context/StateProvider";
 
 const Sidebar = () => {
   const [rooms, setRooms] = useState([]);
