@@ -3,7 +3,7 @@ import { Avatar } from "@mui/material";
 import { db } from "./firebase";
 import { Link } from "react-router-dom";
 
-const SidebarMessage = ({ id, name, addNewChat }) => {
+const SidebarChat = ({ id, name, addNewChat }) => {
   const [seed, setSeed] = useState("");
   const [messages, setMessages] = useState("");
 
@@ -35,19 +35,19 @@ const SidebarMessage = ({ id, name, addNewChat }) => {
 
   return !addNewChat ? (
     <Link to={`/rooms/${id}`}>
-      <div className="sidebarMessage">
+      <div className="sidebarChat">
         <Avatar src={`https://avatars.dicebear.com/api/human/${seed}.svg`} />
-        <div className="sidebarMessage__info">
+        <div className="sidebarChat__info">
           <h2>{name}</h2>
           <p>{messages[0]?.message}</p>
         </div>
       </div>
     </Link>
   ) : (
-    <div onClick={createChat} className="sidebarMessage">
-      <h2>Add new Chat</h2>
+    <div onClick={createChat} className="sidebarChat">
+      <h2>+ new Chat</h2>
     </div>
   );
 };
 
-export default SidebarMessage;
+export default SidebarChat;

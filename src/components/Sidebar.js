@@ -6,7 +6,7 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { SearchOutlined } from "@mui/icons-material";
 import { db } from "./firebase";
 
-import SidebarMessage from "./SidebarMessage";
+import SidebarChat from "./SidebarChat";
 import { useStateValue } from "./StateProvider";
 
 const Sidebar = () => {
@@ -51,9 +51,9 @@ const Sidebar = () => {
         </div>
       </div>
       <div className="sidebar__messages">
-        <SidebarMessage addNewChat />
+        <SidebarChat addNewChat />
         {rooms.map((room) => (
-          <SidebarMessage key={room.id} id={room.id} name={room.data.name} />
+          <SidebarChat key={room.id} id={room.id} name={room.data.name} />
         ))}
       </div>
     </div>

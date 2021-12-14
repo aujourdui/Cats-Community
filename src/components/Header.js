@@ -111,13 +111,13 @@ const Header = () => {
           </span>
         </span>
         <span className="home-link">
-          <NavLink to="/" activeClassName="is-active" exact={true}>
+          <NavLink to="/home" activeClassName="is-active" exact={true}>
             Home
           </NavLink>
         </span>
-        <span className="message-link">
-          <NavLink to="/message" activeClassName="is-active" exact={true}>
-            Messages
+        <span className="chat-link">
+          <NavLink to="/chat" activeClassName="is-active" exact={true}>
+            Chat
           </NavLink>
         </span>
         {/* <span className="favorite-link">

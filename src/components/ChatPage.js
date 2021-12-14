@@ -1,27 +1,27 @@
 import React from "react";
 import Sidebar from "../components/Sidebar";
-import Message from "./Message";
+import Chat from "./Chat";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 // import Header from "../components/Header";
 // import Login from "./Login";
 import { useStateValue } from "../components/StateProvider";
 import Header from "./Header";
 
-const MessagePage = () => {
+const ChatPage = () => {
   // const [{ user }, dispatch] = useStateValue();
   return (
     <div>
       <Header />
-      <div className="messagePage">
-        <div className="messagePage__body">
+      <div className="chatPage">
+        <div className="chatPage__body">
           <Router>
             <Sidebar />
             <Switch>
               <Route path="/rooms/:roomId">
-                <Message />
+                <Chat />
               </Route>
-              <Route path="/message">
-                <Message />
+              <Route path="/chat">
+                <Chat />
               </Route>
             </Switch>
           </Router>
@@ -32,4 +32,4 @@ const MessagePage = () => {
   );
 };
 
-export default MessagePage;
+export default ChatPage;
