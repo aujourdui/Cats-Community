@@ -32,8 +32,11 @@ time stamp and your username insert automatically(such as what's up or other mes
 When you login different Id, you can have an experience like real chat, so I created two different play ground.
 
 -Notice1: There is no function to send message individually so far, this is just a chat room.
+
 -Notice2: There is no limitation to enter and sending chat(no private room so far).
+
 -Notice3: If you are in empty room, you can't send any message(you have an alert). Please create a new chat room.
+
 -Notice4: There is no edit and delete function so far, so if you really want to delete your message please let me know.
 
 ## Logout
