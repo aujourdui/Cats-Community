@@ -20,6 +20,10 @@ module.exports = {
         exclude: /node_modules/,
       },
       {
+        test: /\.(ts|tsx)$/,
+        use: "ts-loader",
+      },
+      {
         test: /\.svg$/,
         use: [
           {
@@ -42,5 +46,8 @@ module.exports = {
       directory: path.join(__dirname, "public"),
     },
     historyApiFallback: true,
+  },
+  resolve: {
+    extensions: [".ts", ".js"],
   },
 };
