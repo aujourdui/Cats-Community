@@ -4,10 +4,6 @@
   padding: 20px;
 }
 
-.home__contents-right {
-  margin-left: 20px;
-}
-
 .home__signup {
   display: flex;
   flex-direction: column;
@@ -26,4 +22,10 @@
 .post-title__container {
   display: flex;
   justify-content: center;
+}
+
+@media (max-width: $desktop-breakpoint) {
+  .home__contents {
+    padding-right: 5px;
+  }
 }

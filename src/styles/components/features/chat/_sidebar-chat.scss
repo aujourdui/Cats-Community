@@ -20,9 +20,16 @@
 
 #sidebarChat__title {
   justify-content: center;
+  align-items: center;
   padding: 0 20px;
 }
 
 .sidebarChat__add {
   font-weight: normal;
+}
+
+@media (max-width: $desktop-breakpoint) {
+  .sidebarChat {
+    justify-content: center;
+  }
 }

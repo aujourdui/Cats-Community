@@ -26,10 +26,16 @@
   margin: 0 5%;
 }
 
-.favorite-link {
-  margin: 0 5%;
-}
+@media (max-width: $desktop-breakpoint) {
+  .header {
+    padding: 0 9% 1rem 1%;
+    width: calc(90vw);
+  }
+  .home-link {
+    margin: 0 2% 0 0;
+  }
 
-.profile-link {
-  margin: 0 5%;
-}
+  .chat-link {
+    margin: 0 2%;
+  }
+} ;

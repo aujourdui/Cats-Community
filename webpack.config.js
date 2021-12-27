@@ -2,7 +2,7 @@ const path = require("path");
 
 module.exports = {
   mode: "development",
-  entry: "./src/app.js",
+  entry: "./src/app.tsx",
   output: {
     path: path.join(__dirname, "public"),
     filename: "bundle.js",
@@ -18,6 +18,14 @@ module.exports = {
         use: ["babel-loader"],
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
+      },
+      {
+        test: /\.tsx?$/,
+        use: [
+          {
+            loader: "ts-loader",
+          },
+        ],
       },
       {
         test: /\.svg$/,
@@ -42,5 +50,9 @@ module.exports = {
       directory: path.join(__dirname, "public"),
     },
     historyApiFallback: true,
+  },
+  resolve: {
+    modules: ["node_modules"],
+    extensions: [".ts", ".tsx", ".js", "jsx"],
   },
 };
