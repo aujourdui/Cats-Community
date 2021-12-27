@@ -8,29 +8,15 @@ import ImageUpload from "../features/ImageUpload";
 import { useStateValue } from "../../context/StateProvider";
 import { actionTypes } from "../../reducers/reducer";
 
-const button__style: {
-  fontSize: string;
-} = {
+const button__style = {
   fontSize: "1.2rem",
 };
 
-const upload__title: {
-  marginBottom: string;
-} = {
+const upload__title = {
   marginBottom: "1rem",
 };
 
-const modal__style: {
-  position: string;
-  top: string;
-  left: string;
-  transform: string;
-  width: number;
-  bgcolor: string;
-  border: string;
-  boxShadow: number;
-  p: number;
-} = {
+const modal__style = {
   position: "absolute",
   top: "50%",
   left: "50%",
@@ -43,7 +29,7 @@ const modal__style: {
 };
 
 const Header = () => {
-  const [uploadOpen, setUploadOpen] = useState<boolean>(false);
+  const [uploadOpen, setUploadOpen] = useState(false);
   const [{ user }, dispatch] = useStateValue();
 
   const history = useHistory();
