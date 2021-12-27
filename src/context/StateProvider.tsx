@@ -1,8 +1,23 @@
 import React, { createContext, useContext, useReducer } from "react";
 
-export const StateContext = createContext();
+interface StateContextInterface {
+  name: string;
+  email: string;
+}
 
-export const StateProvider = ({ reducer, initialState, children }) => (
+interface StateProviderInterface {
+  reducer: string;
+  initialState: null;
+  children: string;
+}
+
+export const StateContext = createContext<StateContextInterface | null>(null);
+
+export const StateProvider = ({
+  reducer: any,
+  initialState: boolean,
+  children: any,
+}) => (
   <StateContext.Provider value={useReducer(reducer, initialState)}>
     {children}
   </StateContext.Provider>

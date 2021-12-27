@@ -1,5 +1,5 @@
-import * as React from "react";
-import * as ReactDOM from "react-dom";
+import React from "react";
+import ReactDOM from "react-dom";
 import AppRouter from "./routers/AppRouter";
 import reducer, { initialState } from "./reducers/reducer";
 import { StateProvider } from "./context/StateProvider";
