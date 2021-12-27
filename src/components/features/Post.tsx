@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import * as React, { useState, useEffect } from "react";
 import Avatar from "@mui/material/Avatar";
 import firebase from "firebase";
 import { db } from "../../firebase/firebase";

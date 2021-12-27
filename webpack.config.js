@@ -2,9 +2,9 @@ const path = require("path");
 
 module.exports = {
   mode: "development",
-  entry: "./src/app.js",
+  entry: "./src/app.tsx",
   output: {
-    path: path.join(__dirname, "public"),
+    path: `${__dirname}/dist`,
     filename: "bundle.js",
   },
   performance: {
@@ -21,11 +21,7 @@ module.exports = {
       },
       {
         test: /\.tsx?$/,
-        use: [
-          {
-            loader: "ts-loader",
-          },
-        ],
+        loader: "ts-loader",
       },
       {
         test: /\.svg$/,
@@ -53,6 +49,7 @@ module.exports = {
   },
   resolve: {
     modules: ["node_modules"],
-    extensions: [".ts", ".tsx", ".js", "jsx"],
+    extensions: [".ts", ".tsx", ".js", "jsx", "json"],
   },
+  target: ["web", "es5"],
 };
