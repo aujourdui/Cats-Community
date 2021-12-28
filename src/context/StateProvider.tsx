@@ -6,15 +6,21 @@ import { createContext, useContext, useReducer } from "react";
 //   email: string;
 // }
 
-// interface StateProviderInterface {
-//   reducer: string;
-//   initialState: null;
-//   children: string;
-// }
+interface StateProviderInterface {
+  reducer: any;
+  initialState: null;
+  children: string;
+}
 
-export const StateContext = createContext();
+export const StateContext = createContext<StateProviderInterface | undefined>(
+  undefined
+);
 
-export const StateProvider = ({ reducer, initialState, children }) => (
+export const StateProvider = ({
+  reducer,
+  initialState,
+  children,
+}: StateProviderInterface) => (
   <StateContext.Provider value={useReducer(reducer, initialState)}>
     {children}
   </StateContext.Provider>

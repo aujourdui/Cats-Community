@@ -6,8 +6,8 @@ import SidebarChat from "./SidebarChat";
 import { useStateValue } from "../../../context/StateProvider";
 
 const Sidebar = () => {
-  const [rooms, setRooms] = useState([]);
-  const [{ user }, dispatch] = useStateValue();
+  const [rooms, setRooms] = useState<string[]>([]);
+  const [{ user }] = useStateValue();
 
   useEffect(() => {
     const unsubscribe = db.collection("rooms").onSnapshot((snapshot) => {

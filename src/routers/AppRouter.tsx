@@ -11,10 +11,10 @@ const AppRouter = () => {
     <div>
       <BrowserRouter>
         <Switch>
-          <Route path="/" component={LoginPage} exact={true} />
-          <Route path="/home" component={HomePage} />
-          <Route path="/chat" component={ChatPage} />
-          <Route component={NotFoundPage} />
+          <Route path="/" element={<LoginPage />} />
+          <Route path="/home" element={<HomePage />} />
+          <Route path="/chat" element={<ChatPage />} />
+          <Route element={<NotFoundPage />} />
         </Switch>
       </BrowserRouter>
     </div>

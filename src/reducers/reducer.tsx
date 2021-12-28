@@ -13,7 +13,7 @@ export const actionTypes = {
   UNSET_USER: "UNSET_USER",
 };
 
-const reducer = (state, action) => {
+const reducer = (state: any, action: any) => {
   switch (action.type) {
     case actionTypes.SET_USER:
       return {
