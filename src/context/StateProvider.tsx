@@ -8,22 +8,33 @@ import { createContext, useContext, useReducer } from "react";
 
 interface StateProviderInterface {
   reducer: any;
-  initialState: null;
+  initialState: undefined;
   children: string;
 }
 
-export const StateContext = createContext<StateProviderInterface | undefined>(
-  undefined
-);
+export interface IState {
+  isAuth: boolean;
+  user: string;
+}
+
+interface IContextProps {
+  state: IState;
+  dispatch: ({ type }: { type: string }) => void;
+}
+
+export const StateContext = createContext({} as IContextProps);
 
 export const StateProvider = ({
   reducer,
   initialState,
   children,
-}: StateProviderInterface) => (
-  <StateContext.Provider value={useReducer(reducer, initialState)}>
-    {children}
-  </StateContext.Provider>
-);
+}: StateProviderInterface) => {
+  const [state, dispatch] = useReducer(reducer, initialState);
+  return (
+    <StateContext.Provider value={{ state, dispatch }}>
+      {children}
+    </StateContext.Provider>
+  );
+};
 
 export const useStateValue = () => useContext(StateContext);

@@ -3,8 +3,12 @@ import { Button } from "@mui/material";
 import firebase from "firebase";
 import { storage, db } from "../../firebase/firebase";
 
+// interface HandleChangeProps {
+//   handleChange: (object: { image: File | null }) => void;
+// }
+
 const ImageUpload = ({ username, button__style }) => {
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState<File | null>(null);
   const [progress, setProgress] = useState(0);
   const [caption, setCaption] = useState("");
 
@@ -15,7 +19,7 @@ const ImageUpload = ({ username, button__style }) => {
   };
 
   const handleUpload = () => {
-    const uploadTask = storage.ref(`images/${image.name}`).put(image);
+    const uploadTask = storage.ref(`images/${image?.name}`).put(image);
 
     uploadTask.on(
       "state_changed",

@@ -2,7 +2,7 @@
 //   user: boolean;
 // }
 
-// type Action = { SET_USER: string } | { UNSET_USER: string };
+// type ACTIONTYPE = { type: "SET_USER" } | { type: "UNSET_USER" };
 
 export const initialState = {
   user: null,
@@ -13,7 +13,7 @@ export const actionTypes = {
   UNSET_USER: "UNSET_USER",
 };
 
-const reducer = (state: any, action: any) => {
+const reducer = (state = initialState, action: any) => {
   switch (action.type) {
     case actionTypes.SET_USER:
       return {
