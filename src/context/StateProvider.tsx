@@ -12,13 +12,13 @@ interface StateProviderInterface {
   children: string;
 }
 
-export interface IState {
-  isAuth: boolean;
-  user: string;
-}
+// export interface IState {
+//   isAuth: boolean;
+//   user: boolean;
+// }
 
 type IContextProps = {
-  state: IState | {};
+  user: string | {};
   dispatch: ({ type }: { type: string }) => void;
 };
 
@@ -29,9 +29,9 @@ export const StateProvider = ({
   initialState,
   children,
 }: StateProviderInterface) => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [user, dispatch] = useReducer(reducer, initialState);
   return (
-    <StateContext.Provider value={{ state, dispatch }}>
+    <StateContext.Provider value={{ user, dispatch }}>
       {children}
     </StateContext.Provider>
   );

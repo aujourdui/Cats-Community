@@ -30,7 +30,7 @@ const modal__style = {
 
 const Header = () => {
   const [uploadOpen, setUploadOpen] = useState(false);
-  const [{ user }, dispatch] = useStateValue();
+  const { user, dispatch } = useStateValue();
 
   const history = useHistory();
 
@@ -38,7 +38,6 @@ const Header = () => {
     auth.signOut();
     dispatch({
       type: actionTypes.UNSET_USER,
-      user: null,
     });
     history.push("/");
   };
