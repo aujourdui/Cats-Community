@@ -18,7 +18,7 @@ export interface IState {
 }
 
 interface IContextProps {
-  state: IState;
+  state: {};
   dispatch: ({ type }: { type: string }) => void;
 }
 
