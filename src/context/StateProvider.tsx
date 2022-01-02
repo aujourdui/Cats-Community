@@ -17,10 +17,10 @@ export interface IState {
   user: string;
 }
 
-interface IContextProps {
-  state: {};
+type IContextProps = {
+  state: IState | {};
   dispatch: ({ type }: { type: string }) => void;
-}
+};
 
 export const StateContext = createContext({} as IContextProps);
 
