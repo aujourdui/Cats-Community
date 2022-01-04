@@ -1,11 +1,6 @@
 import * as React from "react";
 import { createContext, useContext, useReducer } from "react";
 
-// interface StateContextInterface {
-//   name: string;
-//   email: string;
-// }
-
 interface StateProviderInterface {
   reducer: any;
   initialState: undefined;
