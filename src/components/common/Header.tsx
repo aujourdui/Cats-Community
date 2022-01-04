@@ -7,6 +7,7 @@ import Logo from "./Logo";
 import ImageUpload from "../features/ImageUpload";
 import { useStateValue } from "../../context/StateProvider";
 import { actionTypes } from "../../reducers/reducer";
+import { IContextProps } from "../../context/StateProvider";
 
 const button__style = {
   fontSize: "1.2rem",
@@ -28,7 +29,7 @@ const modal__style = {
   p: 4,
 };
 
-const Header = () => {
+const Header: React.FC<IContextProps> = () => {
   const [uploadOpen, setUploadOpen] = useState(false);
   const { user, dispatch } = useStateValue();
 

@@ -9,16 +9,31 @@ import { createContext, useContext, useReducer } from "react";
 interface StateProviderInterface {
   reducer: any;
   initialState: undefined;
-  children: string;
+  children: React.ReactNode;
 }
 
 // export interface IState {
 //   isAuth: boolean;
-//   user: boolean;
+//   user: {} | null;
 // }
 
-type IContextProps = {
-  user: string | {};
+// state: IState | {} | displayName;
+
+// interface Person {
+//   // name: string;
+//   age: number;
+// }
+
+// function greet(person: Person) {
+//   return "Hello " + person.name;
+// }
+
+type displayName = {
+  displayName?: string;
+};
+
+export type IContextProps = {
+  user: displayName;
   dispatch: ({ type }: { type: string }) => void;
 };
 
