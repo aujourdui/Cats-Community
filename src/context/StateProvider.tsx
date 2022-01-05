@@ -5,7 +5,7 @@ import { createContext, useContext, useReducer } from "react";
 interface StateProviderInterface {
   initialState: any | undefined;
   reducer: any;
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 type userInfo = {
