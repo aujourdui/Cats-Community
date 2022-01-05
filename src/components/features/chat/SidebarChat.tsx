@@ -9,9 +9,14 @@ interface IsidebarChat {
   addNewChat: any | boolean;
 }
 
+interface Imessages {
+  data?: string;
+  message?: string;
+}
+
 const SidebarChat = ({ id, name, addNewChat }: IsidebarChat) => {
-  const [seed, setSeed] = useState("");
-  const [messages, setMessages] = useState("");
+  const [seed, setSeed] = useState<number>();
+  const [messages, setMessages] = useState<Imessages[]>();
 
   useEffect(() => {
     if (id) {
