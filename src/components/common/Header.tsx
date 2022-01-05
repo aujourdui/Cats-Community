@@ -27,7 +27,7 @@ const modal__style = {
   border: "2px solid #000",
   boxShadow: 24,
   p: 4,
-};
+} as const;
 
 const Header: React.FC<IContextProps> = () => {
   const [uploadOpen, setUploadOpen] = useState(false);
@@ -39,6 +39,7 @@ const Header: React.FC<IContextProps> = () => {
     auth.signOut();
     dispatch({
       type: actionTypes.UNSET_USER,
+      user: null,
     });
     history.push("/");
   };

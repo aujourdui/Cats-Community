@@ -1,3 +1,4 @@
+import firebase from "firebase";
 import * as React from "react";
 import { createContext, useContext, useReducer } from "react";
 
@@ -23,20 +24,27 @@ interface StateProviderInterface {
 //   return "Hello " + person.name;
 // }
 
-type displayName = {
+type userInfo = {
   displayName?: string;
 };
 
 export type IContextProps = {
-  user: displayName;
-  dispatch: ({ type }: { type: string }) => void;
+  user: userInfo;
+  dispatch: ({
+    user,
+    type,
+  }: {
+    user: firebase.User;
+    type: string;
+  }) => // { user }: { user: firebase.User }
+  void;
 };
 
 export const StateContext = createContext({} as IContextProps);
 
 export const StateProvider = ({
-  reducer,
   initialState,
+  reducer,
   children,
 }: StateProviderInterface) => {
   const [user, dispatch] = useReducer(reducer, initialState);
