@@ -13,7 +13,7 @@ const LoginPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
-  const [{ user }, dispatch] = useStateValue();
+  const { user, dispatch } = useStateValue();
 
   const history = useHistory();
 
@@ -94,15 +94,7 @@ const LoginPage = () => {
     border: "2px solid #000",
     boxShadow: 24,
     p: 4,
-  };
-
-  // const mobile__modal__style{
-  //   @media(maxWidth: 768px) {
-  //     modal__style{
-  //       width: 200,
-  //     }
-  //   }
-  // }
+  } as const;
 
   const input__style = {
     fontSize: "1.5rem",

@@ -8,7 +8,7 @@ import { useStateValue } from "../../context/StateProvider";
 
 const HomePage = () => {
   const [posts, setPosts] = useState([]);
-  const [{ user }, dispatch] = useStateValue();
+  const { user, dispatch } = useStateValue();
 
   const history = useHistory();
 
@@ -45,7 +45,18 @@ const HomePage = () => {
 
   return (
     <div className="home">
-      <Header user={user} />
+      <Header
+        user={user}
+        dispatch={function ({
+          user,
+          type,
+        }: {
+          user: firebase.User;
+          type: string;
+        }): void {
+          throw new Error("Function not implemented.");
+        }}
+      />
       <div className="home__contents">
         <div className="home__contents-left">
           {posts.map(({ id, post }) => (
