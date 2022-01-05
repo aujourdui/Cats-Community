@@ -7,7 +7,20 @@ import Header from "../common/Header";
 const ChatPage = () => {
   return (
     <div>
-      <Header />
+      <Header
+        user={{
+          displayName: "",
+        }}
+        dispatch={function ({
+          user,
+          type,
+        }: {
+          user: firebase.User;
+          type: string;
+        }): void {
+          throw new Error("Function not implemented.");
+        }}
+      />
       <div className="chatPage">
         <div className="chatPage__body">
           <Router>
