@@ -5,13 +5,13 @@ import { db } from "../../../firebase/firebase";
 import SidebarChat from "./SidebarChat";
 import { useStateValue } from "../../../context/StateProvider";
 
-interface Irooms {
+interface IRooms {
   id: string;
   data: any;
 }
 
 const Sidebar = () => {
-  const [rooms, setRooms] = useState<Irooms[]>([]);
+  const [rooms, setRooms] = useState<IRooms[]>([]);
   const { user } = useStateValue();
 
   useEffect(() => {
@@ -36,7 +36,7 @@ const Sidebar = () => {
         <h3 className="sidebar__username">{user?.displayName}</h3>
       </div>
       <div className="sidebar__messages">
-        <SidebarChat addNewChat id={""} name={""} />
+        <SidebarChat addNewChat id={""} name={""} key={""} />
         {rooms.map((room) => (
           <SidebarChat
             key={room.id}

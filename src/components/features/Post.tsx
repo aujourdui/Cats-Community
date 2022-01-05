@@ -4,7 +4,15 @@ import firebase from "firebase";
 import { db } from "../../firebase/firebase";
 import { useStateValue } from "../../context/StateProvider";
 
-const Post = ({ postId, username, caption, imageUrl }) => {
+interface IPost {
+  key: string;
+  postId: string;
+  username: string;
+  caption: string;
+  imageUrl: string;
+}
+
+const Post = ({ postId, username, caption, imageUrl }: IPost) => {
   const [comments, setComments] = useState([]);
   const [comment, setComment] = useState("");
   const { user } = useStateValue();
