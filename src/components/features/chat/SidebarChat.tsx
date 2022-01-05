@@ -3,7 +3,13 @@ import { Avatar } from "@mui/material";
 import { db } from "../../../firebase/firebase";
 import { Link } from "react-router-dom";
 
-const SidebarChat = ({ id, name, addNewChat }) => {
+interface IsidebarChat {
+  id: string;
+  name: string;
+  addNewChat: any | boolean;
+}
+
+const SidebarChat = ({ id, name, addNewChat }: IsidebarChat) => {
   const [seed, setSeed] = useState("");
   const [messages, setMessages] = useState("");
 

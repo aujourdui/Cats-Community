@@ -3,26 +3,10 @@ import * as React from "react";
 import { createContext, useContext, useReducer } from "react";
 
 interface StateProviderInterface {
+  initialState: any | undefined;
   reducer: any;
-  initialState: undefined;
   children: React.ReactNode;
 }
-
-// export interface IState {
-//   isAuth: boolean;
-//   user: {} | null;
-// }
-
-// state: IState | {} | displayName;
-
-// interface Person {
-//   // name: string;
-//   age: number;
-// }
-
-// function greet(person: Person) {
-//   return "Hello " + person.name;
-// }
 
 type userInfo = {
   displayName?: string;
@@ -30,14 +14,7 @@ type userInfo = {
 
 export type IContextProps = {
   user: userInfo;
-  dispatch: ({
-    user,
-    type,
-  }: {
-    user: firebase.User;
-    type: string;
-  }) => // { user }: { user: firebase.User }
-  void;
+  dispatch: ({ user, type }: { user: firebase.User; type: string }) => void;
 };
 
 export const StateContext = createContext({} as IContextProps);

@@ -5,9 +5,14 @@ import { db } from "../../../firebase/firebase";
 import SidebarChat from "./SidebarChat";
 import { useStateValue } from "../../../context/StateProvider";
 
+interface Irooms {
+  id: string;
+  data: any;
+}
+
 const Sidebar = () => {
-  const [rooms, setRooms] = useState<string[]>([]);
-  const [{ user }] = useStateValue();
+  const [rooms, setRooms] = useState<Irooms[]>([]);
+  const { user } = useStateValue();
 
   useEffect(() => {
     const unsubscribe = db.collection("rooms").onSnapshot((snapshot) => {
@@ -31,9 +36,14 @@ const Sidebar = () => {
         <h3 className="sidebar__username">{user?.displayName}</h3>
       </div>
       <div className="sidebar__messages">
-        <SidebarChat addNewChat />
+        <SidebarChat addNewChat id={""} name={""} />
         {rooms.map((room) => (
-          <SidebarChat key={room.id} id={room.id} name={room.data.name} />
+          <SidebarChat
+            key={room.id}
+            id={room.id}
+            name={room.data.name}
+            addNewChat={undefined}
+          />
         ))}
       </div>
     </div>
