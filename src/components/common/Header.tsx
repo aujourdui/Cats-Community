@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
-import { Button, Modal, Box, Typography } from "@mui/material";
+import { Button, Box, Typography } from "@mui/material";
+import Dialog from "@mui/material/Dialog";
 import { Link, NavLink, useHistory } from "react-router-dom";
 import { auth } from "../../firebase/firebase";
 import Logo from "./Logo";
@@ -51,7 +52,7 @@ const Header: React.FC<IContextProps> = () => {
       </Link>
       <div className="header-links">
         <span className="upload-link">
-          <Modal
+          <Dialog
             open={uploadOpen}
             onClose={() => setUploadOpen(false)}
             aria-labelledby="modal-modal-title"
@@ -77,7 +78,7 @@ const Header: React.FC<IContextProps> = () => {
                 <h3>Sorry you need to login in order to upload</h3>
               )}
             </Box>
-          </Modal>
+          </Dialog>
           <span className="home__postContainer">
             <Button
               className="home__postButton"

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { auth } from "../../firebase/firebase";
-import { Modal, Typography, Button, Input, Box } from "@mui/material";
+import { Typography, Button, Input, Box } from "@mui/material";
+import Dialog from "@mui/material/Dialog";
 import { useHistory } from "react-router-dom";
 import { actionTypes } from "../../reducers/reducer";
 import { useStateValue } from "../../context/StateProvider";
@@ -117,7 +118,7 @@ const LoginPage = () => {
   return (
     <div className="login">
       <div className="home">
-        <Modal
+        <Dialog
           open={open}
           onClose={() => setOpen(false)}
           aria-labelledby="modal-modal-title"
@@ -164,8 +165,8 @@ const LoginPage = () => {
               </Button>
             </form>
           </Box>
-        </Modal>
-        <Modal
+        </Dialog>
+        <Dialog
           open={openSignIn}
           onClose={() => setOpenSignIn(false)}
           aria-labelledby="modal-modal-title"
@@ -200,8 +201,8 @@ const LoginPage = () => {
               </Button>
             </form>
           </Box>
-        </Modal>
-        <Modal
+        </Dialog>
+        <Dialog
           open={openPlaygroundVancouver}
           onClose={() => setOpenPlaygroundVancouver(false)}
           aria-labelledby="modal-modal-title"
@@ -241,8 +242,8 @@ const LoginPage = () => {
               </Button>
             </form>
           </Box>
-        </Modal>
-        <Modal
+        </Dialog>
+        <Dialog
           open={openPlaygroundToronto}
           onClose={() => setOpenPlaygroundToronto(false)}
           aria-labelledby="modal-modal-title"
@@ -282,7 +283,7 @@ const LoginPage = () => {
               </Button>
             </form>
           </Box>
-        </Modal>
+        </Dialog>
       </div>
       <div className="login__box">
         <h1 className="login__title">Cats' Community</h1>
