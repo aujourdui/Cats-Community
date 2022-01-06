@@ -4,7 +4,7 @@ module.exports = {
   mode: "development",
   entry: "./src/app.tsx",
   output: {
-    path: `${__dirname}/dist`,
+    path: `${__dirname}/public`,
     filename: "bundle.js",
   },
   performance: {
@@ -15,7 +15,7 @@ module.exports = {
   module: {
     rules: [
       {
-        use: ["babel-loader"],
+        use: ["source-map-loader"],
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
       },
@@ -40,7 +40,7 @@ module.exports = {
       },
     ],
   },
-  devtool: "cheap-source-map",
+  devtool: "source-map",
   devServer: {
     static: {
       directory: path.join(__dirname, "public"),
