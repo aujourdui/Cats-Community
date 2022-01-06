@@ -13,8 +13,8 @@ type userInfo = {
 };
 
 export type IContextProps = {
-  user: userInfo;
-  dispatch: ({ user, type }: { user: firebase.User; type: string }) => void;
+  user?: userInfo;
+  dispatch?: ({ user, type }: { user: firebase.User; type: string }) => void;
 };
 
 export const StateContext = createContext({} as IContextProps);

@@ -6,7 +6,11 @@ import { useHistory } from "react-router-dom";
 import { actionTypes } from "../../reducers/reducer";
 import { useStateValue } from "../../context/StateProvider";
 
-const LoginPage = () => {
+interface RouteProps {
+  component?: React.ElementType;
+}
+
+const LoginPage: React.FC<RouteProps> = () => {
   const [open, setOpen] = useState(false);
   const [openSignIn, setOpenSignIn] = useState(false);
   const [openPlaygroundVancouver, setOpenPlaygroundVancouver] = useState(false);
@@ -36,7 +40,7 @@ const LoginPage = () => {
     };
   }, [user]);
 
-  const signUp = (event) => {
+  const signUp = (event: { preventDefault: () => void }) => {
     event.preventDefault();
     auth
       .createUserWithEmailAndPassword(email, password)
@@ -52,7 +56,7 @@ const LoginPage = () => {
     setOpen(false);
   };
 
-  const signIn = (event) => {
+  const signIn = (event: { preventDefault: () => void }) => {
     event.preventDefault();
     auth
       .signInWithEmailAndPassword(email, password)
@@ -63,7 +67,7 @@ const LoginPage = () => {
     setOpenSignIn(false);
   };
 
-  const signInPlayVancouver = (event) => {
+  const signInPlayVancouver = (event: { preventDefault: () => void }) => {
     event.preventDefault();
     auth
       .signInWithEmailAndPassword(email, password)
@@ -74,7 +78,7 @@ const LoginPage = () => {
     setOpenPlaygroundVancouver(false);
   };
 
-  const signInPlayToronto = (event) => {
+  const signInPlayToronto = (event: { preventDefault: () => void }) => {
     event.preventDefault();
     auth
       .signInWithEmailAndPassword(email, password)
