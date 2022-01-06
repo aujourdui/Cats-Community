@@ -14,8 +14,6 @@ const AppRouter = () => {
           <Route path="/" component={LoginPage} exact={true} />
           <Route path="/home" component={HomePage} />
           <Route path="/chat" component={ChatPage} />
-          {/* <Route path="/favorite" component={FavoritePage} /> */}
-          {/* <Route path="/profile" component={ProfilePage} /> */}
           <Route component={NotFoundPage} />
         </Switch>
       </BrowserRouter>

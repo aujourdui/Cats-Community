@@ -8,20 +8,34 @@ import ImageUpload from "../features/ImageUpload";
 import { useStateValue } from "../../context/StateProvider";
 import { actionTypes } from "../../reducers/reducer";
 
-const button__style = {
+const button__style: {
+  fontSize: string;
+} = {
   fontSize: "1.2rem",
 };
 
-const upload__title = {
+const upload__title: {
+  marginBottom: string;
+} = {
   marginBottom: "1rem",
 };
 
-const modal__style = {
+const modal__style: {
+  position: string;
+  top: string;
+  left: string;
+  transform: string;
+  width: number;
+  bgcolor: string;
+  border: string;
+  boxShadow: number;
+  p: number;
+} = {
   position: "absolute",
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 400,
+  width: 300,
   bgcolor: "background.paper",
   border: "2px solid #000",
   boxShadow: 24,
@@ -29,7 +43,7 @@ const modal__style = {
 };
 
 const Header = () => {
-  const [uploadOpen, setUploadOpen] = useState(false);
+  const [uploadOpen, setUploadOpen] = useState<boolean>(false);
   const [{ user }, dispatch] = useStateValue();
 
   const history = useHistory();
@@ -48,10 +62,6 @@ const Header = () => {
       <Link to="/home">
         <Logo />
       </Link>
-      {/* <p>
-        Search
-        <input type="text" />
-      </p> */}
       <div className="header-links">
         <span className="upload-link">
           <Modal
@@ -81,8 +91,9 @@ const Header = () => {
               )}
             </Box>
           </Modal>
-          <span className="home__post-container">
+          <span className="home__postContainer">
             <Button
+              className="home__postButton"
               sx={button__style}
               onClick={() => {
                 setUploadOpen(true);
@@ -102,16 +113,6 @@ const Header = () => {
             Chat
           </NavLink>
         </span>
-        {/* <span className="favorite-link">
-          <NavLink to="/favorite" activeClassName="is-active" exact={true}>
-            favorite
-          </NavLink>
-        </span>
-        <span className="profile-link">
-          <NavLink to="/profile" activeClassName="is-active" exact={true}>
-            profile
-          </NavLink>
-        </span> */}
         <Button sx={button__style} onClick={logOut}>
           Logout
         </Button>
