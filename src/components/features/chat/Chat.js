@@ -10,11 +10,11 @@ import { useHistory } from "react-router-dom";
 import { actionTypes } from "../../../reducers/reducer";
 
 const Chat = () => {
-  const [input, setInput] = useState<string>("");
-  const [seed, setSeed] = useState<string>("");
-  const { roomId } = useParams<string>();
-  const [roomName, setRoomName] = useState<string>("");
-  const [messages, setMessages] = useState<Array<string>>([]);
+  const [input, setInput] = useState("");
+  const [seed, setSeed] = useState("");
+  const { roomId } = useParams();
+  const [roomName, setRoomName] = useState("");
+  const [messages, setMessages] = useState([]);
   const [{ user }, dispatch] = useStateValue();
 
   const history = useHistory();

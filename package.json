@@ -1,7 +1,7 @@
 {
   "name": "cats-community",
   "version": "1.0.0",
-  "main": "app.tsx",
+  "main": "app.js",
   "author": "Kyosuke Ito",
   "license": "MIT",
   "scripts": {
