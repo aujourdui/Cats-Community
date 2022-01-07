@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import * as React from "react";
+import { useState } from "react";
 import { Button } from "@mui/material";
 import firebase from "firebase";
 import { storage, db } from "../../firebase/firebase";

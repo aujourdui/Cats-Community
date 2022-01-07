@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import * as React from "react";
+import { useState } from "react";
 
 import { Button, Modal, Box, Typography } from "@mui/material";
 import { Link, NavLink, useHistory } from "react-router-dom";
