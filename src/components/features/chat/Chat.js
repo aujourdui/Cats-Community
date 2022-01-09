@@ -1,4 +1,4 @@
-import React * as from "react";
+import React from "react";
 import { useState, useEffect } from "react";
 
 import { Avatar, IconButton } from "@mui/material";
