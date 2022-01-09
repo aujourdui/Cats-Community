@@ -46,7 +46,7 @@ const HomePage = () => {
 
   return (
     <div className="home">
-      <Header user={user} />
+      <Header />
       <div className="home__contents">
         <div className="home__contents-left">
           {posts.map(({ id, post }) => (

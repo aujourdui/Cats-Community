@@ -27,7 +27,7 @@ const modal__style = {
   border: "2px solid #000",
   boxShadow: 24,
   p: 4,
-};
+} as const;
 
 const Header = () => {
   const [uploadOpen, setUploadOpen] = useState(false);

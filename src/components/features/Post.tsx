@@ -8,7 +8,7 @@ import { useStateValue } from "../../context/StateProvider";
 const Post = ({ postId, username, caption, imageUrl }) => {
   const [comments, setComments] = useState([]);
   const [comment, setComment] = useState("");
-  const [{ user }, dispatch] = useStateValue();
+  const [{ user }] = useStateValue();
 
   useEffect(() => {
     let unsubscribe;
@@ -72,7 +72,6 @@ const Post = ({ postId, username, caption, imageUrl }) => {
           <button
             className="post__button"
             disabled={!comment}
-            type="text"
             onClick={postComment}
           >
             Post
