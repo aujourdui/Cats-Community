@@ -4,7 +4,7 @@ module.exports = {
   mode: "development",
   entry: "./src/app.tsx",
   output: {
-    path: `${__dirname}/public`,
+    path: __dirname + "public",
     filename: "bundle.js",
   },
   performance: {
