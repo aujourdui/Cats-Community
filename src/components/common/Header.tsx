@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import * as React from "react";
+import { useState } from "react";
 
 import { Button, Modal, Box, Typography } from "@mui/material";
 import { Link, NavLink, useHistory } from "react-router-dom";
@@ -26,7 +27,7 @@ const modal__style = {
   border: "2px solid #000",
   boxShadow: 24,
   p: 4,
-};
+} as const;
 
 const Header = () => {
   const [uploadOpen, setUploadOpen] = useState(false);

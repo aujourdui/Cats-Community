@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import Sidebar from "../features/chat/Sidebar";
 import Chat from "../features/chat/Chat";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";

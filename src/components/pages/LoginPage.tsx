@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from "react";
+import * as React from "react";
+import { useState, useEffect } from "react";
 import { auth } from "../../firebase/firebase";
 import { Modal, Typography, Button, Input, Box } from "@mui/material";
+// import Dialog from "@mui/material/Dialog";
 import { useHistory } from "react-router-dom";
 import { actionTypes } from "../../reducers/reducer";
 import { useStateValue } from "../../context/StateProvider";
@@ -94,15 +96,7 @@ const LoginPage = () => {
     border: "2px solid #000",
     boxShadow: 24,
     p: 4,
-  };
-
-  // const mobile__modal__style{
-  //   @media(maxWidth: 768px) {
-  //     modal__style{
-  //       width: 200,
-  //     }
-  //   }
-  // }
+  } as const;
 
   const input__style = {
     fontSize: "1.5rem",

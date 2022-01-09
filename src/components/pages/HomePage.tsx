@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import * as React from "react";
+import { useState, useEffect } from "react";
 import Post from "../features/Post";
 import { db, auth } from "../../firebase/firebase";
 import Header from "../common/Header";
@@ -45,7 +46,7 @@ const HomePage = () => {
 
   return (
     <div className="home">
-      <Header user={user} />
+      <Header />
       <div className="home__contents">
         <div className="home__contents-left">
           {posts.map(({ id, post }) => (
