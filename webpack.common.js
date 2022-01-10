@@ -1,10 +1,9 @@
 const path = require("path");
 
 module.exports = {
-  mode: "development",
   entry: "./src/app.tsx",
   output: {
-    path: __dirname + "public",
+    path: path.join(__dirname, "public", "dist"),
     filename: "bundle.js",
   },
   performance: {
@@ -38,13 +37,6 @@ module.exports = {
         use: ["style-loader", "css-loader", "sass-loader"],
       },
     ],
-  },
-  devtool: "source-map",
-  devServer: {
-    static: {
-      directory: path.join(__dirname, "public"),
-    },
-    historyApiFallback: true,
   },
   resolve: {
     modules: ["node_modules"],
