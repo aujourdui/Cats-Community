@@ -32,9 +32,14 @@ const Sidebar = () => {
         <h3 className="sidebar__username">{user?.displayName}</h3>
       </div>
       <div className="sidebar__messages">
-        <SidebarChat addNewChat />
+        <SidebarChat addNewChat id={undefined} name={undefined} />
         {rooms.map((room) => (
-          <SidebarChat key={room.id} id={room.id} name={room.data.name} />
+          <SidebarChat
+            key={room.id}
+            id={room.id}
+            name={room.data.name}
+            addNewChat={undefined}
+          />
         ))}
       </div>
     </div>
