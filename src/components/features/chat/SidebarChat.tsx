@@ -4,14 +4,18 @@ import { Avatar } from "@mui/material";
 import { db } from "../../../firebase/firebase";
 import { Link } from "react-router-dom";
 
-// interface IMessages {
-//   data?: string;
-//   message?: string;
-// }
+interface IMessages {
+  data?: string;
+  message?: string;
+}
+
+interface Message {
+  message: string;
+}
 
 const SidebarChat = ({ id, name, addNewChat }) => {
-  const [seed, setSeed] = useState("");
-  const [messages, setMessages] = useState("");
+  const [seed, setSeed] = useState<number>();
+  const [messages, setMessages] = useState<IMessages[] | Message | string>("");
 
   useEffect(() => {
     if (id) {
