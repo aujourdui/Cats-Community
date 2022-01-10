@@ -12,7 +12,7 @@ import { actionTypes } from "../../../reducers/reducer";
 
 const Chat = () => {
   const [input, setInput] = useState("");
-  const [seed, setSeed] = useState("");
+  const [seed, setSeed] = useState<number>();
   const { roomId } = useParams();
   const [roomName, setRoomName] = useState("");
   const [messages, setMessages] = useState([]);
@@ -106,11 +106,11 @@ const Chat = () => {
               message.name === user.displayName && "chat__receiver"
             }`}
           >
-            <span className="chat__name">{message.name}</span>
+            <div className="chat__name">{message.name}</div>
             {message.message}
-            <span className="chat__timestamp">
+            <div className="chat__timestamp">
               {new Date(message.timestamp?.toDate()).toUTCString()}
-            </span>
+            </div>
           </p>
         ))}
       </div>
