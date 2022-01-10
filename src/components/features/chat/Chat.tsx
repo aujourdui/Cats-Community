@@ -1,7 +1,8 @@
 import React from "react";
 import { useState, useEffect } from "react";
 
-import { Avatar, IconButton } from "@mui/material";
+import Avatar from "@mui/material/Avatar";
+import IconButton from "@mui/material/IconButton";
 import SendIcon from "@mui/icons-material/Send";
 import { useParams } from "react-router-dom";
 import { db, auth } from "../../../firebase/firebase";

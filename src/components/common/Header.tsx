@@ -1,7 +1,10 @@
 import * as React from "react";
 import { useState } from "react";
 
-import { Button, Modal, Box, Typography } from "@mui/material";
+import Button from "@mui/material/Button";
+import Modal from "@mui/material/Modal";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
 import { Link, NavLink, useHistory } from "react-router-dom";
 import { auth } from "../../firebase/firebase";
 import Logo from "./Logo";
