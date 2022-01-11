@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
 import Avatar from "@mui/material/Avatar";
-import firebase from "firebase";
+import * as firebase from "firebase/app";
 import { db } from "../../firebase/firebase";
 import { useStateValue } from "../../context/StateProvider";
 
