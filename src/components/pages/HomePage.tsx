@@ -1,15 +1,15 @@
-import * as React from "react";
-import { useState, useEffect } from "react";
-import Post from "../features/Post";
-import { db, auth } from "../../firebase/firebase";
-import Header from "../common/Header";
-import { useHistory } from "react-router-dom";
-import { actionTypes } from "../../reducers/reducer";
-import { useStateValue } from "../../context/StateProvider";
+import * as React from 'react';
+import { useState, useEffect } from 'react';
+import Post from '../features/Post';
+import { db, auth } from '../../firebase/firebase';
+import Header from '../common/Header';
+import { useHistory } from 'react-router-dom';
+import { actionTypes } from '../../reducers/reducer';
+import { useStateValue } from '../../context/StateProvider';
 
 const HomePage = () => {
   const [posts, setPosts] = useState([]);
-  const [{ user }, dispatch] = useStateValue();
+  const { user, dispatch } = useStateValue();
 
   const history = useHistory();
 
@@ -21,8 +21,8 @@ const HomePage = () => {
           user: authUser,
         });
       } else {
-        alert("something wrong");
-        history.push("/");
+        alert('something wrong');
+        history.push('/');
       }
     });
 
@@ -32,8 +32,8 @@ const HomePage = () => {
   }, [user]);
 
   useEffect(() => {
-    db.collection("posts")
-      .orderBy("timestamp", "desc")
+    db.collection('posts')
+      .orderBy('timestamp', 'desc')
       .onSnapshot((snapshot) => {
         setPosts(
           snapshot.docs.map((doc) => ({

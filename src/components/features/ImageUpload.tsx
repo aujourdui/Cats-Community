@@ -1,13 +1,13 @@
-import * as React from "react";
-import { useState } from "react";
-import Button from "@mui/material/Button";
-import firebase from "firebase";
-import { storage, db } from "../../firebase/firebase";
+import * as React from 'react';
+import { useState } from 'react';
+import Button from '@mui/material/Button';
+import firebase from 'firebase';
+import { storage, db } from '../../firebase/firebase';
 
 const ImageUpload = ({ username, button__style }) => {
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState<File | null>(null);
   const [progress, setProgress] = useState(0);
-  const [caption, setCaption] = useState("");
+  const [caption, setCaption] = useState('');
 
   const handleChange = (e) => {
     if (e.target.files[0]) {
@@ -19,7 +19,7 @@ const ImageUpload = ({ username, button__style }) => {
     const uploadTask = storage.ref(`images/${image.name}`).put(image);
 
     uploadTask.on(
-      "state_changed",
+      'state_changed',
       (snapshot) => {
         const progress = Math.round(
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100
@@ -31,11 +31,11 @@ const ImageUpload = ({ username, button__style }) => {
       },
       () => {
         storage
-          .ref("images")
+          .ref('images')
           .child(image.name)
           .getDownloadURL()
           .then((url) => {
-            db.collection("posts").add({
+            db.collection('posts').add({
               timestamp: firebase.firestore.FieldValue.serverTimestamp(),
               caption: caption,
               imageUrl: url,
@@ -43,7 +43,7 @@ const ImageUpload = ({ username, button__style }) => {
             });
 
             setProgress(0);
-            setCaption("");
+            setCaption('');
             setImage(null);
           });
       }
