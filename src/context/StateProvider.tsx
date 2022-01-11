@@ -1,4 +1,4 @@
-import type firebase from 'firebase';
+import type firebase from 'firebase/app';
 import * as React from 'react';
 import { createContext, useContext, useReducer } from 'react';
 
