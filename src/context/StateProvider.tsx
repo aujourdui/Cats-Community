@@ -1,4 +1,4 @@
-import firebase from 'firebase';
+import firebase from 'firebase/app';
 import * as React from 'react';
 import { createContext, useContext, useReducer } from 'react';
 
@@ -9,7 +9,7 @@ interface StateProviderInterface {
 }
 
 type userInfo = {
-  displayName?: string | unknown;
+  displayName?: string;
 };
 
 export type IContextProps = {
@@ -19,17 +19,17 @@ export type IContextProps = {
 
 export const StateContext = createContext({} as IContextProps);
 
-export const StateProvider = ({
+export function StateProvider({
   reducer,
   initialState,
   children,
-}: StateProviderInterface) => {
+}: StateProviderInterface): JSX.Element {
   const [user, dispatch] = useReducer(reducer, initialState);
   return (
     <StateContext.Provider value={{ user, dispatch }}>
       {children}
     </StateContext.Provider>
   );
-};
+}
 
 export const useStateValue = () => useContext(StateContext);

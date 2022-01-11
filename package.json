@@ -5,8 +5,7 @@
   "author": "Kyosuke Ito",
   "scripts": {
     "build": "webpack --config webpack.prod.js",
-    "start": "webpack-dev-server --hot --config webpack.dev.js",
-    "lint": "eslint . --ext .tsx"
+    "start": "webpack-dev-server --hot --config webpack.dev.js"
   },
   "dependencies": {
     "@emotion/react": "^11.7.0",
@@ -38,6 +37,7 @@
     "@typescript-eslint/parser": "^5.9.1",
     "eslint": "^8.2.0",
     "eslint-config-airbnb-base": "15.0.0",
+    "eslint-config-airbnb-typescript": "^16.1.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.25.2",
     "eslint-plugin-prettier": "^4.0.0",
