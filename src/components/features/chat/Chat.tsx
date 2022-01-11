@@ -6,7 +6,7 @@ import IconButton from "@mui/material/IconButton";
 import SendIcon from "@mui/icons-material/Send";
 import { useParams } from "react-router-dom";
 import { db, auth } from "../../../firebase/firebase";
-import firebase from "firebase";
+import * as firebase from "firebase/app";
 import { useStateValue } from "../../../context/StateProvider";
 import { useHistory } from "react-router-dom";
 import { actionTypes } from "../../../reducers/reducer";

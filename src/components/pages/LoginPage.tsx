@@ -2,7 +2,6 @@ import * as React from "react";
 import { useState, useEffect } from "react";
 import { auth } from "../../firebase/firebase";
 import { Modal, Typography, Button, Input, Box } from "@mui/material";
-// import Dialog from "@mui/material/Dialog";
 import { useHistory } from "react-router-dom";
 import { actionTypes } from "../../reducers/reducer";
 import { useStateValue } from "../../context/StateProvider";
