@@ -1,23 +1,23 @@
-import * as React from "react";
-import { useState, useEffect } from "react";
-import Avatar from "@mui/material/Avatar";
-import * as firebase from "firebase/app";
-import { db } from "../../firebase/firebase";
-import { useStateValue } from "../../context/StateProvider";
+import * as React from 'react';
+import { useState, useEffect } from 'react';
+import Avatar from '@mui/material/Avatar';
+import * as firebase from 'firebase/app';
+import { db } from '../../firebase/firebase';
+import { useStateValue } from '../../context/StateProvider';
 
 const Post = ({ postId, username, caption, imageUrl }) => {
   const [comments, setComments] = useState([]);
-  const [comment, setComment] = useState("");
+  const [comment, setComment] = useState('');
   const [{ user }] = useStateValue();
 
   useEffect(() => {
     let unsubscribe;
     if (postId) {
       unsubscribe = db
-        .collection("posts")
+        .collection('posts')
         .doc(postId)
-        .collection("comments")
-        .orderBy("timestamp", "desc")
+        .collection('comments')
+        .orderBy('timestamp', 'desc')
         .onSnapshot((snapshot) => {
           setComments(snapshot.docs.map((doc) => doc.data()));
         });
@@ -31,12 +31,12 @@ const Post = ({ postId, username, caption, imageUrl }) => {
   const postComment = (event: { preventDefault: () => void }) => {
     event.preventDefault();
 
-    db.collection("posts").doc(postId).collection("comments").add({
+    db.collection('posts').doc(postId).collection('comments').add({
       text: comment,
       username: user.displayName,
       timestamp: firebase.firestore.FieldValue.serverTimestamp(),
     });
-    setComment("");
+    setComment('');
   };
 
   return (
