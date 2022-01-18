@@ -107,11 +107,11 @@ const Chat = () => {
               message.name === user.displayName && "chat__receiver"
             }`}
           >
-            <div className="chat__name">{message.name}</div>
+            <span className="chat__name">{message.name}</span>
             {message.message}
-            <div className="chat__timestamp">
+            <span className="chat__timestamp">
               {new Date(message.timestamp?.toDate()).toUTCString()}
-            </div>
+            </span>
           </p>
         ))}
       </div>
