@@ -39,6 +39,22 @@ const Post = ({ postId, username, caption, imageUrl }) => {
     setComment("");
   };
 
+  const deleteComment = (event: { preventDefault: () => void }) => {
+    event.preventDefault();
+
+    db.collection("posts")
+      .doc(postId)
+      .collection("comments")
+      .doc(postId)
+      .delete()
+      .then(() => {
+        console.log("Posts successfully deleted!");
+      })
+      .catch((error) => {
+        console.error("Error removing document: ", error);
+      });
+  };
+
   return (
     <div className="post">
       <div className="post__header">
