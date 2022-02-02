@@ -72,6 +72,9 @@ const Post = ({ postId, username, caption, imageUrl }) => {
         {comments.map((comment, index) => (
           <p key={index}>
             <strong>{comment.username}</strong>: {comment.text}
+            <button className="delete__button" onClick={deleteComment}>
+              X
+            </button>
           </p>
         ))}
       </div>
