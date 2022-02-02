@@ -11,7 +11,7 @@ const Post = ({ postId, username, caption, imageUrl }) => {
   const [{ user }] = useStateValue();
 
   useEffect(() => {
-    let unsubscribe;
+    let unsubscribe: { (): void; (): void };
     if (postId) {
       unsubscribe = db
         .collection("posts")
