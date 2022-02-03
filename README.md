@@ -23,4 +23,3 @@ If you click "add new chat" inside chat(you can enter by clicing "Chat" on heade
 
 ## send a message
 If you enter some message inside room and click send icon or enter, you can leave your message with timestamp like Chat app.
-
