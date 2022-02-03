@@ -1,11 +1,10 @@
-import * as React from "react";
-import { useState, useEffect } from "react";
-import Avatar from "@mui/material/Avatar";
-import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
-import * as firebase from "firebase/app";
-import { db } from "../../firebase/firebase";
-import { useStateValue } from "../../context/StateProvider";
-
+import * as React from 'react';
+import { useState, useEffect } from 'react';
+import Avatar from '@mui/material/Avatar';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import * as firebase from 'firebase/app';
+import { db } from '../../firebase/firebase';
+import { useStateValue } from '../../context/StateProvider';
 
 const Post = ({ postId, username, caption, imageUrl }) => {
   const [comments, setComments] = useState([]);
@@ -35,33 +34,33 @@ const Post = ({ postId, username, caption, imageUrl }) => {
   const postComment = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
 
-
     const commentRef = db
-      .collection("posts")
+      .collection('posts')
       .doc(postId)
-      .collection("comments");
+      .collection('comments');
 
     const addComment = await commentRef.add({
       text: comment,
       username: user.displayName,
       timestamp: firebase.firestore.FieldValue.serverTimestamp(),
     });
+    addComment;
     setComment('');
   };
 
   const deleteComment = (event: { preventDefault: () => void }, id: string) => {
     event.preventDefault();
 
-    db.collection("posts")
+    db.collection('posts')
       .doc(postId)
-      .collection("comments")
+      .collection('comments')
       .doc(id)
       .delete()
       .then(() => {
-        console.log("Posts successfully deleted!");
+        console.log('Posts successfully deleted!');
       })
       .catch((error) => {
-        console.error("Error removing document: ", error);
+        console.error('Error removing document: ', error);
       });
   };
 
