@@ -31,24 +31,30 @@ const Post = ({ postId, username, caption, imageUrl }) => {
     };
   }, [postId]);
 
-  const postComment = (event: { preventDefault: () => void }) => {
+  const postComment = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
 
-    db.collection("posts").doc(postId).collection("comments").add({
+    const commentRef = db
+      .collection("posts")
+      .doc(postId)
+      .collection("comments");
+
+    const addComment = await commentRef.add({
       text: comment,
       username: user.displayName,
       timestamp: firebase.firestore.FieldValue.serverTimestamp(),
     });
+    console.log(addComment.id);
     setComment("");
   };
 
-  const deleteComment = (event: { preventDefault: () => void }) => {
+  const deleteComment = (event: { preventDefault: () => void }, id: string) => {
     event.preventDefault();
 
     db.collection("posts")
       .doc(postId)
       .collection("comments")
-      .doc("BCwhRQ2Tmqqk09sZu7X7")
+      .doc(id)
       .delete()
       .then(() => {
         console.log("Posts successfully deleted!");
@@ -75,7 +81,10 @@ const Post = ({ postId, username, caption, imageUrl }) => {
         {comments.map((comment) => (
           <p key={comment.id}>
             <strong>{comment.username}</strong>: {comment.text}
-            <button className="delete__button" onClick={deleteComment}>
+            <button
+              className="delete__button"
+              onClick={(e) => deleteComment(e, comment.id)}
+            >
               X
             </button>
           </p>
