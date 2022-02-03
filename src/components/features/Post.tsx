@@ -46,7 +46,8 @@ const Post = ({ postId, username, caption, imageUrl }) => {
       username: user.displayName,
       timestamp: firebase.firestore.FieldValue.serverTimestamp(),
     });
-    setComment('');
+    addComment;
+    setComment("");
   };
 
   const deleteComment = (event: { preventDefault: () => void }, id: string) => {
