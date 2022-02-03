@@ -19,7 +19,10 @@ const Post = ({ postId, username, caption, imageUrl }) => {
         .collection("comments")
         .orderBy("timestamp", "desc")
         .onSnapshot((snapshot) => {
-          setComments(snapshot.docs.map((doc) => doc.data()));
+          // setComments(snapshot.docs.map((doc) => doc.data()));
+          setComments(
+            snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+          );
         });
     }
 
@@ -45,7 +48,7 @@ const Post = ({ postId, username, caption, imageUrl }) => {
     db.collection("posts")
       .doc(postId)
       .collection("comments")
-      .doc(postId)
+      .doc("BCwhRQ2Tmqqk09sZu7X7")
       .delete()
       .then(() => {
         console.log("Posts successfully deleted!");
@@ -69,8 +72,8 @@ const Post = ({ postId, username, caption, imageUrl }) => {
       </h4>
 
       <div className="post__comments">
-        {comments.map((comment, index) => (
-          <p key={index}>
+        {comments.map((comment) => (
+          <p key={comment.id}>
             <strong>{comment.username}</strong>: {comment.text}
             <button className="delete__button" onClick={deleteComment}>
               X
