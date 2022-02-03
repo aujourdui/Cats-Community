@@ -44,7 +44,7 @@ const Post = ({ postId, username, caption, imageUrl }) => {
       username: user.displayName,
       timestamp: firebase.firestore.FieldValue.serverTimestamp(),
     });
-    addComment;
+    addComment.id;
     setComment("");
   };
 
