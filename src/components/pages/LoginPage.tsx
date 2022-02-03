@@ -1,20 +1,20 @@
-import * as React from "react";
-import { useState, useEffect } from "react";
-import { auth } from "../../firebase/firebase";
-import { Modal, Typography, Button, Input, Box } from "@mui/material";
-import { useHistory } from "react-router-dom";
-import { actionTypes } from "../../reducers/reducer";
-import { useStateValue } from "../../context/StateProvider";
+import * as React from 'react';
+import { useState, useEffect } from 'react';
+import { auth } from '../../firebase/firebase';
+import { Modal, Typography, Button, Input, Box } from '@mui/material';
+import { useHistory } from 'react-router-dom';
+import { actionTypes } from '../../reducers/reducer';
+import { useStateValue } from '../../context/StateProvider';
 
 const LoginPage = () => {
   const [open, setOpen] = useState(false);
   const [openSignIn, setOpenSignIn] = useState(false);
   const [openPlaygroundVancouver, setOpenPlaygroundVancouver] = useState(false);
   const [openPlaygroundToronto, setOpenPlaygroundToronto] = useState(false);
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
-  const [{ user }, dispatch] = useStateValue();
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
+  const { user, dispatch } = useStateValue();
 
   const history = useHistory();
 
@@ -25,9 +25,9 @@ const LoginPage = () => {
           type: actionTypes.SET_USER,
           user: authUser,
         });
-        history.push("/home");
+        history.push('/home');
       } else {
-        history.push("/");
+        history.push('/');
       }
     });
 
@@ -47,8 +47,8 @@ const LoginPage = () => {
       })
       .catch((error) => alert(error.message));
 
-    setEmail("");
-    setPassword("");
+    setEmail('');
+    setPassword('');
     setOpen(false);
   };
 
@@ -58,8 +58,8 @@ const LoginPage = () => {
       .signInWithEmailAndPassword(email, password)
       .catch((error) => alert(error.message));
 
-    setEmail("");
-    setPassword("");
+    setEmail('');
+    setPassword('');
     setOpenSignIn(false);
   };
 
@@ -69,8 +69,8 @@ const LoginPage = () => {
       .signInWithEmailAndPassword(email, password)
       .catch((error) => alert(error.message));
 
-    setEmail("");
-    setPassword("");
+    setEmail('');
+    setPassword('');
     setOpenPlaygroundVancouver(false);
   };
 
@@ -80,38 +80,38 @@ const LoginPage = () => {
       .signInWithEmailAndPassword(email, password)
       .catch((error) => alert(error.message));
 
-    setEmail("");
-    setPassword("");
+    setEmail('');
+    setPassword('');
     setOpenPlaygroundToronto(false);
   };
 
   const modal__style = {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
     width: 300,
-    bgcolor: "background.paper",
-    border: "2px solid #000",
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
     boxShadow: 24,
     p: 4,
   } as const;
 
   const input__style = {
-    fontSize: "1.5rem",
+    fontSize: '1.5rem',
   };
 
   const input__title = {
-    margin: "0 0 1rem 0",
+    margin: '0 0 1rem 0',
   };
 
   const button__style = {
-    fontSize: "1.5rem",
+    fontSize: '1.5rem',
   };
 
   const button__style__play = {
-    fontSize: "1.5rem",
-    color: "#D47AE8",
+    fontSize: '1.5rem',
+    color: '#D47AE8',
     padding: 0,
   };
 
@@ -224,14 +224,14 @@ const LoginPage = () => {
                 type="text"
                 placeholder="email"
                 value={email}
-                onChange={() => setEmail("test3@gmail.com")}
+                onChange={() => setEmail('test3@gmail.com')}
               />
               <Input
                 sx={input__style}
                 type="password"
                 placeholder="password"
                 value={password}
-                onChange={() => setPassword("vancouver")}
+                onChange={() => setPassword('vancouver')}
               />
               <Button
                 sx={input__style}
@@ -265,14 +265,14 @@ const LoginPage = () => {
                 type="text"
                 placeholder="email"
                 value={email}
-                onChange={() => setEmail("test2@gmail.com")}
+                onChange={() => setEmail('test2@gmail.com')}
               />
               <Input
                 sx={input__style}
                 type="password"
                 placeholder="password"
                 value={password}
-                onChange={() => setPassword("toronto")}
+                onChange={() => setPassword('toronto')}
               />
               <Button
                 sx={input__style}
