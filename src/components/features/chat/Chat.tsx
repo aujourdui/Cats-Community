@@ -59,7 +59,7 @@ const Chat = () => {
     setSeed(Math.floor(Math.random() * 5000));
   }, [roomId]);
 
-  const sendMessage = (e) => {
+  const sendMessage = (e: { preventDefault: () => void }) => {
     e.preventDefault();
     if (roomName) {
       console.log("You typed >>> ", input);
