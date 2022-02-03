@@ -49,3 +49,20 @@
   border-top: 1px solid lightgray;
   color: $blue-gray;
 }
+
+.comment__wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.comment__wrapper:hover {
+  .deleteComment__button {
+    visibility: visible;
+  }
+}
+
+.deleteComment__button {
+  visibility: hidden;
+  border: none;
+  background-color: white;
+}

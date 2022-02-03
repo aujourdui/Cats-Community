@@ -1,6 +1,7 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
 import Avatar from "@mui/material/Avatar";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import * as firebase from "firebase/app";
 import { db } from "../../firebase/firebase";
 import { useStateValue } from "../../context/StateProvider";
@@ -19,7 +20,6 @@ const Post = ({ postId, username, caption, imageUrl }) => {
         .collection("comments")
         .orderBy("timestamp", "desc")
         .onSnapshot((snapshot) => {
-          // setComments(snapshot.docs.map((doc) => doc.data()));
           setComments(
             snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
           );
@@ -79,14 +79,14 @@ const Post = ({ postId, username, caption, imageUrl }) => {
 
       <div className="post__comments">
         {comments.map((comment) => (
-          <p key={comment.id}>
+          <p key={comment.id} className="comment__wrapper">
             <strong>{comment.username}</strong>: {comment.text}
             {user.displayName == comment.username && (
               <button
-                className="delete__button"
+                className="deleteComment__button"
                 onClick={(e) => deleteComment(e, comment.id)}
               >
-                X
+                <DeleteForeverIcon fontSize="large" />
               </button>
             )}
           </p>
