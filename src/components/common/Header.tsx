@@ -1,40 +1,41 @@
-import * as React from "react";
-import { useState } from "react";
+import * as React from 'react';
+import { useState } from 'react';
 
-import Button from "@mui/material/Button";
-import Modal from "@mui/material/Modal";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import { Link, NavLink, useHistory } from "react-router-dom";
-import { auth } from "../../firebase/firebase";
-import Logo from "./Logo";
-import ImageUpload from "../features/ImageUpload";
-import { useStateValue } from "../../context/StateProvider";
-import { actionTypes } from "../../reducers/reducer";
+import Button from '@mui/material/Button';
+import Modal from '@mui/material/Modal';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import { Link, NavLink, useHistory } from 'react-router-dom';
+import { auth } from '../../firebase/firebase';
+import Logo from './Logo';
+import ImageUpload from '../features/ImageUpload';
+import { useStateValue } from '../../context/StateProvider';
+import { actionTypes } from '../../reducers/reducer';
+import { IContextProps } from '../../context/StateProvider';
 
 const button__style = {
-  fontSize: "1.2rem",
+  fontSize: '1.2rem',
 };
 
 const upload__title = {
-  marginBottom: "1rem",
+  marginBottom: '1rem',
 };
 
 const modal__style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
   width: 300,
-  bgcolor: "background.paper",
-  border: "2px solid #000",
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
   boxShadow: 24,
   p: 4,
 } as const;
 
-const Header = () => {
+const Header: React.FC<IContextProps> = () => {
   const [uploadOpen, setUploadOpen] = useState(false);
-  const [{ user }, dispatch] = useStateValue();
+  const { user, dispatch } = useStateValue();
 
   const history = useHistory();
 
@@ -44,7 +45,7 @@ const Header = () => {
       type: actionTypes.UNSET_USER,
       user: null,
     });
-    history.push("/");
+    history.push('/');
   };
 
   return (

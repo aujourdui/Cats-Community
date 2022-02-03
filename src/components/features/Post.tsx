@@ -6,19 +6,20 @@ import * as firebase from "firebase/app";
 import { db } from "../../firebase/firebase";
 import { useStateValue } from "../../context/StateProvider";
 
+
 const Post = ({ postId, username, caption, imageUrl }) => {
   const [comments, setComments] = useState([]);
-  const [comment, setComment] = useState("");
+  const [comment, setComment] = useState('');
   const [{ user }] = useStateValue();
 
   useEffect(() => {
     let unsubscribe: { (): void; (): void };
     if (postId) {
       unsubscribe = db
-        .collection("posts")
+        .collection('posts')
         .doc(postId)
-        .collection("comments")
-        .orderBy("timestamp", "desc")
+        .collection('comments')
+        .orderBy('timestamp', 'desc')
         .onSnapshot((snapshot) => {
           setComments(
             snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
@@ -34,6 +35,7 @@ const Post = ({ postId, username, caption, imageUrl }) => {
   const postComment = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
 
+
     const commentRef = db
       .collection("posts")
       .doc(postId)
@@ -44,8 +46,7 @@ const Post = ({ postId, username, caption, imageUrl }) => {
       username: user.displayName,
       timestamp: firebase.firestore.FieldValue.serverTimestamp(),
     });
-    console.log(addComment.id);
-    setComment("");
+    setComment('');
   };
 
   const deleteComment = (event: { preventDefault: () => void }, id: string) => {

@@ -1,18 +1,16 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 
-import Avatar from "@mui/material/Avatar";
-import IconButton from "@mui/material/IconButton";
-import SendIcon from "@mui/icons-material/Send";
-import { useParams } from "react-router-dom";
-import { db, auth } from "../../../firebase/firebase";
-import * as firebase from "firebase/app";
-import { useStateValue } from "../../../context/StateProvider";
-import { useHistory } from "react-router-dom";
-import { actionTypes } from "../../../reducers/reducer";
+import Avatar from '@mui/material/Avatar';
+import IconButton from '@mui/material/IconButton';
+import SendIcon from '@mui/icons-material/Send';
+import { useParams, useHistory } from 'react-router-dom';
+import { db, auth } from '../../../firebase/firebase';
+import * as firebase from 'firebase/app';
+import { useStateValue } from '../../../context/StateProvider';
+import { actionTypes } from '../../../reducers/reducer';
 
 const Chat = () => {
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState('');
   const [seed, setSeed] = useState<number>();
   const { roomId } = useParams<any>();
   const [roomName, setRoomName] = useState("");
@@ -29,8 +27,8 @@ const Chat = () => {
           user: authUser,
         });
       } else {
-        alert("something wrong");
-        history.push("/");
+        alert('something wrong');
+        history.push('/');
       }
     });
 
@@ -41,14 +39,14 @@ const Chat = () => {
 
   useEffect(() => {
     if (roomId) {
-      db.collection("rooms")
+      db.collection('rooms')
         .doc(roomId)
         .onSnapshot((snapshot) => setRoomName(snapshot.data().name));
 
-      db.collection("rooms")
+      db.collection('rooms')
         .doc(roomId)
-        .collection("messages")
-        .orderBy("timestamp", "asc")
+        .collection('messages')
+        .orderBy('timestamp', 'asc')
         .onSnapshot((snapshot) =>
           setMessages(snapshot.docs.map((doc) => doc.data()))
         );
@@ -62,17 +60,17 @@ const Chat = () => {
   const sendMessage = (e: { preventDefault: () => void }) => {
     e.preventDefault();
     if (roomName) {
-      console.log("You typed >>> ", input);
+      console.log('You typed >>> ', input);
 
-      db.collection("rooms").doc(roomId).collection("messages").add({
+      db.collection('rooms').doc(roomId).collection('messages').add({
         message: input,
         name: user.displayName,
         timestamp: firebase.firestore.FieldValue.serverTimestamp(),
       });
-      setInput("");
+      setInput('');
     } else {
-      alert("please add new chat first");
-      setInput("");
+      alert('please add new chat first');
+      setInput('');
     }
   };
 
@@ -90,7 +88,7 @@ const Chat = () => {
             <h3>Empty: Please go to any Chat or add a new Chat</h3>
           )}
           <p>
-            last seen{" "}
+            last seen{' '}
             {new Date(
               messages[messages.length - 1]?.timestamp?.toDate()
             ).toUTCString()}
@@ -104,7 +102,7 @@ const Chat = () => {
           <p
             key={index}
             className={`chat__message ${
-              message.name === user.displayName && "chat__receiver"
+              message.name === user.displayName && 'chat__receiver'
             }`}
           >
             <span className="chat__name">{message.name}</span>
@@ -131,7 +129,7 @@ const Chat = () => {
             <SendIcon />
           </IconButton>
           <button
-            onClick={() => alert("Please add a new chat")}
+            onClick={() => alert('Please add a new chat')}
             type="submit"
             className="alertButton__send"
           ></button>
