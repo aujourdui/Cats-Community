@@ -1,9 +1,11 @@
-import * as React from 'react';
-import { useState, useEffect } from 'react';
-import Avatar from '@mui/material/Avatar';
-import * as firebase from 'firebase/app';
-import { db } from '../../firebase/firebase';
-import { useStateValue } from '../../context/StateProvider';
+import * as React from "react";
+import { useState, useEffect } from "react";
+import Avatar from "@mui/material/Avatar";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import * as firebase from "firebase/app";
+import { db } from "../../firebase/firebase";
+import { useStateValue } from "../../context/StateProvider";
+
 
 const Post = ({ postId, username, caption, imageUrl }) => {
   const [comments, setComments] = useState([]);
@@ -11,7 +13,7 @@ const Post = ({ postId, username, caption, imageUrl }) => {
   const [{ user }] = useStateValue();
 
   useEffect(() => {
-    let unsubscribe;
+    let unsubscribe: { (): void; (): void };
     if (postId) {
       unsubscribe = db
         .collection('posts')
@@ -19,7 +21,9 @@ const Post = ({ postId, username, caption, imageUrl }) => {
         .collection('comments')
         .orderBy('timestamp', 'desc')
         .onSnapshot((snapshot) => {
-          setComments(snapshot.docs.map((doc) => doc.data()));
+          setComments(
+            snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+          );
         });
     }
 
@@ -28,15 +32,37 @@ const Post = ({ postId, username, caption, imageUrl }) => {
     };
   }, [postId]);
 
-  const postComment = (event: { preventDefault: () => void }) => {
+  const postComment = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
 
-    db.collection('posts').doc(postId).collection('comments').add({
+
+    const commentRef = db
+      .collection("posts")
+      .doc(postId)
+      .collection("comments");
+
+    const addComment = await commentRef.add({
       text: comment,
       username: user.displayName,
       timestamp: firebase.firestore.FieldValue.serverTimestamp(),
     });
     setComment('');
+  };
+
+  const deleteComment = (event: { preventDefault: () => void }, id: string) => {
+    event.preventDefault();
+
+    db.collection("posts")
+      .doc(postId)
+      .collection("comments")
+      .doc(id)
+      .delete()
+      .then(() => {
+        console.log("Posts successfully deleted!");
+      })
+      .catch((error) => {
+        console.error("Error removing document: ", error);
+      });
   };
 
   return (
@@ -53,9 +79,17 @@ const Post = ({ postId, username, caption, imageUrl }) => {
       </h4>
 
       <div className="post__comments">
-        {comments.map((comment, index) => (
-          <p key={index}>
+        {comments.map((comment) => (
+          <p key={comment.id} className="comment__wrapper">
             <strong>{comment.username}</strong>: {comment.text}
+            {user.displayName == comment.username && (
+              <button
+                className="deleteComment__button"
+                onClick={(e) => deleteComment(e, comment.id)}
+              >
+                <DeleteForeverIcon fontSize="large" />
+              </button>
+            )}
           </p>
         ))}
       </div>

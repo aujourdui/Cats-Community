@@ -32,8 +32,9 @@ const HomePage = () => {
   }, [user]);
 
   useEffect(() => {
-    db.collection('posts')
-      .orderBy('timestamp', 'desc')
+    const unsubscribe = db
+      .collection("posts")
+      .orderBy("timestamp", "desc")
       .onSnapshot((snapshot) => {
         setPosts(
           snapshot.docs.map((doc) => ({
@@ -42,6 +43,9 @@ const HomePage = () => {
           }))
         );
       });
+    return () => {
+      unsubscribe();
+    };
   }, []);
 
   return (

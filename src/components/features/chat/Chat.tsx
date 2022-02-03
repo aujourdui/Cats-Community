@@ -57,7 +57,7 @@ const Chat = () => {
     setSeed(Math.floor(Math.random() * 5000));
   }, [roomId]);
 
-  const sendMessage = (e) => {
+  const sendMessage = (e: { preventDefault: () => void }) => {
     e.preventDefault();
     if (roomName) {
       console.log('You typed >>> ', input);
@@ -105,11 +105,11 @@ const Chat = () => {
               message.name === user.displayName && 'chat__receiver'
             }`}
           >
-            <div className="chat__name">{message.name}</div>
+            <span className="chat__name">{message.name}</span>
             {message.message}
-            <div className="chat__timestamp">
+            <span className="chat__timestamp">
               {new Date(message.timestamp?.toDate()).toUTCString()}
-            </div>
+            </span>
           </p>
         ))}
       </div>
