@@ -81,12 +81,14 @@ const Post = ({ postId, username, caption, imageUrl }) => {
         {comments.map((comment) => (
           <p key={comment.id}>
             <strong>{comment.username}</strong>: {comment.text}
-            <button
-              className="delete__button"
-              onClick={(e) => deleteComment(e, comment.id)}
-            >
-              X
-            </button>
+            {user.displayName == comment.username && (
+              <button
+                className="delete__button"
+                onClick={(e) => deleteComment(e, comment.id)}
+              >
+                X
+              </button>
+            )}
           </p>
         ))}
       </div>
