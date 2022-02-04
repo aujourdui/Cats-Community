@@ -2,6 +2,7 @@ import * as React from "react";
 import { useState, useEffect } from "react";
 import Avatar from "@mui/material/Avatar";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import EditIcon from "@mui/icons-material/Edit";
 import * as firebase from "firebase/app";
 import { db } from "../../firebase/firebase";
 import { useStateValue } from "../../context/StateProvider";
@@ -39,22 +40,51 @@ const Post = ({ postId, username, caption, imageUrl }) => {
       .doc(postId)
       .collection("comments");
 
-    const addComment = await commentRef.add({
+    await commentRef.add({
       text: comment,
       username: user.displayName,
       timestamp: firebase.firestore.FieldValue.serverTimestamp(),
     });
-    addComment;
     setComment("");
   };
 
-  const deleteComment = (event: { preventDefault: () => void }, id: string) => {
+  const editComment = async (
+    event: { preventDefault: () => void },
+    id: string
+  ) => {
     event.preventDefault();
 
-    db.collection("posts")
+    const commentRef = db
+      .collection("posts")
       .doc(postId)
       .collection("comments")
-      .doc(id)
+      .doc(id);
+
+    await commentRef
+      .update({
+        text: "Excellent!",
+      })
+      .then(() => {
+        console.log("Posts successfully deleted!");
+      })
+      .catch((error) => {
+        console.error("Error removing document: ", error);
+      });
+  };
+
+  const deleteComment = async (
+    event: { preventDefault: () => void },
+    id: string
+  ) => {
+    event.preventDefault();
+
+    const commentRef = db
+      .collection("posts")
+      .doc(postId)
+      .collection("comments")
+      .doc(id);
+
+    await commentRef
       .delete()
       .then(() => {
         console.log("Posts successfully deleted!");
@@ -82,12 +112,20 @@ const Post = ({ postId, username, caption, imageUrl }) => {
           <p key={comment.id} className="comment__wrapper">
             <strong>{comment.username}</strong>: {comment.text}
             {user.displayName == comment.username && (
-              <button
-                className="deleteComment__button"
-                onClick={(e) => deleteComment(e, comment.id)}
-              >
-                <DeleteForeverIcon fontSize="large" />
-              </button>
+              <>
+                <button
+                  className="editComment__button"
+                  onClick={(e) => editComment(e, comment.id)}
+                >
+                  <EditIcon fontSize="large" />
+                </button>
+                <button
+                  className="deleteComment__button"
+                  onClick={(e) => deleteComment(e, comment.id)}
+                >
+                  <DeleteForeverIcon fontSize="large" />
+                </button>
+              </>
             )}
           </p>
         ))}

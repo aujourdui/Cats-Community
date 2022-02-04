@@ -56,14 +56,35 @@
 }
 
 .comment__wrapper:hover {
+  .editComment__button,
   .deleteComment__button {
     visibility: visible;
   }
 }
 
+.editComment__button {
+  padding-right: 0;
+}
+
+.editComment__button,
 .deleteComment__button {
   visibility: hidden;
   opacity: 0.5;
   border: none;
   background-color: white;
+
+  &:hover {
+    opacity: 1;
+  }
 }
+
+// .deleteComment__button {
+//   visibility: hidden;
+//   opacity: 0.5;
+//   border: none;
+//   background-color: white;
+
+//   &:hover {
+//     opacity: 1;
+//   }
+// }
