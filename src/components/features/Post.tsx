@@ -84,14 +84,15 @@ const Post = ({ postId, username, caption, imageUrl }) => {
       .collection("comments")
       .doc(id);
 
-    await commentRef
-      .delete()
-      .then(() => {
-        console.log("Posts successfully deleted!");
-      })
-      .catch((error) => {
-        console.error("Error removing document: ", error);
-      });
+    window.confirm("Are you sure to delete?") &&
+      (await commentRef
+        .delete()
+        .then(() => {
+          console.log("Posts successfully deleted!");
+        })
+        .catch((error) => {
+          console.error("Error removing document: ", error);
+        }));
   };
 
   return (
