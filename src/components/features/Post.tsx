@@ -54,6 +54,8 @@ const Post = ({ postId, username, caption, imageUrl }) => {
   ) => {
     event.preventDefault();
 
+    const updatedComment = prompt("Please edit your comment");
+
     const commentRef = db
       .collection("posts")
       .doc(postId)
@@ -62,7 +64,7 @@ const Post = ({ postId, username, caption, imageUrl }) => {
 
     await commentRef
       .update({
-        text: "Excellent!",
+        text: updatedComment,
       })
       .then(() => {
         console.log("Posts successfully deleted!");
@@ -133,22 +135,24 @@ const Post = ({ postId, username, caption, imageUrl }) => {
       </div>
 
       {user && (
-        <form className="post__comment-box">
-          <input
-            className="post__input"
-            type="text"
-            placeholder="Add a comment..."
-            value={comment}
-            onChange={(e) => setComment(e.target.value)}
-          />
-          <button
-            className="post__button"
-            disabled={!comment}
-            onClick={postComment}
-          >
-            Post
-          </button>
-        </form>
+        <>
+          <form className="post__comment-box">
+            <input
+              className="post__input"
+              type="text"
+              placeholder="Add a comment..."
+              value={comment}
+              onChange={(e) => setComment(e.target.value)}
+            />
+            <button
+              className="post__button"
+              disabled={!comment}
+              onClick={postComment}
+            >
+              Post
+            </button>
+          </form>
+        </>
       )}
     </div>
   );
