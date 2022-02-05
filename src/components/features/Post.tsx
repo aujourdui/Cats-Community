@@ -2,6 +2,7 @@ import * as React from "react";
 import { useState, useEffect } from "react";
 import Avatar from "@mui/material/Avatar";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import EditIcon from "@mui/icons-material/Edit";
 import * as firebase from "firebase/app";
 import { db } from "../../firebase/firebase";
 import { useStateValue } from "../../context/StateProvider";
@@ -39,29 +40,61 @@ const Post = ({ postId, username, caption, imageUrl }) => {
       .doc(postId)
       .collection("comments");
 
-    const addComment = await commentRef.add({
+    await commentRef.add({
       text: comment,
       username: user.displayName,
       timestamp: firebase.firestore.FieldValue.serverTimestamp(),
     });
-    addComment.id;
     setComment("");
   };
 
-  const deleteComment = (event: { preventDefault: () => void }, id: string) => {
+  const editComment = async (
+    event: { preventDefault: () => void },
+    id: string
+  ) => {
     event.preventDefault();
 
-    db.collection("posts")
+    const updatedComment = prompt("Please edit your comment");
+
+    const commentRef = db
+      .collection("posts")
       .doc(postId)
       .collection("comments")
-      .doc(id)
-      .delete()
+      .doc(id);
+
+    await commentRef
+      .update({
+        text: updatedComment,
+      })
       .then(() => {
         console.log("Posts successfully deleted!");
       })
       .catch((error) => {
         console.error("Error removing document: ", error);
       });
+  };
+
+  const deleteComment = async (
+    event: { preventDefault: () => void },
+    id: string
+  ) => {
+    event.preventDefault();
+
+    const commentRef = db
+      .collection("posts")
+      .doc(postId)
+      .collection("comments")
+      .doc(id);
+
+    window.confirm("Are you sure to delete?") &&
+      (await commentRef
+        .delete()
+        .then(() => {
+          console.log("Posts successfully deleted!");
+        })
+        .catch((error) => {
+          console.error("Error removing document: ", error);
+        }));
   };
 
   return (
@@ -82,34 +115,44 @@ const Post = ({ postId, username, caption, imageUrl }) => {
           <p key={comment.id} className="comment__wrapper">
             <strong>{comment.username}</strong>: {comment.text}
             {user.displayName == comment.username && (
-              <button
-                className="deleteComment__button"
-                onClick={(e) => deleteComment(e, comment.id)}
-              >
-                <DeleteForeverIcon fontSize="large" />
-              </button>
+              <>
+                <button
+                  className="editComment__button"
+                  onClick={(e) => editComment(e, comment.id)}
+                >
+                  <EditIcon fontSize="large" />
+                </button>
+                <button
+                  className="deleteComment__button"
+                  onClick={(e) => deleteComment(e, comment.id)}
+                >
+                  <DeleteForeverIcon fontSize="large" />
+                </button>
+              </>
             )}
           </p>
         ))}
       </div>
 
       {user && (
-        <form className="post__comment-box">
-          <input
-            className="post__input"
-            type="text"
-            placeholder="Add a comment..."
-            value={comment}
-            onChange={(e) => setComment(e.target.value)}
-          />
-          <button
-            className="post__button"
-            disabled={!comment}
-            onClick={postComment}
-          >
-            Post
-          </button>
-        </form>
+        <>
+          <form className="post__comment-box">
+            <input
+              className="post__input"
+              type="text"
+              placeholder="Add a comment..."
+              value={comment}
+              onChange={(e) => setComment(e.target.value)}
+            />
+            <button
+              className="post__button"
+              disabled={!comment}
+              onClick={postComment}
+            >
+              Post
+            </button>
+          </form>
+        </>
       )}
     </div>
   );
