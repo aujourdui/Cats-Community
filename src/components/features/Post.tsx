@@ -50,11 +50,12 @@ const Post = ({ postId, username, caption, imageUrl }) => {
 
   const editComment = async (
     event: { preventDefault: () => void },
-    id: string
+    id: string,
+    text: string
   ) => {
     event.preventDefault();
 
-    const updatedComment = prompt("Please edit your comment");
+    const updatedComment = prompt("Please edit your comment", text);
 
     const commentRef = db
       .collection("posts")
@@ -118,7 +119,7 @@ const Post = ({ postId, username, caption, imageUrl }) => {
               <>
                 <button
                   className="editComment__button"
-                  onClick={(e) => editComment(e, comment.id)}
+                  onClick={(e) => editComment(e, comment.id, comment.text)}
                 >
                   <EditIcon fontSize="large" />
                 </button>
