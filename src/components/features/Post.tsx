@@ -50,11 +50,12 @@ const Post = ({ postId, username, caption, imageUrl }) => {
 
   const editComment = async (
     event: { preventDefault: () => void },
-    id: string
+    id: string,
+    text: string
   ) => {
     event.preventDefault();
 
-    const updatedComment = prompt("Please edit your comment");
+    const updatedComment = prompt("Please edit your comment", text);
 
     const commentRef = db
       .collection("posts")
@@ -62,16 +63,27 @@ const Post = ({ postId, username, caption, imageUrl }) => {
       .collection("comments")
       .doc(id);
 
-    await commentRef
-      .update({
-        text: updatedComment,
-      })
-      .then(() => {
-        console.log("Posts successfully deleted!");
-      })
-      .catch((error) => {
-        console.error("Error removing document: ", error);
-      });
+    updatedComment === null
+      ? await commentRef
+          .update({
+            text: text,
+          })
+          .then(() => {
+            console.log("This comment remains previous one!");
+          })
+          .catch((error) => {
+            console.error("Error editing comment: ", error);
+          })
+      : await commentRef
+          .update({
+            text: updatedComment,
+          })
+          .then(() => {
+            console.log("This comment has successfully been edited!");
+          })
+          .catch((error) => {
+            console.error("Error editing document: ", error);
+          });
   };
 
   const deleteComment = async (
@@ -90,7 +102,7 @@ const Post = ({ postId, username, caption, imageUrl }) => {
       (await commentRef
         .delete()
         .then(() => {
-          console.log("Posts successfully deleted!");
+          console.log("This post has successfully been deleted!");
         })
         .catch((error) => {
           console.error("Error removing document: ", error);
@@ -118,7 +130,7 @@ const Post = ({ postId, username, caption, imageUrl }) => {
               <>
                 <button
                   className="editComment__button"
-                  onClick={(e) => editComment(e, comment.id)}
+                  onClick={(e) => editComment(e, comment.id, comment.text)}
                 >
                   <EditIcon fontSize="large" />
                 </button>
