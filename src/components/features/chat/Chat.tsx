@@ -29,7 +29,7 @@ const Chat = () => {
           user: authUser,
         });
       } else {
-        alert("something wrong");
+        alert("something wrong to register a user");
         history.push("/");
       }
     });
