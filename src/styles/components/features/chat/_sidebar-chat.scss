@@ -7,11 +7,19 @@
 
   &:hover {
     background-color: $pale-gray;
+    .deleteIcon {
+      visibility: visible;
+    }
   }
 }
 .deleteIcon {
   position: absolute;
   left: 90%;
+  visibility: hidden;
+
+  &:hover {
+    color: black;
+  }
 }
 
 .sidebarChat__info {
