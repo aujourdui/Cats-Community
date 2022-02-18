@@ -1,8 +1,13 @@
 .post {
+  position: relative;
   background-color: white;
   max-width: 500px;
   border: 1px solid lightgray;
   margin-bottom: 45px;
+
+  &:hover .delete__postButton {
+    visibility: visible;
+  }
 }
 
 .post__image {
@@ -21,6 +26,17 @@
   display: flex;
   align-items: center;
   padding: 20px;
+}
+
+.delete__postButton {
+  position: absolute;
+  left: 97%;
+  visibility: hidden;
+  color: gray;
+
+  &:hover {
+    color: black;
+  }
 }
 
 .post__avatar {

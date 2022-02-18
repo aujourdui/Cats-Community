@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import Avatar from "@mui/material/Avatar";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import EditIcon from "@mui/icons-material/Edit";
+import CloseIcon from "@mui/icons-material/Close";
 import * as firebase from "firebase/app";
 import { db } from "../../firebase/firebase";
 import { useStateValue } from "../../context/StateProvider";
@@ -111,6 +112,9 @@ const Post = ({ postId, username, caption, imageUrl }) => {
 
   return (
     <div className="post">
+      <span className="delete__postButton">
+        <CloseIcon />
+      </span>
       <div className="post__header">
         <Avatar className="post__avatar">U</Avatar>
         <h3>{username}</h3>
