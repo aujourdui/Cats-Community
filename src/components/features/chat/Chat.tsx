@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
 import SendIcon from "@mui/icons-material/Send";
+import CloseIcon from "@mui/icons-material/Close";
+
 import { useParams } from "react-router-dom";
 import { db, auth } from "../../../firebase/firebase";
 import * as firebase from "firebase/app";
@@ -76,6 +78,9 @@ const Chat = () => {
     }
   };
 
+  // const deleteMessage = () => {
+  // }
+
   return (
     <div className="chat">
       <div className="chat__header">
@@ -107,6 +112,9 @@ const Chat = () => {
               message.name === user.displayName && "chat__receiver"
             }`}
           >
+            <span className="delete__chat">
+              <CloseIcon />
+            </span>
             <span className="chat__name">{message.name}</span>
             {message.message}
             <span className="chat__timestamp">
