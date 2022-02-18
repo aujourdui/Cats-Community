@@ -36,7 +36,8 @@
   margin-bottom: 30px;
 
   &:hover {
-    .delete__chat {
+    .delete__chat,
+    .edit__chat {
       visibility: visible;
     }
   }
@@ -52,12 +53,28 @@
   font-size: xx-small;
 }
 
+.edit__chat {
+  position: absolute;
+  top: -1px;
+  left: 90%;
+  visibility: hidden;
+  color: gray;
+
+  &:hover {
+    color: black;
+  }
+}
+
 .delete__chat {
   position: absolute;
   top: -1px;
   left: 94%;
   visibility: hidden;
   color: gray;
+
+  &:hover {
+    color: black;
+  }
 }
 
 .chat__name {
