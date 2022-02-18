@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
 import SendIcon from "@mui/icons-material/Send";
+import CloseIcon from "@mui/icons-material/Close";
+
 import { useParams } from "react-router-dom";
 import { db, auth } from "../../../firebase/firebase";
 import * as firebase from "firebase/app";
@@ -50,7 +52,9 @@ const Chat = () => {
         .collection("messages")
         .orderBy("timestamp", "asc")
         .onSnapshot((snapshot) =>
-          setMessages(snapshot.docs.map((doc) => doc.data()))
+          setMessages(
+            snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+          )
         );
     }
   }, [roomId]);
@@ -76,6 +80,24 @@ const Chat = () => {
     }
   };
 
+  const deleteChat = async (id: string) => {
+    const chatRef = db
+      .collection("rooms")
+      .doc(roomId)
+      .collection("messages")
+      .doc(id);
+
+    window.confirm("Are you sure to delete?") &&
+      (await chatRef
+        .delete()
+        .then(() => {
+          console.log("This post has successfully been deleted!");
+        })
+        .catch((error) => {
+          console.error("Error removing document: ", error);
+        }));
+  };
+
   return (
     <div className="chat">
       <div className="chat__header">
@@ -96,17 +118,23 @@ const Chat = () => {
             ).toUTCString()}
           </p>
         </div>
-
-        <div className="chat__headerRight"></div>
       </div>
       <div className="chat__body">
-        {messages.map((message, index) => (
+        {messages.map((message) => (
           <p
-            key={index}
+            key={message.id}
             className={`chat__message ${
               message.name === user.displayName && "chat__receiver"
             }`}
           >
+            {user.displayName == message.name && (
+              <span
+                className="delete__chat"
+                onClick={() => deleteChat(message.id)}
+              >
+                <CloseIcon />
+              </span>
+            )}
             <span className="chat__name">{message.name}</span>
             {message.message}
             <span className="chat__timestamp">
