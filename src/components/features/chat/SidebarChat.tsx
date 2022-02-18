@@ -1,6 +1,8 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
 import Avatar from "@mui/material/Avatar";
+import CloseIcon from "@mui/icons-material/Close";
+
 import { db } from "../../../firebase/firebase";
 import { Link } from "react-router-dom";
 
@@ -43,13 +45,29 @@ const SidebarChat = ({ id, name, addNewChat }) => {
     }
   };
 
+  const deleteRoom = async () => {
+    const roomRef = db.collection("rooms").doc(id);
+
+    window.confirm("Are you sure to delete?") &&
+      (await roomRef
+        .delete()
+        .then(() => {
+          console.log("This post has successfully been deleted!");
+        })
+        .catch((error) => {
+          console.error("Error removing document: ", error);
+        }));
+  };
+
   return !addNewChat ? (
     <Link to={`/rooms/${id}`}>
       <div className="sidebarChat">
         <Avatar
           src={`https://avatars.dicebear.com/api/identicon/${seed}.svg`}
         />
-        <span className="deleteIcon">Delete</span>
+        <span className="deleteIcon" onClick={deleteRoom}>
+          <CloseIcon />
+        </span>
         <span className="sidebarChat__info">
           <h2>{name}</h2>
           <p>{messages[0]?.message}</p>
