@@ -1,11 +1,24 @@
 .sidebarChat {
+  position: relative;
   display: flex;
-  padding: 20px;
+  padding: 10px;
   cursor: pointer;
   border-bottom: 1px solid $pale-white;
 
   &:hover {
     background-color: $pale-gray;
+    .deleteIcon {
+      visibility: visible;
+    }
+  }
+}
+.deleteIcon {
+  position: absolute;
+  left: 90%;
+  visibility: hidden;
+
+  &:hover {
+    color: black;
   }
 }
 

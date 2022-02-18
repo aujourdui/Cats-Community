@@ -63,16 +63,50 @@ const Post = ({ postId, username, caption, imageUrl }) => {
       .collection("comments")
       .doc(id);
 
-    await commentRef
-      .update({
-        text: updatedComment,
-      })
-      .then(() => {
-        console.log("Posts successfully deleted!");
-      })
-      .catch((error) => {
-        console.error("Error removing document: ", error);
-      });
+    updatedComment === null
+      ? await commentRef
+          .update({
+            text: text,
+          })
+          .then(() => {
+            console.log("This comment remains previous one!");
+          })
+          .catch((error) => {
+            console.error("Error editing comment: ", error);
+          })
+      : await commentRef
+          .update({
+            text: updatedComment,
+          })
+          .then(() => {
+            console.log("This comment has successfully been edited!");
+          })
+          .catch((error) => {
+            console.error("Error editing document: ", error);
+          });
+  };
+
+  const deleteComment = async (
+    event: { preventDefault: () => void },
+    id: string
+  ) => {
+    event.preventDefault();
+
+    const commentRef = db
+      .collection("posts")
+      .doc(postId)
+      .collection("comments")
+      .doc(id);
+
+    window.confirm("Are you sure to delete?") &&
+      (await commentRef
+        .delete()
+        .then(() => {
+          console.log("This post has successfully been deleted!");
+        })
+        .catch((error) => {
+          console.error("Error removing document: ", error);
+        }));
   };
 
   const deleteComment = async (
