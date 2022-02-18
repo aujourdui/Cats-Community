@@ -45,14 +45,28 @@ const SidebarChat = ({ id, name, addNewChat }) => {
     }
   };
 
+  const deleteRoom = async () => {
+    const roomRef = db.collection("rooms").doc(id);
+
+    window.confirm("Are you sure to delete?") &&
+      (await roomRef
+        .delete()
+        .then(() => {
+          console.log("This post has successfully been deleted!");
+        })
+        .catch((error) => {
+          console.error("Error removing document: ", error);
+        }));
+  };
+
   return !addNewChat ? (
     <Link to={`/rooms/${id}`}>
       <div className="sidebarChat">
         <Avatar
           src={`https://avatars.dicebear.com/api/identicon/${seed}.svg`}
         />
-        <span className="deleteIcon">
-          <CloseIcon className="close" />
+        <span className="deleteIcon" onClick={deleteRoom}>
+          <CloseIcon />
         </span>
         <span className="sidebarChat__info">
           <h2>{name}</h2>
