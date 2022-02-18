@@ -16,6 +16,10 @@
   position: absolute;
   left: 90%;
   visibility: hidden;
+
+  &:hover {
+    color: black;
+  }
 }
 
 .sidebarChat__info {
