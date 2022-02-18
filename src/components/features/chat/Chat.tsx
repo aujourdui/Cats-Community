@@ -127,12 +127,14 @@ const Chat = () => {
               message.name === user.displayName && "chat__receiver"
             }`}
           >
-            <span
-              className="delete__chat"
-              onClick={() => deleteChat(message.id)}
-            >
-              <CloseIcon />
-            </span>
+            {user.displayName == message.name && (
+              <span
+                className="delete__chat"
+                onClick={() => deleteChat(message.id)}
+              >
+                <CloseIcon />
+              </span>
+            )}
             <span className="chat__name">{message.name}</span>
             {message.message}
             <span className="chat__timestamp">
