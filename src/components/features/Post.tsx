@@ -102,29 +102,6 @@ const Post = ({ postId, username, caption, imageUrl }) => {
       (await commentRef
         .delete()
         .then(() => {
-          console.log("This post has successfully been deleted!");
-        })
-        .catch((error) => {
-          console.error("Error removing document: ", error);
-        }));
-  };
-
-  const deleteComment = async (
-    event: { preventDefault: () => void },
-    id: string
-  ) => {
-    event.preventDefault();
-
-    const commentRef = db
-      .collection("posts")
-      .doc(postId)
-      .collection("comments")
-      .doc(id);
-
-    window.confirm("Are you sure to delete?") &&
-      (await commentRef
-        .delete()
-        .then(() => {
           console.log("Posts successfully deleted!");
         })
         .catch((error) => {
