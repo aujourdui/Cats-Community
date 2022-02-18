@@ -1,6 +1,8 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
 import Avatar from "@mui/material/Avatar";
+import CloseIcon from "@mui/icons-material/Close";
+
 import { db } from "../../../firebase/firebase";
 import { Link } from "react-router-dom";
 
@@ -49,7 +51,9 @@ const SidebarChat = ({ id, name, addNewChat }) => {
         <Avatar
           src={`https://avatars.dicebear.com/api/identicon/${seed}.svg`}
         />
-        <span className="deleteIcon">Delete</span>
+        <span className="deleteIcon">
+          <CloseIcon className="close" />
+        </span>
         <span className="sidebarChat__info">
           <h2>{name}</h2>
           <p>{messages[0]?.message}</p>
