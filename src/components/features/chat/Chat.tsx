@@ -5,6 +5,7 @@ import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
 import SendIcon from "@mui/icons-material/Send";
 import CloseIcon from "@mui/icons-material/Close";
+import EditIcon from "@mui/icons-material/Edit";
 
 import { useParams } from "react-router-dom";
 import { db, auth } from "../../../firebase/firebase";
@@ -80,6 +81,44 @@ const Chat = () => {
     }
   };
 
+  // const editChat = async (
+  //   event: { preventDefault: () => void },
+  //   id: string,
+  //   text: string
+  // ) => {
+  //   event.preventDefault();
+
+  //   const updatedComment = prompt("Please edit your comment", text);
+
+  //   const commentRef = db
+  //     .collection("posts")
+  //     .doc(postId)
+  //     .collection("comments")
+  //     .doc(id);
+
+  //   updatedComment === null
+  //     ? await commentRef
+  //         .update({
+  //           text: text,
+  //         })
+  //         .then(() => {
+  //           console.log("This comment remains previous one!");
+  //         })
+  //         .catch((error) => {
+  //           console.error("Error editing comment: ", error);
+  //         })
+  //     : await commentRef
+  //         .update({
+  //           text: updatedComment,
+  //         })
+  //         .then(() => {
+  //           console.log("This comment has successfully been edited!");
+  //         })
+  //         .catch((error) => {
+  //           console.error("Error editing document: ", error);
+  //         });
+  // };
+
   const deleteChat = async (id: string) => {
     const chatRef = db
       .collection("rooms")
@@ -128,12 +167,20 @@ const Chat = () => {
             }`}
           >
             {user.displayName == message.name && (
-              <span
-                className="delete__chat"
-                onClick={() => deleteChat(message.id)}
-              >
-                <CloseIcon />
-              </span>
+              <>
+                <span
+                  className="edit__chat"
+                  // onClick={() => editChat(message.id)}
+                >
+                  <EditIcon fontSize="small" />
+                </span>
+                <span
+                  className="delete__chat"
+                  onClick={() => deleteChat(message.id)}
+                >
+                  <CloseIcon />
+                </span>
+              </>
             )}
             <span className="chat__name">{message.name}</span>
             {message.message}
