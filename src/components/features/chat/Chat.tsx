@@ -81,43 +81,37 @@ const Chat = () => {
     }
   };
 
-  // const editChat = async (
-  //   event: { preventDefault: () => void },
-  //   id: string,
-  //   text: string
-  // ) => {
-  //   event.preventDefault();
+  const editChat = async (id: string, message: string) => {
+    const updatedChat = prompt("Please edit your chat", message);
 
-  //   const updatedComment = prompt("Please edit your comment", text);
+    const chatRef = db
+      .collection("rooms")
+      .doc(roomId)
+      .collection("messages")
+      .doc(id);
 
-  //   const commentRef = db
-  //     .collection("posts")
-  //     .doc(postId)
-  //     .collection("comments")
-  //     .doc(id);
-
-  //   updatedComment === null
-  //     ? await commentRef
-  //         .update({
-  //           text: text,
-  //         })
-  //         .then(() => {
-  //           console.log("This comment remains previous one!");
-  //         })
-  //         .catch((error) => {
-  //           console.error("Error editing comment: ", error);
-  //         })
-  //     : await commentRef
-  //         .update({
-  //           text: updatedComment,
-  //         })
-  //         .then(() => {
-  //           console.log("This comment has successfully been edited!");
-  //         })
-  //         .catch((error) => {
-  //           console.error("Error editing document: ", error);
-  //         });
-  // };
+    updatedChat === null
+      ? await chatRef
+          .update({
+            message: message,
+          })
+          .then(() => {
+            console.log("This comment remains previous one!");
+          })
+          .catch((error) => {
+            console.error("Error editing comment: ", error);
+          })
+      : await chatRef
+          .update({
+            message: updatedChat,
+          })
+          .then(() => {
+            console.log("This comment has successfully been edited!");
+          })
+          .catch((error) => {
+            console.error("Error editing document: ", error);
+          });
+  };
 
   const deleteChat = async (id: string) => {
     const chatRef = db
@@ -170,7 +164,7 @@ const Chat = () => {
               <>
                 <span
                   className="edit__chat"
-                  // onClick={() => editChat(message.id)}
+                  onClick={() => editChat(message.id, message.message)}
                 >
                   <EditIcon fontSize="small" />
                 </span>
