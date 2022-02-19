@@ -126,9 +126,11 @@ const Post = ({ postId, username, caption, imageUrl }) => {
 
   return (
     <div className="post">
-      <span className="delete__postButton" onClick={deletePost}>
-        <CloseIcon />
-      </span>
+      {username === user.displayName && (
+        <span className="delete__postButton" onClick={deletePost}>
+          <CloseIcon />
+        </span>
+      )}
       <div className="post__header">
         <Avatar className="post__avatar">U</Avatar>
         <h3>{username}</h3>
