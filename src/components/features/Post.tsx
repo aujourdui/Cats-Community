@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import Avatar from "@mui/material/Avatar";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import EditIcon from "@mui/icons-material/Edit";
+import CloseIcon from "@mui/icons-material/Close";
 import * as firebase from "firebase/app";
 import { db } from "../../firebase/firebase";
 import { useStateValue } from "../../context/StateProvider";
@@ -31,6 +32,20 @@ const Post = ({ postId, username, caption, imageUrl }) => {
       unsubscribe();
     };
   }, [postId]);
+
+  const deletePost = async () => {
+    const postRef = db.collection("posts").doc(postId);
+
+    window.confirm("Are you sure to delete?") &&
+      (await postRef
+        .delete()
+        .then(() => {
+          console.log("This post has successfully been deleted!");
+        })
+        .catch((error) => {
+          console.error("Error removing document: ", error);
+        }));
+  };
 
   const postComment = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
@@ -109,8 +124,34 @@ const Post = ({ postId, username, caption, imageUrl }) => {
         }));
   };
 
+  const deleteComment = async (
+    event: { preventDefault: () => void },
+    id: string
+  ) => {
+    event.preventDefault();
+
+    const commentRef = db
+      .collection("posts")
+      .doc(postId)
+      .collection("comments")
+      .doc(id);
+
+    window.confirm("Are you sure to delete?") &&
+      (await commentRef
+        .delete()
+        .then(() => {
+          console.log("Posts successfully deleted!");
+        })
+        .catch((error) => {
+          console.error("Error removing document: ", error);
+        }));
+  };
+
   return (
     <div className="post">
+      <span className="delete__postButton" onClick={deletePost}>
+        <CloseIcon />
+      </span>
       <div className="post__header">
         <Avatar className="post__avatar">U</Avatar>
         <h3>{username}</h3>
