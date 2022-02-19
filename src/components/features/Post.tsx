@@ -33,6 +33,20 @@ const Post = ({ postId, username, caption, imageUrl }) => {
     };
   }, [postId]);
 
+  const deletePost = async () => {
+    const postRef = db.collection("posts").doc(postId);
+
+    window.confirm("Are you sure to delete?") &&
+      (await postRef
+        .delete()
+        .then(() => {
+          console.log("This post has successfully been deleted!");
+        })
+        .catch((error) => {
+          console.error("Error removing document: ", error);
+        }));
+  };
+
   const postComment = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
 
@@ -112,7 +126,7 @@ const Post = ({ postId, username, caption, imageUrl }) => {
 
   return (
     <div className="post">
-      <span className="delete__postButton">
+      <span className="delete__postButton" onClick={deletePost}>
         <CloseIcon />
       </span>
       <div className="post__header">
