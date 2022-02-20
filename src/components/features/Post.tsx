@@ -40,12 +40,15 @@ const Post = ({ postId, username, caption, imageUrl }) => {
       .collection("comments")
       .get();
 
-    window.confirm("Are you sure to delete?") &&
-      (await Promise.all(deletePost.docs.map((doc) => doc.ref.delete())));
-    try {
-      await db.collection("posts").doc(postId).delete();
-    } catch (error) {
-      console.error("Error to delete post", error);
+    if (window.confirm("Are you sure to delete?") === true) {
+      await Promise.all(deletePost.docs.map((doc) => doc.ref.delete()));
+      try {
+        await db.collection("posts").doc(postId).delete();
+      } catch (error) {
+        console.error("Error to delete post", error);
+      }
+    } else {
+      return null;
     }
   };
 

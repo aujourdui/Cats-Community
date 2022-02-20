@@ -53,10 +53,13 @@ const SidebarChat = ({ id, name, addNewChat }) => {
       .collection("messages")
       .get();
 
-    window.confirm("Are you sure to delete?") &&
-      (await Promise.all(deleteDoc.docs.map((doc) => doc.ref.delete())));
-    await db.collection("rooms").doc(id).delete();
-    history.push("/rooms/6LZglK8hpsNRgJodYMKx");
+    if (window.confirm("Are you sure to delete?") === true) {
+      await Promise.all(deleteDoc.docs.map((doc) => doc.ref.delete()));
+      await db.collection("rooms").doc(id).delete();
+      history.push("/rooms/6LZglK8hpsNRgJodYMKx");
+    } else {
+      return null;
+    }
   };
 
   return !addNewChat ? (
