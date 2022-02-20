@@ -29,3 +29,8 @@
     padding-right: 5px;
   }
 }
+@media (max-width: $desktop-breakpoint) {
+  .home__content {
+    padding: 0;
+  }
+}
