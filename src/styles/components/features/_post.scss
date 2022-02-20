@@ -10,6 +10,12 @@
   }
 }
 
+@media (max-width: $desktop-breakpoint) {
+  .post {
+    max-width: 450px;
+  }
+}
+
 .post__image {
   width: 100%;
   object-fit: contain;
