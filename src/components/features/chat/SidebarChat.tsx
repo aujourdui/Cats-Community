@@ -1,10 +1,9 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
+import { Link, useHistory } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
 import CloseIcon from "@mui/icons-material/Close";
-
 import { db } from "../../../firebase/firebase";
-import { Link } from "react-router-dom";
 
 interface IMessages {
   data?: string;
@@ -18,6 +17,8 @@ interface Message {
 const SidebarChat = ({ id, name, addNewChat }) => {
   const [seed, setSeed] = useState<number>();
   const [messages, setMessages] = useState<IMessages[] | Message | string>("");
+
+  const history = useHistory();
 
   useEffect(() => {
     if (id) {
@@ -46,17 +47,16 @@ const SidebarChat = ({ id, name, addNewChat }) => {
   };
 
   const deleteRoom = async () => {
-    const roomRef = db.collection("rooms").doc(id);
+    const deleteDoc = await db
+      .collection("rooms")
+      .doc(id)
+      .collection("messages")
+      .get();
 
     window.confirm("Are you sure to delete?") &&
-      (await roomRef
-        .delete()
-        .then(() => {
-          console.log("This post has successfully been deleted!");
-        })
-        .catch((error) => {
-          console.error("Error removing document: ", error);
-        }));
+      (await Promise.all(deleteDoc.docs.map((doc) => doc.ref.delete())));
+    await db.collection("rooms").doc(id).delete();
+    history.push("/rooms/6LZglK8hpsNRgJodYMKx");
   };
 
   return !addNewChat ? (
@@ -65,9 +65,11 @@ const SidebarChat = ({ id, name, addNewChat }) => {
         <Avatar
           src={`https://avatars.dicebear.com/api/identicon/${seed}.svg`}
         />
-        <span className="deleteIcon" onClick={deleteRoom}>
-          <CloseIcon />
-        </span>
+        {name !== "Greeting Room" && (
+          <span className="deleteIcon" onClick={deleteRoom}>
+            <CloseIcon />
+          </span>
+        )}
         <span className="sidebarChat__info">
           <h2>{name}</h2>
           <p>{messages[0]?.message}</p>
