@@ -34,17 +34,19 @@ const Post = ({ postId, username, caption, imageUrl }) => {
   }, [postId]);
 
   const deletePost = async () => {
-    const postRef = db.collection("posts").doc(postId);
+    const deletePost = await db
+      .collection("posts")
+      .doc(postId)
+      .collection("comments")
+      .get();
 
     window.confirm("Are you sure to delete?") &&
-      (await postRef
-        .delete()
-        .then(() => {
-          console.log("This post has successfully been deleted!");
-        })
-        .catch((error) => {
-          console.error("Error removing document: ", error);
-        }));
+      (await Promise.all(deletePost.docs.map((doc) => doc.ref.delete())));
+    try {
+      await db.collection("posts").doc(postId).delete();
+    } catch (error) {
+      console.error("Error to delete post", error);
+    }
   };
 
   const postComment = async (event: { preventDefault: () => void }) => {
@@ -126,9 +128,11 @@ const Post = ({ postId, username, caption, imageUrl }) => {
 
   return (
     <div className="post">
-      <span className="delete__postButton" onClick={deletePost}>
-        <CloseIcon />
-      </span>
+      {username === user.displayName && (
+        <span className="delete__postButton" onClick={deletePost}>
+          <CloseIcon />
+        </span>
+      )}
       <div className="post__header">
         <Avatar className="post__avatar">U</Avatar>
         <h3>{username}</h3>
